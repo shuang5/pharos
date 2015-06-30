@@ -1,0 +1,9 @@
+package org.renci.pharos.lp;
+
+public class FileGUI {
+	public static String getFile(String title){
+		FileDiag f=new FileDiag();
+		return f.open(title);
+	}
+	
+}

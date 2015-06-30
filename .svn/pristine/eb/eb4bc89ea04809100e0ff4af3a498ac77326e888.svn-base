@@ -1,0 +1,43 @@
+package org.renci.pharos.gui;
+public final class CHOICES {
+	private ButtonOption currentChoice;
+	private Mode mode;
+	public CHOICES() {
+		currentChoice=ButtonOption.Select;
+		mode=Mode.NodeMode;
+	}
+	public static enum ButtonOption{
+		Null,New,Open,Save,Select,Line,Node,Resize,Refresh,Request,Compute
+	}
+	
+	ButtonOption getCurrentChoice(){
+        return currentChoice;
+	}
+	void setCurrentChoice(ButtonOption c){
+	 currentChoice=c;
+	}
+	void unsetCurrentChoice(ButtonOption c){
+	 currentChoice=ButtonOption.Null;
+	}
+	Mode getMode(){
+	 return mode;
+	}
+	void setMode(Mode m){
+	 mode=m;
+	}
+	boolean isSelect(){
+	 return currentChoice==ButtonOption.Select;
+	}
+	boolean isNode(){
+	 return currentChoice==ButtonOption.Node;
+	}
+	boolean isLine(){
+	 return currentChoice==ButtonOption.Line;
+	}
+	boolean isResize(){
+	 return currentChoice==ButtonOption.Resize;
+	}
+	boolean isRequest(){
+		 return currentChoice==ButtonOption.Request;
+		}
+}

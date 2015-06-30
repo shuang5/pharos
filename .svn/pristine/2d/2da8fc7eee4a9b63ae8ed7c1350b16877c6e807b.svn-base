@@ -1,0 +1,14 @@
+package org.renci.pharos.lp;
+
+class Label {
+	int label;
+	public Label(){
+		
+	}
+	public Label(int l){
+		label=l;
+	}
+	public String toString(){
+		return String.valueOf(label);
+	}	
+}

@@ -1,0 +1,15 @@
+package org.renci.pharos.gui;
+
+public class GUIPrefMenuItem extends GUIMenuItem{
+
+
+	public GUIPrefMenuItem() {
+		super("Preferences...");
+	}
+
+	@Override
+	public void perform() {	
+		GUIMain.prefFrame.setVisible(true);
+	}
+	
+}

@@ -1,0 +1,93 @@
+package org.renci.pharos.lp;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import net.sf.javailp.*;
+public class LpSolver {
+	private final static Logger logger = Logger.getLogger(LpSolver.class.getName());
+	static private FileHandler fileTxt;
+	static private SimpleFormatter formatterTxt;
+	public static void init() throws SecurityException, IOException{
+		 Logger l = Logger.getLogger("");
+		 l.setLevel(Level.FINE);
+		 fileTxt = new FileHandler("./data/logging.txt");
+		 formatterTxt = new SimpleFormatter();
+		 fileTxt.setFormatter(formatterTxt);
+		 logger.addHandler(fileTxt);
+
+
+		 
+	}
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+	 /* 
+    try {
+      // Create a problem with 4 variables and 0 constraints
+      LpSolve solver = LpSolve.makeLp(0, 4);
+
+      // add constraints
+      solver.strAddConstraint("3 2 2 1", LpSolve.LE, 4);
+      solver.strAddConstraint("0 4 3 1", LpSolve.GE, 3);
+
+      // set objective function
+      solver.strSetObjFn("2 3 -2 3");
+
+      // solve the problem
+      solver.solve();
+
+      // print solution
+      System.out.println("Value of objective function: " + solver.getObjective());
+      double[] var = solver.getPtrVariables();
+      for (int i = 0; i < var.length; i++) {
+        System.out.println("Value of var[" + i + "] = " + var[i]);
+      }
+
+      // delete the problem and free memory
+      solver.deleteLp();
+    }
+    catch (LpSolveException e) {
+       e.printStackTrace();
+    }
+    */
+      LpSolver.init();
+	  SolverFactory factory = new SolverFactoryLpSolve(); // use lp_solve
+	  factory.setParameter(Solver.VERBOSE, 0); 
+	  factory.setParameter(Solver.TIMEOUT, 10000); // set timeout to 10000 seconds
+
+	  logger.log(Level.INFO, "setting source to A, destination to F");
+	  MCFlowProblem problem=new MCFlowProblem(new SSSDFlowProblem(new ILP (new LpProblem())));
+	  problem.addLabelConstraints();
+	  problem.addCapacityConstraints();
+	  problem.addRequestConstraints();
+	  problem.addFlowConservationConstraints();
+	  //objective
+	  logger.log(Level.INFO,"setting objective function");
+	  Linear linear = new Linear();
+	  ArrayList<String> arr=problem.getProviderVariables();
+	  for(String s: arr){
+		  linear.add(1,s);
+	  }
+	  logger.log(Level.INFO, "number of variables is: "+
+	  (arr.size()+problem.getRequestVariables().size())); 
+	  problem.setObjective(linear, OBJ.MIN);
+	  
+	  Solver solver = factory.get(); // you should use this solver only once for one problem
+	  logger.log(Level.INFO,"Solving...");
+	  Result result = problem.solve(solver);
+	  ArrayList<String> res=new ArrayList<String>();
+	  if(result!=null){
+		  for(String s:arr){
+			  if(result.getPrimalValue(s).intValue()>0) 
+				  res.add(s+"="+result.getPrimalValue(s));
+		  }
+		  logger.log(Level.INFO,res.toString()+"\nObjective:"+String.valueOf(result.getObjective()));
+	  }
+	  else logger.log(Level.INFO,"no feasible soltuion found!");
+  }
+
+}

@@ -1,0 +1,24 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+class LabelPairArray1D implements Array1D{
+	private ArrayList<String> arr;
+	private HashMap<Label,Label> hm;
+	private HashMap<Label,Label> reverse_hm;
+	public VarType getVarType() {
+		return VarType.LabelPair;
+	}
+
+	public Iterator<String> iterator() {
+		return arr.iterator();
+	}
+	public String getLabelPairFrom(Label l){
+		return l.toString()+"_"+hm.get(l).toString();
+	}
+	public String getLabelPairTo(Label l){
+		return reverse_hm.get(l).toString()+"_"+l.toString();
+	}
+}

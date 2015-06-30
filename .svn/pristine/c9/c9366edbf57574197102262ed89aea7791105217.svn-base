@@ -1,0 +1,62 @@
+package org.renci.pharos.gui;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.io.Serializable;
+
+abstract class Drawings implements Serializable
+{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1788928423201041136L;
+	/**
+	 * 
+	 */
+	int x1, y1, x2, y2; 
+    int R, G, B;        
+    float stroke;      
+    ShapeType type;       
+        
+    protected Shape shape;
+    
+    Shape getShape(){
+    	return shape;
+    }
+    public void setColor(int r, int g, int b){
+    	R=r;
+    	G=g;
+    	B =b;
+    }
+    abstract int centerX();
+    abstract int centerY();
+    abstract boolean contains(int x,int y);
+    abstract void draw(Graphics2D g2d);
+    abstract void repositionAttached();
+    abstract void remove();
+	public static Shape createArrowShape(Point fromPt, Point toPt) {
+		    Polygon arrowPolygon = new Polygon();
+		    arrowPolygon.addPoint( 0,5);
+		    arrowPolygon.addPoint( -5, -5);
+		    arrowPolygon.addPoint( 5,-5);
+
+
+		    double rotate = Math.atan2(toPt.y - fromPt.y, toPt.x - fromPt.x);
+
+		    AffineTransform transform = new AffineTransform();
+		   
+		    transform.translate(midpoint(fromPt,toPt).x, midpoint(fromPt,toPt).y);
+		    transform.rotate((rotate-Math.PI/2d)); 
+
+		    return transform.createTransformedShape(arrowPolygon);
+		}
+
+		private static Point midpoint(Point p1, Point p2) {
+		    return new Point((int)((p1.x + p2.x)/2.0), 
+		                     (int)((p1.y + p2.y)/2.0));
+		}
+
+}

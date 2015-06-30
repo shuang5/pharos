@@ -1,0 +1,5 @@
+package org.renci.doe.pharos.graph.def;
+
+public final class Node {
+	public static final int MaxNumPorts=10;	
+}

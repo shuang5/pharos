@@ -1,0 +1,214 @@
+package org.renci.pharos.gui;
+
+import java.awt.Dimension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.dex.DexGraph;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+import com.tinkerpop.blueprints.oupls.jung.GraphJung;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLWriter;
+
+import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+
+class NodeTopologyGraph extends TopologyGraph
+{
+	 public NodeTopologyGraph(MainGUI trgt) {
+		super(trgt);
+	}
+	public void openFromFile(File fileName) throws Exception{
+		 try{
+			 Graph graph=new TinkerGraph();
+			 GraphMLReader.inputGraph(graph, new FileInputStream(fileName)); 
+			 GraphJung<Graph> gj = new GraphJung<Graph>(graph);
+			 Layout<Vertex, Edge> layout = new CircleLayout<Vertex, Edge>(gj);
+			 layout.setSize(new Dimension(800, 600));
+			 BasicVisualizationServer<Vertex, Edge> viz = new BasicVisualizationServer<Vertex, Edge>(layout);
+			 viz.setPreferredSize(new Dimension(800, 600));
+			 newTopo();
+			 for (Vertex v: gj.getVertices()){
+				 Node n=new NodeNode(v);
+				 n.x1=(int)layout.transform(v).getX()-5;
+				 n.y1=(int)layout.transform(v).getY()-5;
+				 n.x2=n.x1+10;
+				 n.y2=n.y1+10;
+				 itemList.add(n);
+				 
+				 
+			 }
+			
+			 for (Edge e: gj.getEdges()){
+				 Line l=new NodeLine(e);
+				 
+				 l.x1=(int)layout.transform(e.getVertex(Direction.OUT)).getX();
+				 l.y1=(int)layout.transform(e.getVertex(Direction.OUT)).getY();
+				 l.x2=(int)layout.transform(e.getVertex(Direction.IN)).getX();
+				 l.y2=(int)layout.transform(e.getVertex(Direction.IN)).getY();
+				 itemList.add(l);
+			 }
+			 
+			 for (Drawings d : itemList){
+				   if (d.type==ShapeType.NodeNode || d.type==ShapeType.PortNode){
+					   attachLines((Node)d);
+				   }
+			 }
+			 repaint();
+			 //tg.getContentPane().add ( viz );
+		 }
+		 catch (Exception ex){
+			 throw ex;
+		 }
+	 }
+	 public void saveTofile(File fileName){
+		 try {
+             //fileName.delete();
+             String dbfilename = "~/Sandbox/temp.dex";
+     		 File dbfile = new File(dbfilename);
+     		 if (dbfile.exists())dbfile.delete();
+     		 Graph graph = new DexGraph(dbfilename);
+     		 //process nodes first
+     		 for (Drawings d : itemList){
+     		 	 switch(d.type){
+	     			 case PortNode:
+	     				 ((PortNode)d).setBluePrintVertex(graph.addVertex(null));
+	     				 break;
+	     			 case NodeNode:
+	     				 ((NodeNode)d).setBluePrintVertex(graph.addVertex(null));
+	     				 break;
+	     			 default:
+	     				 break;
+     		 	 }
+     		 }
+     		 //then edges
+     		 for (Drawings d : itemList){
+    		 	 switch(d.type){
+	     			 case NodeLine:
+	     				 Node lNode=((UndirectedLine)d).getNode1();
+	     				 Node rNode=((UndirectedLine)d).getNode2();
+	     				 //label is used internally same as the id
+	     				 if(((NodeLine)d).getLabel()==null)((NodeLine)d).setLabel(((NodeLine)d).getId());
+	     				 try{
+	     					 //lines are bidirectional
+		     				 Edge e1=graph.addEdge(null,lNode.getBluePrintVertex(),
+		     						rNode.getBluePrintVertex(),((NodeLine)d).getLabel());
+		     				 Edge e2=graph.addEdge(null,rNode.getBluePrintVertex(),
+		     						lNode.getBluePrintVertex(),((NodeLine)d).getLabel());
+		     				 d.setColor(0,0,0);
+		     				 //if Reverse==false, node1(x1,y1) is the outVertex
+		     				 //e1.setProperty("Reverse", "false");
+		     				 ((Line)d).setBluePrintEdge(e1,false);
+		     				 //if Reverse==true, node1(x1,y1) is the in Vertex
+		     				 //e2.setProperty("Reverse", "true");
+		     				 ((Line)d).setBluePrintEdge(e2,true);
+	     				 }
+	     				 catch(NullPointerException ex){
+	     					 d.setColor(255,0,0);
+	     					 repaint();
+	     					 JOptionPane.showMessageDialog(null, "leftNode/rightNode/label not set");
+	     				 }
+	     				 break;
+	     			 case PortLine:
+	     				 Node startNode=((DirectedLine)d).getStartNode();
+	     				 Node endNode=((DirectedLine)d).getEndNode();
+	     				 try{
+		     				 Edge e=graph.addEdge(null,startNode.getBluePrintVertex(),
+		     						endNode.getBluePrintVertex(),((PortLine)d).getLabel());
+		     				 d.setColor(0,0,0);
+		     				 ((Line)d).setBluePrintEdge(e,false);
+	     				 }
+	     				 catch(NullPointerException ex){
+	     					 d.setColor(255,0,0);
+	     					 repaint();
+	     					 JOptionPane.showMessageDialog(null, "startNode/endNode/label not set");
+	     				 }
+	     				 break;
+	     			 default:
+	     				 break;
+	     				
+     			 }
+     			
+     		 }
+     		
+     		 GraphMLWriter writer=new GraphMLWriter(graph);
+     		 writer.outputGraph(fileName.getPath());
+     		 graph.shutdown();
+          } catch (IOException ioe) {
+              ioe.printStackTrace();
+          }
+	 }
+	@Override
+	void saveRequest(File fileName) {
+		 try {
+             fileName.delete();
+             String dbfilename = "~/Sandbox/temp.dex";
+     		 File dbfile = new File(dbfilename);
+     		 if (dbfile.exists())dbfile.delete();
+     		 Graph graph = new DexGraph(dbfilename);
+     		 //process nodes first
+     		 for (Drawings d : itemList){
+     		 	 switch(d.type){
+	     			 case PortNode:
+	     				 ((PortNode)d).setBluePrintVertex(graph.addVertex(null));
+	     				 break;
+	     			 case NodeNode:
+	     				 ((NodeNode)d).setBluePrintVertex(graph.addVertex(null));
+	     				 break;
+	     			 default:
+	     				 break;
+     		 	 }
+     		 }
+     		 //then edges
+     		 for (Drawings d : itemList){
+    		 	 switch(d.type){
+	     			 case RequestNodeLine:
+	     				 Node lNode=((UndirectedCurvedDottedLine)d).getNode1();
+	     				 Node rNode=((UndirectedCurvedDottedLine)d).getNode2();
+	     				 //label is used internally same as the id
+	     				 String label=((RequestNodeLine)d).getLabel();
+	     				 if(StringUtils.isEmpty(label))((RequestNodeLine)d).setLabel(((RequestNodeLine)d).getId());
+	     				 try{
+	     					 //lines are bidirectional
+		     				 Edge e1=graph.addEdge(null,lNode.getBluePrintVertex(),
+		     						rNode.getBluePrintVertex(),((RequestNodeLine)d).getLabel());
+		     				 Edge e2=graph.addEdge(null,rNode.getBluePrintVertex(),
+		     						lNode.getBluePrintVertex(),((RequestNodeLine)d).getLabel());
+		     				 d.setColor(0,0,0);
+		     				 ((Line)d).setBluePrintEdge(e1,false);
+		     				 ((Line)d).setBluePrintEdge(e2,true);
+	     				 }
+	     				 catch(NullPointerException ex){
+	     					 d.setColor(255,0,0);
+	     					 repaint();
+	     					 JOptionPane.showMessageDialog(null, "leftNode/rightNode/label not set");
+	     				 }
+	     				 break;
+	     			 default:
+	     				 break;
+	     				
+     			 }
+     			
+     		 }
+     		 
+     		 GraphMLWriter writer=new GraphMLWriter(graph);
+     		 writer.outputGraph(fileName.getPath());
+     		 graph.shutdown();
+          } catch (IOException ioe) {
+              ioe.printStackTrace();
+          }
+		
+	}
+}
+
+

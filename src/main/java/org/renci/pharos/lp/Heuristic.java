@@ -1,0 +1,226 @@
+package org.renci.pharos.lp;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.renci.pharos.flow.FlowPharosException;
+import org.renci.pharos.flow.FlowSpace;
+import org.renci.pharos.flow.FlowLabels;
+import org.renci.pharos.gui.NodePortProperties;
+import org.renci.pharos.gui.Objectives;
+
+import com.sun.tools.javac.util.Pair;
+import com.tinkerpop.blueprints.Compare;
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+
+abstract class Heuristic {
+	public abstract void setEdgeCost(Edge e,int cost, boolean fictitious);
+	public abstract void updateEdgeCost(Graph g,List<Vertex> p);
+	public abstract void updateObjective(Edge e);
+	public abstract String getObjective();
+	private List<Pair<String,String>> list;
+	private HashMap<Pair<String,String>,Integer> demands;
+	private Objectives objType;
+	Heuristic(Objectives o,List<Pair<String,String>> l,HashMap<Pair<String,String>,Integer> h){
+		setObjType(o);
+		list=l;
+		demands=h;
+	}
+	private void splitAuxEdge(Graph g,Vertex vout, Label l, Vertex vin, Label ll,int size){
+
+  	    final boolean vinLabelTranslation=((String)vin.getProperty("LabelTranslation")).equals("yes");
+  	    final boolean voutLabelTranslation=((String)vout.getProperty("LabelTranslation")).equals("yes");
+		Vertex vo=null;
+		if(!voutLabelTranslation){
+			vo=GraphHelper.addAuxVertex(g,vout.getProperty("ID")+"_"+l.toString(),
+					(String) vout.getProperty("ID"));
+		}
+		Vertex vi=null;
+		if(!vinLabelTranslation){
+			vi=GraphHelper.addAuxVertex(g, vin.getProperty("ID")+"_"+ll.toString(),
+					(String) vin.getProperty("ID"));
+		}
+		if(vo!=null && vi!=null){
+			//if both ends can NOT do label translation, create a new edge with two new vertices
+			Edge edge=GraphHelper.addAuxEdge(g, vo, vi);
+			setEdgeCost(edge, size, false);
+		}
+		else if(vo!=null){
+			//vi can do label translation
+			vi=GraphHelper.addAuxVertex(g, (String) vin.getProperty("ID"), (String) vin.getProperty("ID"));
+			Edge edge=GraphHelper.addAuxEdge(g,vo, vi);
+			setEdgeCost(edge, size, false);
+		}
+		else if(vi!=null){
+			//vo can do label translation
+			vo=GraphHelper.addAuxVertex(g, (String) vout.getProperty("ID"), (String) vout.getProperty("ID"));
+			Edge edge=GraphHelper.addAuxEdge(g, vo, vi);
+			setEdgeCost(edge, size, false);
+		}
+		else {
+			//if both ends can do label translation, create an intermediate node
+			Vertex v=g.addVertex(null);
+			v.setProperty("ID",vout.getProperty("ID")+"_"+l.toString()+"_"
+					+vin.getProperty("ID")+"_"+ll.toString());
+			v.setProperty("Original", vout.getProperty("ID")+"_"+vin.getProperty("ID"));
+			vi=GraphHelper.addAuxVertex(g, (String) vin.getProperty("ID"), (String) vin.getProperty("ID"));
+			vo=GraphHelper.addAuxVertex(g, (String) vout.getProperty("ID"), (String) vout.getProperty("ID"));
+			
+			Edge edge1=GraphHelper.addAuxEdge(g,vo, v);
+			setEdgeCost(edge1, size, true);
+
+			Edge edge2=GraphHelper.addAuxEdge(g,v, vi);
+			setEdgeCost(edge2, size, true);
+		}
+	}
+	private Graph constructAuxGraph(Graph p){
+		Graph g=new TinkerGraph();
+		for (Vertex vv: p.getVertices()){
+			Vertex vin=GraphHelper.getVertex(p, GraphHelper.getVertexID(vv));
+			for(Edge e:vv.getEdges(Direction.IN)){
+		  	    //get labels from graph
+		  	    String peers=(String)e.getProperty("Peers");
+		  	    String[] tokens = peers.split("[ (,)]+");
+		  	    String[] port1=tokens[1].split("[:]");
+		  	    String[] port2=tokens[2].split("[:]");
+		  	    	
+		  	    Vertex vout=GraphHelper.getVertex(p, GraphHelper.getVertexID(e.getVertex(Direction.OUT)));
+		  	    int in,out;
+		  	    if(((String)vin.getProperty("ID")).equals(port1[0])){
+		  	    	in=Integer.parseInt(port1[1]);
+		  	    	out=Integer.parseInt(port2[1]);
+		  	    }
+		  	    else{
+		  	    	in=Integer.parseInt(port2[1]);
+		  	    	out=Integer.parseInt(port1[1]);
+		  	    }
+		  	    NodePortProperties npin=new NodePortProperties((String)vin.getProperty("Ports"),in);
+		  	    NodePortProperties npout=new NodePortProperties((String)vout.getProperty("Ports"),out);
+		  	    try {
+					FlowLabels lin=new FlowLabels(new FlowSpace(npin.getFlowSpace()));
+					FlowLabels lout=new FlowLabels(new FlowSpace(npout.getFlowSpace()));
+					Iterator<Integer> itin=lin.getIterator();
+					Iterator<Integer> itout=lout.getIterator();
+					final String s=(String)e.getProperty("Virtual");
+					if(s.equals("Yes")){
+						while (itout.hasNext()){
+							Label l=new Label(itout.next());
+							while(itin.hasNext()){
+								Label ll=new Label(itin.next());
+								splitAuxEdge(g,vout,l, vin,ll,lin.size()*lout.size());
+							}
+						}
+					}
+					else {
+						while (itin.hasNext() && itout.hasNext()){
+							Label l=new Label(itout.next());
+							Label ll=new Label(itin.next());
+							splitAuxEdge(g,vout,l,vin,ll,lin.size());							
+						}
+					}
+				
+					
+				} catch (FlowPharosException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		return g;
+	}
+	private Graph addSD(Graph p, String s, String d){
+		Graph g=GraphHelper.makeCopy(p);
+		if(GraphHelper.getVertex(g, s)==null){
+			Vertex vout=GraphHelper.addAuxVertexWithLabelTranslation(g, s);
+			Iterator<Vertex> v1_itr=g.query().has("Original",Compare.EQUAL,s).vertices().iterator();
+			while (v1_itr.hasNext()){
+				Edge e=GraphHelper.addAuxEdge(g, vout, v1_itr.next());
+				GraphHelper.setCost(e, true, 1);
+			}
+		}
+		if(GraphHelper.getVertex(g, d)==null){
+			Vertex vin=GraphHelper.addAuxVertexWithLabelTranslation(g, d);
+			Iterator<Vertex> v1_itr=g.query().has("Original",Compare.EQUAL,d).vertices().iterator();
+			while (v1_itr.hasNext()){
+				Edge e=GraphHelper.addAuxEdge(g, v1_itr.next(),vin);
+				GraphHelper.setCost(e, true, 1);
+			}
+		}
+		return g;
+	}
+	private void sortList(List<Pair<String,String>> list, ComputeMode mode, final Dijkstra dijkstra){
+		if(mode==ComputeMode.LongestFirst){
+			Collections.sort(list,new Comparator<Pair<String,String>>(){
+				@Override
+				public int compare(Pair<String,String> sd1, Pair<String,String> sd2){
+					if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()>
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return -1;
+					else if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()<
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return 1;
+					else 
+						return 0;
+			}
+			});
+		}
+		else if(mode==ComputeMode.ShortestFirst){
+			Collections.sort(list,new Comparator<Pair<String,String>>(){
+				@Override
+				public int compare(Pair<String,String> sd1, Pair<String,String> sd2){
+					if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()>
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return 1;
+					else if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()<
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return -1;
+					else 
+						return 0;
+			}
+			});
+		}
+		else {
+			//place holder for random
+		}
+	}
+	OptimizationResult compute(Graph p,ComputeMode mode){
+		final Dijkstra dijkstra=new Dijkstra(p);
+		sortList(list,mode,dijkstra);
+		OptimizationResult result=new OptimizationResult();
+		final Graph gr=constructAuxGraph(p);
+		Iterator<Pair<String,String>> itr=list.iterator();
+		while (itr.hasNext()){
+			Pair<String,String> edge=itr.next();
+			for(int i=demands.get(edge);i>0;i--){
+				Graph g=addSD(gr,edge.fst,edge.snd);
+				Dijkstra dij=new Dijkstra(g);
+				LinkedList<Vertex> path=dij.getShortestPath(edge.fst, edge.snd);
+				if(path==null)return null;
+				else {
+					final List<Edge> el=GraphHelper.transformPath(gr, path);
+					for(Edge e:el){
+						updateObjective(e);
+						result.getNzValues().add("x"+"_"+edge.fst+"_"+edge.snd+"_"+GraphHelper.getEdgeID(e));
+					}
+					updateEdgeCost(gr,path);
+					GraphHelper.removePath(gr, path);
+				}
+			}
+		}
+		result.setObjective(getObjective());
+		return result;
+	}
+	public Objectives getObjType() {
+		return objType;
+	}
+	public void setObjType(Objectives objType) {
+		this.objType = objType;
+	}
+}

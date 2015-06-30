@@ -1,0 +1,101 @@
+package org.renci.pharos.lp;
+
+import java.util.Iterator;
+
+import com.tinkerpop.blueprints.Compare;
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+
+public class GraphHelper {
+	//Assumption: ID is unique 
+	public static Vertex getVertex(Graph graph, String nodeId){
+		Iterator<Vertex> v1_itr=graph.query().has("ID",Compare.EQUAL,nodeId).vertices().iterator();
+		if(v1_itr.hasNext())
+			return v1_itr.next();
+		return null;
+			
+	}
+	public static Vertex addVertex(Graph graph, String nodeId,String original){
+		if(getVertex(graph,nodeId)==null){
+			Vertex v=graph.addVertex(null);
+			v.setProperty("Original", original);
+			v.setProperty("ID", nodeId);
+			return v;
+		}
+		else return getVertex(graph,nodeId);
+			
+	}
+	public static Edge getEdge(Graph graph, String nodeId){
+		Iterator<Edge> v1_itr=graph.query().has("ID",Compare.EQUAL,nodeId).edges().iterator();
+		if(v1_itr.hasNext())
+			return v1_itr.next();
+		return null;
+			
+	}
+	public static Edge addEdge(Graph graph, Vertex out, Vertex in){
+		String edgeId=getVertexID(out)+"_"+getVertexID(in);
+		if(getEdge(graph,edgeId)==null){
+			Edge e=graph.addEdge(null,out,in,edgeId);
+			e.setProperty("ID", edgeId);
+			return e;
+		}
+		else return getEdge(graph,edgeId);
+			
+	}
+	public static String getVertexID(Vertex v){
+		return v.getProperty("ID");
+	}
+	public static void setVertexID(Vertex v, String id){
+		v.setProperty("ID", id);
+	}
+	public static String getEdgeID(Edge e){
+		return e.getProperty("ID");
+	}
+	public static void setEdgeID(Edge e, String id){
+		e.setProperty("ID", id);
+	}
+	public static Vertex copyVertexProperties(Graph g, Vertex from){
+		if(getVertex(g,getVertexID(from))==null){
+			Vertex to=g.addVertex(null);
+			for(String s:from.getPropertyKeys()){
+				to.setProperty(s, from.getProperty(s));
+			}
+			return to;
+		}
+		else {
+			Vertex to=getVertex(g,getVertexID(from));
+			return to;
+		}
+		
+	}
+	public static Edge copyEdgeProperties(Graph g, Edge from){
+		if(getEdge(g,getEdgeID(from))==null){
+			Vertex vin=getVertex(g,getVertexID(from.getVertex(Direction.IN)));
+			Vertex vout=getVertex(g,getVertexID(from.getVertex(Direction.OUT)));
+			Edge to=addEdge(g, vout, vin);
+			for(String s:from.getPropertyKeys()){
+				to.setProperty(s, from.getProperty(s));
+			}
+			return to;
+		}
+		else {
+			Edge to=getEdge(g,getEdgeID(from));
+			return to;
+		}
+		
+	}
+	public static Graph makeCopy(Graph graph){
+		Graph g=new TinkerGraph();
+		for (Vertex v: graph.getVertices()){
+			copyVertexProperties(g,v);
+			for(Edge e:v.getEdges(Direction.IN)){
+				copyVertexProperties(g, e.getVertex(Direction.OUT));
+				copyEdgeProperties(g, e);				 
+			}
+		}
+		return g;
+	}
+}

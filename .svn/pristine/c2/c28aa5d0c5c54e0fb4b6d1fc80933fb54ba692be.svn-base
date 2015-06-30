@@ -1,0 +1,68 @@
+package org.renci.pharos.gui;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import org.apache.xmlrpc.XmlRpcException;
+
+//import main.java.net.floodlightcontroller.flowvisorinterface.CommandException;
+//import main.java.net.floodlightcontroller.flowvisorinterface.FlowvisorInterface;
+
+
+
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLWriter;
+
+@SuppressWarnings("unused")
+public class Delegation {
+	private Graph graph;
+	public void fromFile(File file) throws FileNotFoundException, IOException{
+		graph=new TinkerGraph();
+		GraphMLReader.inputGraph(graph, new FileInputStream(file));
+		
+	}
+	public void toFile(File file) throws IOException{
+		GraphMLWriter writer=new GraphMLWriter(graph);
+ 		writer.outputGraph(file.getPath());
+	}
+	public void send(String ip, int port) throws UnknownHostException, IOException{
+	  Socket clientSocket = new Socket(ip, port);
+	  //ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+	  GraphMLWriter.outputGraph(graph,clientSocket.getOutputStream());
+	  //BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+	  clientSocket.close();
+	}
+	public void receive(int port) throws IOException{
+         @SuppressWarnings("resource")
+		ServerSocket welcomeSocket = new ServerSocket(port);
+
+         while(true)
+         {
+            Socket connectionSocket = welcomeSocket.accept();
+            GraphMLReader.inputGraph(graph, connectionSocket.getInputStream());
+         }
+	}
+	/*
+	public void reserve(String sliceName) throws CommandException, IOException, XmlRpcException{
+		for (Vertex v: graph.getVertices()){
+			if (v.getProperty("Flowvisor")!=null) {
+				String url=(String)(v.getProperty("Flowvisor"));
+				url=url+"/xmlrpc";
+				FlowvisorInterface iface = new FlowvisorInterface(url);
+				iface.connect();
+				//don't know controller url yet, a place holder for user?
+				iface.createSlice(sliceName,null, null,null );
+				//need to get the flowspace and translate it to FVMatch
+			}
+		}
+	}
+	*/
+}

@@ -1,0 +1,9 @@
+package org.renci.pharos.gui;
+
+import com.tinkerpop.blueprints.Graph;
+
+public interface DetailControl {
+	//detail level control, 1 being the least detailed
+	public Graph toGraph1();
+	public Graph toGraph2();
+}

@@ -1,0 +1,40 @@
+package org.renci.pharos.lp;
+
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+class FileDiag extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public String open(String title){
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		fileChooser.setDialogTitle(title);
+		int result = fileChooser.showOpenDialog(this);
+		if (result == JFileChooser.CANCEL_OPTION) {
+		    return null;
+		}
+		File fileName = fileChooser.getSelectedFile();
+		fileName.canRead();
+		if (fileName == null || fileName.getName().equals("")) {
+		    JOptionPane.showMessageDialog(fileChooser, "Invalid File Name",
+		            "Invalid File Name", JOptionPane.ERROR_MESSAGE);
+		
+		}
+		return fileName.getAbsolutePath();
+		
+	}
+}
+
+public class FileGUI {
+	public static String getFile(String title){
+		FileDiag f=new FileDiag();
+		return f.open(title);
+	}
+	
+}

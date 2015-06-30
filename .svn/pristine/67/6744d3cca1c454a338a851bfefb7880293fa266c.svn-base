@@ -1,0 +1,9 @@
+package org.renci.pharos.lp;
+
+class StringType implements VariableType{
+	public VarType getVarType() {
+		return VarType.String;
+	}
+	public StringType(){
+	}
+}

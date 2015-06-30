@@ -1,0 +1,17 @@
+package org.renci.pharos.gui;
+
+import com.tinkerpop.blueprints.Edge;
+
+class RequestPortLine extends DirectedLine{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	void setBluePrintEdge(Edge e, boolean reverse) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

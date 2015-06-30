@@ -1,0 +1,57 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.renci.pharos.flow.Rule;
+
+
+abstract class Variables {
+	private int dimension=0;
+	private String name="x";
+	private VariableInfo<Rule> varInfo=new VariableInfo<Rule>();
+	public Variables(){}
+	public Variables(Variable v){
+		setDimension(v.getDimension());
+		name=Variable.getName();
+	}
+	public int getDimension(){
+		return dimension;
+	}
+	public void setDimension(int d){
+		dimension=d;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	String getNthDim(String s,int i){
+		if(i>dimension-1)throw new IndexOutOfBoundsException("out of range");
+		else{
+			String delim="[_]";
+			String[] tokens=s.split(delim);
+			return tokens[i];
+		}
+	}
+	Iterator<String> filteredIterator(Iterator<String> it, Filter f){
+		return new FilterIterator(it,f);
+	}
+	int size(){
+		return getAllVariables().size();
+	}
+	void addVarInfo(Variable var, Rule r){
+		varInfo.add(var, r);
+	}
+	void removeVarInfo(Variable var){
+		varInfo.remove(var);
+	}
+	Rule getVarInfo(Variable var){
+		return varInfo.get(var);
+	}
+	public abstract String getVariable(String... s);
+	public abstract ArrayList<String> getAllVariables();
+	public abstract Iterator<String> iterator();
+}
+

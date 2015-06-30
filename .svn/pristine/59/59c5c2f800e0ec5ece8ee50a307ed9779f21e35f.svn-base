@@ -1,0 +1,875 @@
+package org.renci.pharos.gui;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+import com.google.common.collect.Lists;
+
+import java.io.*;
+import java.util.LinkedList;
+
+public class MainGUI extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private NodeMenu nodePopup;
+	private EdgeMenu edgePopup1, edgePopup2;
+
+	private CHOICES cho;
+	public TopologyGraph topo;
+
+	private ButtonPan buttonPan;
+	private JToolBar buttonPanel;
+	private JLabel statusBar;
+	private DrawPanel drawingArea;
+	private int width = 1000, height = 800;
+
+	@SuppressWarnings("unused")
+	private Color color = Color.blue;
+	int R, G, B;
+	private float stroke = 2.0f;
+	class Menu{
+		public JMenu item;
+		public Menu(String s){
+			item = new JMenu(s);
+		}
+		public Menu add(MenuItem menu) {
+			item.add(menu.item);
+			return this;
+		}
+		
+	}
+	abstract class MenuItem implements Handler{
+		public JMenuItem item;
+		public MenuItem(String s){
+			item=new JMenuItem(s);
+			item.setMnemonic('N');
+			item.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					perform();
+				}
+			});
+		}
+	}
+	interface Handler{
+		public void perform();
+	}
+	class NewMenuItem extends MenuItem{
+
+		public NewMenuItem() {
+			super("New");
+		}
+
+		@Override
+		public void perform() {
+			newFile();			
+		}
+		
+	}
+	class LoadMenuItem extends MenuItem{
+
+		public LoadMenuItem() {
+			super("Load");
+		}
+
+		@Override
+		public void perform() {
+			loadFile();			
+		}
+		
+	}
+	class SaveMenuItem extends MenuItem{
+
+		public SaveMenuItem() {
+			super("Save");
+		}
+
+		@Override
+		public void perform() {
+			saveFile();			
+		}
+		
+	}
+	class ExitMenuItem extends MenuItem{
+
+		public ExitMenuItem() {
+			super("Exit");
+		}
+
+		@Override
+		public void perform() {
+			System.exit(0);		
+		}
+		
+	}
+	class AboutMenuItem extends MenuItem{
+
+		public AboutMenuItem() {
+			super("About");
+		}
+
+		@Override
+		public void perform() {
+			JOptionPane.showMessageDialog(null,
+					"Draw simple network topology ", "",
+					JOptionPane.INFORMATION_MESSAGE);	
+		}
+		
+	}
+	class MenuBar {
+		JMenuBar bar = new JMenuBar();
+		public MenuBar add(Menu m){
+			bar.add(m.item);
+			return this;
+		}
+		
+	}
+	private void initMenuBar(){
+		MenuBar mb=new MenuBar();
+		Menu fileMenu=new Menu("File");
+		fileMenu.add(new NewMenuItem())
+			.add(new SaveMenuItem())
+			.add(new LoadMenuItem())
+			.add(new ExitMenuItem());
+		Menu helpMenu = new Menu("Help");
+		helpMenu.add(new AboutMenuItem());
+		mb.add(fileMenu).add(helpMenu);
+		super.setJMenuBar(mb.bar);
+	}
+	private void initPanel(){
+		drawingArea = new DrawPanel();
+		buttonPan = new ButtonPan(this, cho);
+		buttonPanel = buttonPan.getButtonPanel();
+
+		Container c = getContentPane();
+
+		c.add(drawingArea, BorderLayout.CENTER);
+		statusBar = new JLabel();
+		c.add(statusBar, BorderLayout.SOUTH);
+		statusBar.setText("     Welcome To The Topology GUI!!!   ");
+		c.add(buttonPanel, BorderLayout.NORTH);
+		setSize(width, height);
+		setVisible(true);
+	}
+	private void initPopups(){
+		nodePopup = NodeMenuFactory.createNodeMenu(topo, cho.getMode());
+		edgePopup1 = EdgeMenuFactory.createEdgeMenu(topo, cho.getMode(),
+				State.Provider);
+		edgePopup2 = EdgeMenuFactory.createEdgeMenu(topo, cho.getMode(),
+				State.Request);
+	}
+	public MainGUI() {
+		super("Topology Generation GUI");
+		cho = new CHOICES();
+		topo = TopologyGraphFactory.createTopologyGraph(this, cho.getMode());	
+		
+		initMenuBar();
+		
+		initPanel();
+		
+		initPopups();
+	}
+
+	enum MouseEventType {MousePressed, MouseReleased, MouseDragged};
+	interface Event {
+		public boolean test(MouseEvent e);
+		public void act(MouseEventType m);
+	}
+	class PopupTriggered implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return e.isPopupTrigger();
+		}
+
+		@Override
+		public void act(MouseEventType m) {
+			if(test(e) && topo.isItemSelected(e.getX(), e.getY())){
+				// buttonPan.setIconOn(CHOICES.Select);
+				switch (topo.selectedShapeType()) {
+				case PortNode:
+					nodePopup.show(e.getComponent(), e.getX(), e.getY());
+					break;
+				case NodeNode:
+					nodePopup.show(e.getComponent(), e.getX(), e.getY());
+					break;
+				case NodeLine:
+					edgePopup1.show(e.getComponent(), e.getX(), e.getY());
+					break;
+				case RequestNodeLine:
+					edgePopup2.show(e.getComponent(), e.getX(), e.getY());
+					break;
+				default:
+					break;
+
+				}
+			}
+			
+		}
+		
+	}
+	class PopupVisible implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent e) {
+			return nodePopup.isVisible() || edgePopup1.isVisible()
+					|| edgePopup2.isVisible();
+		}
+
+		@Override
+		public void act(MouseEventType m) {		
+			
+		}
+		
+	}
+	class SelectMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return cho.isSelect();
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			switch(m){
+			case MousePressed:
+				if(test(e))
+					topo.selectItem(e.getX(), e.getY());
+				break;
+			case MouseReleased:
+				if (topo.hasSelectedNode()) {
+					// move the linked components
+					Node shape = (Node) topo.getSelectedItem();
+					topo.attachLines(shape);
+					((Node) shape).repositionAttached();
+				}
+				break;
+			case MouseDragged:
+				Drawings shape = topo.getSelectedItem();
+				if (topo.hasSelectedNode()) {
+					// e.getX(), e.getY() is the upper left corner of the shape
+					// find the upper left corner first, ie,
+					// min(x1,x2),min(y1,y2)
+					// set the upper left corner to e.getX(), e.getY()
+					// set the lower right corner accordingly
+
+					if (shape.x1 < shape.x2) {
+						int d = e.getX() - shape.x1;
+						shape.x1 = e.getX();
+						shape.x2 = shape.x2 + d;
+					} else {
+						int d = e.getX() - shape.x2;
+						shape.x2 = e.getX();
+						shape.x1 = shape.x2 + d;
+					}
+					if (shape.y1 < shape.y2) {
+						int d = e.getY() - shape.y1;
+						shape.y1 = e.getY();
+						shape.y2 = shape.y2 + d;
+					} else {
+						int d = e.getY() - shape.y2;
+						shape.y2 = e.getY();
+						shape.y1 = shape.y1 + d;
+					}
+					// move the linked components
+					topo.attachLines((Node) shape);
+
+					((Node) shape).repositionAttached();
+
+				} else if (topo.selectedShapeType() == ShapeType.NodeLine
+						|| topo.selectedShapeType() == ShapeType.RequestNodeLine) {
+					if (((Line) shape).isXSelected()) {
+						shape.x1 = e.getX();
+						shape.y1 = e.getY();
+
+						// statusBar.setText("selected point1");
+					} else if (((Line) shape).isYSelected()) {
+						shape.x2 = e.getX();
+						shape.y2 = e.getY();
+						// statusBar.setText("selected point2");
+					}
+				}
+				repaint();
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
+	class ResizeMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return cho.isResize();
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			switch(m){
+			case MousePressed:
+				if(test(e))
+					topo.selectItem(e.getX(), e.getY());
+				break;
+			case MouseReleased:
+				if (topo.hasSelectedNode()) {
+					Drawings item = topo.getSelectedItem();
+					int X = e.getX();
+					int Y = e.getY();
+					if (((X - item.x1) * (X - item.x1) + (Y - item.y1)
+							* (Y - item.y1)) <= ((X - item.x2) * (X - item.x2) + (Y - item.y2)
+							* (Y - item.y2))) {
+						item.x1 = X;
+						item.y1 = Y;
+					} else {
+						item.x2 = X;
+						item.y2 = Y;
+					}
+					repaint();
+				}
+				break;
+			case MouseDragged:
+				Drawings shape = topo.getSelectedItem();
+				if (topo.hasSelectedNode()) {
+					int X = e.getX();
+					int Y = e.getY();
+					if (((X - shape.x1) * (X - shape.x1) + (Y - shape.y1)
+							* (Y - shape.y1)) <= ((X - shape.x2)
+							* (X - shape.x2) + (Y - shape.y2) * (Y - shape.y2))) {
+						shape.x1 = X;
+						shape.y1 = Y;
+					} else {
+						shape.x2 = X;
+						shape.y2 = Y;
+					}
+					for (Drawings d : ((Node) shape).linkedToIn) {
+						try {
+							d.x1 = shape.centerX();
+							d.y1 = shape.centerY();
+
+						} catch (Exception ex) {
+							assert false;
+						}
+					}
+					for (Drawings d : ((Node) shape).linkedToOut) {
+						try {
+							d.x2 = shape.centerX();
+							d.y2 = shape.centerY();
+						} catch (Exception ex) {
+							assert false;
+						}
+					}
+				}
+				repaint();
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
+	class LineMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return cho.isLine();
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			if(test(e))
+				topo.selectItem(e.getX(), e.getY());
+		}
+		
+	}
+	class NoOverlappingLineMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return cho.isLine() && 
+					topo.itemContains(e.getX(), e.getY())==null;
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			switch(m){
+			case MousePressed:
+				if(test(e)){
+					Line line= LineFactory.createLine(cho.getMode(), cho.getState());;
+					line.x1 = line.x2 = e.getX();
+					line.y1 = line.y2 = e.getY();
+					createNewItem(line);
+					repaint();
+				}
+				break;
+			case MouseReleased:
+				Drawings lastItem = topo.getCurrentItem();
+
+				lastItem.x2 = e.getX();
+				lastItem.y2 = e.getY();
+
+				Drawings it = topo.itemContains(lastItem.x2, lastItem.y2);
+				if(!topo.hasSelectedItem() && it==null){
+					// createNewItem(line);
+					// we dont want to create something too small to be seen
+					if (Math.sqrt((lastItem.x2 - lastItem.x1)
+							* (lastItem.x2 - lastItem.x1)
+							+ (lastItem.y2 - lastItem.y1)
+							* (lastItem.y2 - lastItem.y1)) <= 5) {
+
+						topo.remove(topo.getCurrentItem());
+						topo.setCurrentItem(null);
+					}
+					if (cho.getState() == State.Request) {
+						// if(lastItem.y2<lastItem.y1)
+						((RequestNodeLine) lastItem).setControlPoint(
+								(lastItem.x1 * 3 + lastItem.x2) / 4,
+								(lastItem.y2 * 3 + lastItem.y1) / 4);
+					}
+				}
+				repaint();
+				break;
+			default:				
+				break;
+			}
+				
+		}
+		
+	}
+	class PortLineMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			if(!cho.isLine())return false;
+			Drawings it = topo.itemContains(e.getX(), e.getY());
+			if (it==null || it.type != ShapeType.PortNode )return false;
+			else return true;
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			switch(m){
+			case MousePressed:
+				topo.setSelectedItem(null);
+				Drawings it = topo.itemContains(e.getX(), e.getY());
+				Line line = LineFactory.createLine(cho.getMode(), cho.getState());
+				line.x1 = line.x2 = it.centerX();
+				line.y1 = line.y2 = it.centerY();			
+				((PortLine) line).setStartNode((Node) it);
+				createNewItem(line);
+				repaint();
+				((PortNode) it).addLinkedIn(line);			
+				break;
+			case MouseReleased:
+				// draw a new Line
+				Drawings lastItem = topo.getCurrentItem();
+
+				lastItem.x2 = e.getX();
+				lastItem.y2 = e.getY();
+
+				it = topo.itemContains(lastItem.x2, lastItem.y2);
+				// reset to the center of the node
+				lastItem.x2 = it.centerX();
+				lastItem.y2 = it.centerY();
+				((PortLine) lastItem).setEndNode((Node) it);
+				// we dont want to create something too small to be seen
+				if (Math.sqrt((lastItem.x2 - lastItem.x1)
+						* (lastItem.x2 - lastItem.x1)
+						+ (lastItem.y2 - lastItem.y1)
+						* (lastItem.y2 - lastItem.y1)) >= 5) {
+
+					((PortNode) it).addLinkedOut((Line) lastItem);
+				} else {
+					topo.remove(topo.getCurrentItem());
+					topo.setCurrentItem(null);
+				}
+				repaint();
+				break;
+			default:
+				break;
+			}
+			
+		}
+		
+	}
+	class NodeLineMode implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			if(!cho.isLine())return false;
+			Drawings it = topo.itemContains(e.getX(), e.getY());
+			if (it==null || it.type != ShapeType.NodeNode )return false;
+			else return true;
+		}
+
+		@Override
+		public void act(MouseEventType m) {
+			switch(m){
+			case MousePressed:
+				topo.setSelectedItem(null);
+				Drawings it = topo.itemContains(e.getX(), e.getY());
+				Line line = LineFactory.createLine(cho.getMode(), cho.getState());
+				// drawing a nodeline, start within an existing node
+				line.x1 = line.x2 = it.centerX();
+				line.y1 = line.y2 = it.centerY();
+				if (cho.getState() == State.Provider)
+					((NodeLine) line).setNode1((Node) it);
+				else if (cho.getState() == State.Request) {
+					((RequestNodeLine) line).setNode1((Node) it);
+					((RequestNodeLine) line).setControlPoint(line.x1,
+							line.y1);
+				}
+
+				createNewItem(line);
+				repaint();
+				((NodeNode) it).addLink(line);
+				break;
+			case MouseReleased:
+				// draw a new Line
+				Drawings lastItem = topo.getCurrentItem();
+
+				lastItem.x2 = e.getX();
+				lastItem.y2 = e.getY();
+
+				it = topo.itemContains(lastItem.x2, lastItem.y2);
+				// reset to the center of the node
+				lastItem.x2 = it.centerX();
+				lastItem.y2 = it.centerY();
+				if (cho.getState() == State.Provider)
+					((NodeLine) lastItem).setNode2((Node) it);
+				else if (cho.getState() == State.Request) {
+					((RequestNodeLine) lastItem).setNode2((Node) it);
+					((RequestNodeLine) lastItem).setControlPoint(
+							(lastItem.x1 * 3 + lastItem.x2) / 4,
+							(lastItem.y2 * 3 + lastItem.y1) / 4);
+				}
+				// we dont want to create something too small to be seen
+				if (Math.sqrt((lastItem.x2 - lastItem.x1)
+						* (lastItem.x2 - lastItem.x1)
+						+ (lastItem.y2 - lastItem.y1)
+						* (lastItem.y2 - lastItem.y1)) >= 5) {
+
+					((NodeNode) it).addLink((Line) lastItem);
+				} else {
+					topo.remove(topo.getCurrentItem());
+					topo.setCurrentItem(null);
+				}
+				repaint();
+				break;
+			default:
+				break;	
+			}
+		}
+		
+	}
+	class NodeMode implements Event{
+		MouseEvent e;
+		Node node;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return cho.isNode();
+		}
+
+		@Override
+		public void act(MouseEventType m) {	
+			switch(m){
+			case MousePressed:
+				topo.setSelectedItem(null);
+				node = NodeFactory.createNode(cho.getMode());
+				node.x1 = node.x2 = e.getX();
+				node.y1 = node.y2 = e.getY();
+				createNewItem(node);
+				repaint();
+				break;
+			case MouseReleased:
+				// draw a new Node
+				if (node!=null && !topo.hasSelectedItem()) {
+					node.x2 = e.getX();
+					node.y2 = e.getY();
+					// createNewItem(node);
+					topo.attachLines(node);
+					topo.setCurrentItem(null);
+					repaint();
+				}
+				break;
+			default:
+				break;
+			}
+				
+		}
+		
+	}
+	class RightMouse implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent e) {
+			return SwingUtilities.isRightMouseButton(e);
+		}
+
+		@Override
+		public void act(MouseEventType m) {		
+			
+		}
+		
+	}
+	class CatchAll implements Event{
+		MouseEvent e;
+		@Override
+		public boolean test(MouseEvent ee) {
+			e=ee;
+			return true;
+		}
+
+		@Override
+		public void act(MouseEventType m) {		
+			switch(m){
+			case MouseDragged:
+				topo.getCurrentItem().x2 = e.getX();
+				topo.getCurrentItem().y2 = e.getY();
+				repaint();
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
+	final LinkedList<Event> pressedEvents;
+	{
+		//order of events is important
+		pressedEvents=Lists.newLinkedList();
+		pressedEvents.add(new PopupTriggered());
+		pressedEvents.add(new PopupVisible());
+		pressedEvents.add(new SelectMode());
+		pressedEvents.add(new ResizeMode());
+		pressedEvents.add(new PortLineMode());
+		pressedEvents.add(new NodeLineMode());
+		pressedEvents.add(new NoOverlappingLineMode());
+		pressedEvents.add(new NodeMode());
+	}
+	final LinkedList<Event> releasedEvents;
+	{
+		//order of events is important
+		releasedEvents=Lists.newLinkedList();
+		releasedEvents.add(new PopupTriggered());
+		releasedEvents.add(new RightMouse());
+		releasedEvents.add(new PopupVisible());
+		releasedEvents.add(new SelectMode());
+		releasedEvents.add(new ResizeMode());
+		releasedEvents.add(new PortLineMode());
+		releasedEvents.add(new NodeLineMode());
+		releasedEvents.add(new NoOverlappingLineMode());
+		releasedEvents.add(new NodeMode());
+	}
+	final LinkedList<Event> draggedEvents;
+	{
+		//order of events is important
+		draggedEvents=Lists.newLinkedList();
+		draggedEvents.add(new SelectMode());
+		draggedEvents.add(new ResizeMode());
+		draggedEvents.add(new CatchAll());
+	}
+	void evaluateEvents(MouseEvent e,LinkedList<Event> events,MouseEventType m){
+		for(Event ev:events){
+			if(ev.test(e)){
+				ev.act(m);
+				break;
+			}			
+		}
+	}
+	class mouseAdapter extends MouseAdapter {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			statusBar.setText("     Mouse Pressed @:[" + e.getX() + ", "
+					+ e.getY() + "]");
+			
+			evaluateEvents(e,pressedEvents,MouseEventType.MousePressed);
+
+		}
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			evaluateEvents(e,releasedEvents,MouseEventType.MouseReleased);
+		}
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			statusBar.setText("     Mouse Entered @:[" + e.getX() + ", "
+					+ e.getY() + "]");
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+			statusBar.setText("     Mouse Exited @:[" + e.getX() + ", "
+					+ e.getY() + "]");
+		}
+	}
+
+	class mouseMotionAdapter extends MouseMotionAdapter {
+		public void mouseDragged(MouseEvent e) {
+			evaluateEvents(e,draggedEvents,MouseEventType.MouseDragged);
+
+		}
+
+		public void mouseMoved(MouseEvent e) {
+			statusBar.setText("     Mouse Moved @:[" + e.getX() + ", "
+					+ e.getY() + "]");
+		}
+	}
+
+	class DrawPanel extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public DrawPanel() {
+			setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+			setBackground(Color.white);
+			addMouseListener(new mouseAdapter());
+			addMouseMotionListener(new mouseMotionAdapter());
+		}
+
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			topo.draw(g);
+		}
+
+	}
+
+	void createNewItem(Drawings d) {
+		drawingArea.setCursor(Cursor
+				.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+
+		if (cho.isLine()) {
+			if (cho.getMode() == Mode.NodeMode && cho.getState() == State.Provider){
+				((Line) d).type = ShapeType.NodeLine;
+				((Line) d).setColor(Drawings.defaultLineColor);
+			}
+			else if (cho.getMode() == Mode.NodeMode && cho.getState() == State.Request){
+				((Line) d).type = ShapeType.RequestNodeLine;
+				((Line) d).setColor(Drawings.defaultRequestLineColor);
+			}
+			else if (cho.getMode() == Mode.PortMode){
+				((Line) d).type = ShapeType.PortLine;
+				((Line) d).setColor(Drawings.defaultLineColor);
+			}
+			((Line) d).stroke = stroke;
+			topo.setCurrentItem(d);
+			topo.addItem(d);
+			// System.out.println("created a Line");
+		} else if (cho.isNode()) {
+			if (cho.getMode() == Mode.NodeMode)
+				((Node) d).type = ShapeType.NodeNode;
+			else if (cho.getMode() == Mode.PortMode)
+				((Node) d).type = ShapeType.PortNode;
+			((Node) d).setColor(Drawings.defaultNodeColor);
+			((Node) d).stroke = stroke;
+			topo.setCurrentItem(d);
+			topo.addItem(d);
+			// System.out.println("created a Node");
+		}
+
+	}
+
+	public void saveRequest() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save the request");
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showSaveDialog(this);
+		if (result == JFileChooser.CANCEL_OPTION) {
+			return;
+		}
+		File fileName = fileChooser.getSelectedFile();
+		fileName.canWrite();
+		if (fileName == null || fileName.getName().equals("")) {
+			JOptionPane.showMessageDialog(fileChooser, "Invalid File Name",
+					"Invalid File Name", JOptionPane.ERROR_MESSAGE);
+		} else
+			topo.saveRequest(fileName);
+	}
+
+	public void saveFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showSaveDialog(this);
+		if (result == JFileChooser.CANCEL_OPTION) {
+			return;
+		}
+		File fileName = fileChooser.getSelectedFile();
+		fileName.canWrite();
+		if (fileName == null || fileName.getName().equals("")) {
+			JOptionPane.showMessageDialog(fileChooser, "Invalid File Name",
+					"Invalid File Name", JOptionPane.ERROR_MESSAGE);
+		} else {
+			try {
+				topo.saveTofile(fileName);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(fileChooser, e.getMessage(),
+						"Save File Exception", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	public void loadFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showOpenDialog(this);
+		if (result == JFileChooser.CANCEL_OPTION) {
+			return;
+		}
+		File fileName = fileChooser.getSelectedFile();
+		fileName.canRead();
+		if (fileName == null || fileName.getName().equals("")) {
+			JOptionPane.showMessageDialog(fileChooser, "Invalid File Name",
+					"Invalid File Name", JOptionPane.ERROR_MESSAGE);
+		} else {
+			try {
+				topo.openFromFile(fileName);
+			} catch (EOFException endofFileException) {
+				JOptionPane.showMessageDialog(this, "no more record in file",
+						"class not found", JOptionPane.ERROR_MESSAGE);
+			} catch (ClassNotFoundException classNotFoundException) {
+				JOptionPane.showMessageDialog(this, "Unable to Create Object",
+						"end of file", JOptionPane.ERROR_MESSAGE);
+			} catch (IOException ioException) {
+				JOptionPane.showMessageDialog(this,
+						"error during read from file", "read Error",
+						JOptionPane.ERROR_MESSAGE);
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(this, ex.getMessage(),
+						"error during read from file",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	public void newFile() {
+		cho.setCurrentChoice(CHOICES.New);
+		color = Color.black;
+		stroke = 1.0f;
+		topo.newTopo();
+		repaint();
+	}
+
+	public static void main(String args[]) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} 
+		catch (Exception e) {e.printStackTrace();}
+		MainGUI newPad = new MainGUI();
+		newPad.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+}

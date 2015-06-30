@@ -1,0 +1,220 @@
+package org.renci.pharos.gui;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+
+public class NodeEdgePanel extends JPanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private TopologyGraph topo;
+	private JTextField idField = new JTextField(5);
+	private String[] labels={
+    		Edge.Types.L1,Edge.Types.L2, Edge.Types.L3
+        };
+    private JComboBox<?> lJCB = new JComboBox<Object>(labels);
+    
+    private JButton jb=new JButton("Rules");
+   
+    private RulesPanel rp;
+    private JList<?> lst1; 
+    private JList<?> lst2;
+    private NodeLine edge;
+	public NodeEdgePanel(TopologyGraph t) {
+		topo=t;
+		rp=new RulesPanel(t);
+		edge=Preconditions.checkNotNull((NodeLine)topo.getSelectedItem());
+        //setLayout(new GridBagLayout());	
+        //GridBagConstraints c = new GridBagConstraints();
+        //Edge ID 
+        //c.gridx=0;
+        //c.gridy=0;
+        add(new JLabel("ID:"));
+        //c.gridx=1;
+        //c.gridy=0;
+        if(edge.getId()!=null) setId(edge.getId());
+        add(idField);
+        
+        //Edge Label        
+        lJCB.setSelectedIndex(-1);
+        //c.gridx=2;
+        //c.gridy=0;
+        add(new JLabel("Type:"));
+        
+        //c.gridx=3;
+        //c.gridy=0;
+        if(edge.getLinkType()!=null)setLinkType(edge.getLinkType());
+        add(lJCB);
+        
+        String node1id=((NodeNode)(edge.getNode1())).getId();
+        if (StringUtils.isEmpty(node1id) || StringUtils.isBlank(node1id))
+        	node1id="N/A";
+        add(new JLabel(node1id));
+        Vector<Integer> node1ports=new Vector<Integer>();
+        
+        NodeNode n=(NodeNode)edge.getNode1();
+        if (n!=null){
+			for(int i=0;i<n.getNumberOfLinks();i++){
+				node1ports.add(i);
+			}
+        }
+        lst1=new JList<Object>(node1ports);
+        int p=edge.getPort1();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lst1.setSelectedValue(p, false);
+        add(lst1);
+        
+        String node2id=((NodeNode)(edge.getNode2())).getId();
+        if (StringUtils.isEmpty(node2id) || StringUtils.isBlank(node2id))
+        	node2id="N/A";
+        add(new JLabel(node2id));
+        
+        Vector<Integer> node2ports=new Vector<Integer>();
+        n=(NodeNode)edge.getNode2();
+        if(n!=null){
+	        for(int i=0;i<n.getNumberOfLinks();i++){
+	        	node2ports.add(i);
+			}
+        }
+        lst2=new JList<Object>(node2ports);
+        p=edge.getPort2();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lst2.setSelectedValue(p, false);
+        add(lst2);
+
+		lst1.setCellRenderer( new MyListRenderer1() ); 
+		lst2.setCellRenderer( new MyListRenderer2() );
+        
+        jb.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                    	
+                    	int result = JOptionPane.showConfirmDialog(null, rp, 
+        	                    "Edge properties:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            	
+        	            }   
+                    }
+                });
+        //c.gridx=0;
+        //c.gridy=3;
+        add(jb);
+        //add(rulesArea);
+        unsetVirtual();
+        
+	}
+	public void setVirtual(){
+		jb.setVisible(true);
+	}
+	public void unsetVirtual(){
+		jb.setVisible(false);
+	}
+	public String getId(){
+		return idField.getText();
+	}
+	public String getLinkType(){
+		if (lJCB.getSelectedItem()!=null)
+			return lJCB.getSelectedItem().toString();
+		else return null;
+	}
+	
+	public void setId(String d){
+		idField.setText(Preconditions.checkNotNull(d));
+	}
+	public void setLinkType(String d){
+		lJCB.setSelectedItem(Preconditions.checkNotNull(d));
+	}
+	
+	public void setNodes(){
+		NodeLine n=Preconditions.checkNotNull((NodeLine) topo.getSelectedItem());
+    	n.setLinkType(this.getLinkType());
+    	String id=this.getId();
+    	String nid=n.getId();
+    	if(!id.equals(nid) ){
+    		if(topo.isEdgeIdUsed(id))
+    			JOptionPane.showMessageDialog(this, "Edge ID used");
+    		else if(!Strings.isNullOrEmpty(nid))topo.removeEdgeId(nid);
+    	}
+    	n.setId(this.getId());
+    	NodeNode n1=(NodeNode)edge.getNode1();
+        NodeNode n2=(NodeNode)edge.getNode2();
+        if (n1!=null && n2!=null){
+        	int i=(Integer)lst1.getSelectedValue();
+			NodePortProperties ppl= n1.getPort(i);
+			if(ppl==null)ppl=new NodePortProperties();		
+			int j=(Integer)lst2.getSelectedValue();
+			NodePortProperties ppr= n2.getPort(j);
+			if(ppr==null)ppr=new NodePortProperties();
+			ppl.setId(String.valueOf(i));
+			ppr.setId(String.valueOf(j));
+			ppl.setPeer(ppr);
+			ppr.setPeer(ppl);
+			n1.setPort(ppl);
+			n2.setPort(ppr);
+			edge.setPort1(i);
+			edge.setPort2(j);
+			topo.addEdgeId(this.getId());
+			topo.addNodeId(n1.getId(), i);
+			topo.addNodeId(n2.getId(), j);
+        }
+		if(n.configComplete())n.setColor(Drawings.lineConfigedColor);
+		else 
+			n.setColor(Drawings.defaultLineColor);
+		topo.repaint();
+	}
+	private class MyListRenderer1 extends DefaultListCellRenderer  {  
+    
+		private static final long serialVersionUID = 1L;
+
+		public Component getListCellRendererComponent( JList<?> list,  
+	            Object value, int index, boolean isSelected,  
+	            boolean cellHasFocus )  {
+	    	
+	        super.getListCellRendererComponent( list, value, index,  
+	                isSelected, cellHasFocus );  
+	        int item = (Integer)(list.getModel().getElementAt(index));
+            if(topo.isPortNumUsed(edge.getNode1(), item))
+            	setForeground(Color.gray);
+            else setForeground(Color.black);
+	        return( this );  
+	    }  
+		
+    }
+	private class MyListRenderer2 extends DefaultListCellRenderer  {  
+	    
+		private static final long serialVersionUID = 1L;
+
+		public Component getListCellRendererComponent( JList<?> list,  
+	            Object value, int index, boolean isSelected,  
+	            boolean cellHasFocus )  {
+	    	
+	        super.getListCellRendererComponent( list, value, index,  
+	                isSelected, cellHasFocus );  
+            int item = (Integer)(list.getModel().getElementAt(index));
+            if(topo.isPortNumUsed(edge.getNode2(), item))
+            	setForeground(Color.gray);
+	            else setForeground(Color.black);
+	        
+	        return( this );  
+	    }  
+		
+    }
+}

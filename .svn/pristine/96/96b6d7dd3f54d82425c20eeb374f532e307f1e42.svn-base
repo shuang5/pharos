@@ -1,0 +1,82 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+enum Mode {Provider, Request};
+class Label {
+	int label;
+	public Label(){
+		
+	}
+	public Label(int l){
+		label=l;
+	}
+	public String toString(){
+		return String.valueOf(label);
+	}	
+}
+class Subscript {
+	//sum_{i,j}b_{i,j,l,m} is represented by 
+	// subscripts={"+","+",l,m} 
+	//i.e. sum(subscripts) generates the linear for sum_{i,j}b_{i,j,l,m}
+	String[] subscript;
+	public Subscript (String[] sub){
+		subscript=new String[sub.length];
+		subscript=sub.clone();
+	}
+	public int getDimension(){
+		return subscript.length;
+	}
+	public String[] getSubscript(){
+		return subscript;
+	}
+	public String toString(){
+		String s=new String("[");
+		for(String ss: subscript){
+			s+=ss+",";
+		}
+		s+="]";
+		return s;
+	}
+	public Subscript clone(){
+		return new Subscript(this.getSubscript());
+	}
+}
+
+public abstract class Variables {
+	public int dimension=0;
+	private String name="x";
+	public Variables(){}
+	public Variables(Variable v){
+		setDimension(v.getDimension());
+	}
+	public int getDimension(){
+		return dimension;
+	}
+	public void setDimension(int d){
+		dimension=d;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNthDim(String s,int i){
+		if(i>dimension-1)throw new IndexOutOfBoundsException("out of range");
+		else{
+			String delim="[_]";
+			String[] tokens=s.split(delim);
+			return tokens[i];
+		}
+	}
+	Iterator<String> filteredIterator(Iterator<String> it, Filter f){
+		return new FilterIterator(it,f);
+	}
+	public abstract String getVariable(String... s);
+	public abstract ArrayList<String> getAllVariables();
+	public abstract Iterator<String> iterator();
+}
+

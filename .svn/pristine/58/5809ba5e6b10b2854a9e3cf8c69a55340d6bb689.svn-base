@@ -1,0 +1,447 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.renci.pharos.flow.FlowSpace;
+import org.renci.pharos.flow.Labels;
+import org.renci.pharos.flow.PharosException;
+import org.renci.pharos.gui.NodePortProperties;
+import org.renci.pharos.gui.Objectives;
+
+import net.sf.javailp.Linear;
+import net.sf.javailp.Solver;
+import net.sf.javailp.SolverFactory;
+import net.sf.javailp.SolverFactoryLpSolve;
+
+import com.google.common.collect.Sets;
+import com.sun.tools.javac.util.Pair;
+import com.tinkerpop.blueprints.Compare;
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+
+public class MCFlowProblem extends ProblemDecorator{
+	private final static Logger logger = Logger.getLogger(MCFlowProblem.class.getName());
+	private HashSet<Pair<String,String>> sdpairs;
+	
+	public MCFlowProblem(SSSDFlowProblem p) {
+		checkNotNull(p);
+		pproblem=p;
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		sdpairs=new HashSet<Pair<String, String>>(fav.getConstants().keySet());
+	}
+	public void addIntegerConstraints(){
+		logger.log(Level.INFO,"adding Integer constraints:");
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Boolean.class);
+		}
+	}
+	public void addNonIntegerConstraints(){
+		logger.log(Level.INFO,"adding Integer constraints:");
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Double.class);
+		}
+	}
+	public void addRequestConstraints(){
+		logger.log(Level.INFO,"adding request constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addRequestConstraints();
+		}
+	}
+	public void addLabelConstraints(){
+		logger.log(Level.INFO,"adding label assignment constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addLabelConstraints();
+		}
+	}
+	public void addFlowConservationConstraints(){
+		logger.log(Level.INFO,"adding flow constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addFlowConservationConstraints();
+		}
+	}
+	public void addCapacityConstraints(){
+		logger.log(Level.INFO,"adding capacity constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		String[] s=new String[]{"+","+","+","+","*","*","*","*"};
+		ArrayList<Linear> arr=fav.generateLinears(s, fav.getSum());
+		for(Linear l:arr){
+			if(l.size()>0)problem().add(l, "<=", 1);
+			logger.log(Level.FINE,l+" <= "+ 1);
+		}
+	}
+	public Variables variables() {
+		return pproblem.variables();
+	}
+	public ArrayList<String> getProviderVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getProviderVariables();
+	}
+	public ArrayList<String> getRequestVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getRequestVariables();
+	}
+	private SolverFactory factory = new SolverFactoryLpSolve(); // use lp_solve
+	//SolverFactory factory = new SolverFactoryGurobi(); // use gurobi
+	{
+		factory.setParameter(Solver.VERBOSE, 0); 
+		factory.setParameter(Solver.TIMEOUT, 10000); // set timeout to 10000 seconds
+		
+	}
+	public OptimizationResult compute(ComputeMode mode, Objectives objective, Graph p){
+		switch(mode){
+		case ILP:
+			return ilp(objective);
+		case LongestFirst:
+			return heuristic(p,ComputeMode.LongestFirst,objective);
+		case ShortestFirst:
+			return heuristic(p,ComputeMode.ShortestFirst,objective);
+		case Random:
+			return heuristic(p,ComputeMode.Random,objective);
+		case LPRelaxation:
+			return lprelax(objective);
+		default:
+			break;
+		}
+		return null;
+	}
+	private OptimizationResult ilp(Objectives objective){
+		this.addIntegerConstraints();
+		this.addLabelConstraints();
+		this.addCapacityConstraints();
+		this.addRequestConstraints();
+		this.addFlowConservationConstraints();
+		//objective
+		logger.log(Level.INFO,"setting objective function");
+		ArrayList<String> arr = getProviderVariables();
+		switch (objective){
+		case LabelUsage:
+			Linear linear = new Linear();
+			for(String s: arr){
+			  linear.add(1,s);
+			}
+			this.setObjective(linear, OBJ.MIN);
+
+			logger.log(Level.INFO, "number of variables is: "+
+					(arr.size()+getRequestVariables().size()));
+			break;
+		case PortUsage:
+			ArrayList<Linear> ports=((FlowAssignmentVariables8D)variables()).getPorts();
+			linear=new Linear();
+			for(Linear p:ports){
+				String v=FlowAssignmentVariables8D.getRoutingVariable((String) p.get(0).getVariable());
+				pproblem.problem().setVarType(v,Boolean.class);
+				linear.add(1,v);
+				p.add(-1*p.size(), v);
+				problem().add(p,"<=",0);
+			}
+			this.setObjective(linear, OBJ.MIN);
+
+			logger.log(Level.INFO, "number of variables is: "+
+					(arr.size()+getRequestVariables().size()+linear.size()));
+			break;
+		case LoadBalancing:
+			break;
+		default:
+			break;
+		}
+		 
+		
+		Solver solver = factory.get(); // you should use this solver only once for one problem
+		logger.log(Level.INFO,"Solving...");
+		final OptimizationResult or=new OptimizationResult();
+		or.result = solve(solver);
+		if(or.result!=null){
+			logger.log(Level.INFO,"Objective: "+String.valueOf(or.result.getObjective()));
+			or.objective=String.valueOf(or.result.getObjective());
+			for(String s:arr){
+				if(or.result.getPrimalValue(s).intValue()>0) 
+					  or.nzValues.add(s+"="+(or.result.getPrimalValue(s)).toString());
+			}
+		}
+		else logger.log(Level.INFO,"no feasible soltuion found!");
+		
+		return or;
+	}
+	private OptimizationResult lprelax(Objectives objective){
+		this.addNonIntegerConstraints();
+		this.addLabelConstraints();
+		this.addCapacityConstraints();
+		this.addRequestConstraints();
+		this.addFlowConservationConstraints();
+		//objective
+		logger.log(Level.INFO,"setting objective function");
+		ArrayList<String> arr = getProviderVariables();
+		switch (objective){
+		case LabelUsage:
+			Linear linear = new Linear();
+			arr=getProviderVariables();
+			for(String s: arr){
+			  linear.add(1,s);
+			}
+			this.setObjective(linear, OBJ.MIN);
+			break;
+		case PortUsage:
+			ArrayList<Linear> ports=((FlowAssignmentVariables8D)variables()).getPorts();
+			linear=new Linear();
+			for(Linear p:ports){
+				String v=FlowAssignmentVariables8D.getRoutingVariable((String) p.get(0).getVariable());
+				linear.add(1,v);
+				p.add(-1*p.size(), v);
+				problem().add(p,"<=",0);
+			}
+			this.setObjective(linear, OBJ.MIN);
+			break;
+		case LoadBalancing:
+			break;
+		default:
+			break;
+		}
+		
+		logger.log(Level.INFO, "number of variables is: "+
+				(arr.size()+getRequestVariables().size())); 
+		
+		Solver solver = factory.get(); // you should use this solver only once for one problem
+		logger.log(Level.INFO,"Solving...");
+		final OptimizationResult or=new OptimizationResult();
+		or.result = solve(solver);
+		if(or.result!=null){
+			logger.log(Level.INFO,"Objective: "+String.valueOf(or.result.getObjective()));
+			or.objective=String.valueOf(or.result.getObjective());
+			for(String s:arr){
+				if(or.result.getPrimalValue(s).intValue()>0) 
+					  or.nzValues.add(s+"="+(or.result.getPrimalValue(s)).toString());
+			}
+			return or;
+		}
+		else {
+			logger.log(Level.INFO,"no feasible soltuion found!");
+			return null;
+		}
+	}
+	private static void setEdgeCost(Edge e, int size, boolean ficitious, Objectives obj){
+		switch (obj){
+		case LabelUsage:
+			GraphHelper.setCost(e, ficitious, 1);
+			break;
+		case PortUsage:
+			GraphHelper.setCost(e, ficitious, size);
+			break;
+		default:
+			break;
+		}
+	}
+	private static void splitAuxEdge(Graph g,Vertex vout, Label l, Vertex vin, Label ll,int size, Objectives obj){
+
+  	    final boolean vinLabelTranslation=((String)vin.getProperty("LabelTranslation")).equals("yes");
+  	    final boolean voutLabelTranslation=((String)vout.getProperty("LabelTranslation")).equals("yes");
+		Vertex vo=null;
+		if(!voutLabelTranslation){
+			vo=GraphHelper.addAuxVertex(g,vout.getProperty("ID")+"_"+l.toString(),
+					(String) vout.getProperty("ID"));
+		}
+		Vertex vi=null;
+		if(!vinLabelTranslation){
+			vi=GraphHelper.addAuxVertex(g, vin.getProperty("ID")+"_"+ll.toString(),
+					(String) vin.getProperty("ID"));
+		}
+		if(vo!=null && vi!=null){
+			//if both ends can NOT do label translation, create a new edge with two new vertices
+			Edge edge=GraphHelper.addAuxEdge(g, vo, vi);
+			setEdgeCost(edge, size, false, obj);
+		}
+		else if(vo!=null){
+			//vi can do label translation
+			vi=GraphHelper.addAuxVertex(g, (String) vin.getProperty("ID"), (String) vin.getProperty("ID"));
+			Edge edge=GraphHelper.addAuxEdge(g,vo, vi);
+			setEdgeCost(edge, size, false, obj);
+		}
+		else if(vi!=null){
+			//vo can do label translation
+			vo=GraphHelper.addAuxVertex(g, (String) vout.getProperty("ID"), (String) vout.getProperty("ID"));
+			Edge edge=GraphHelper.addAuxEdge(g, vo, vi);
+			setEdgeCost(edge, size, false, obj);
+		}
+		else {
+			//if both ends can do label translation, create an intermediate node
+			Vertex v=g.addVertex(null);
+			v.setProperty("ID",vout.getProperty("ID")+"_"+l.toString()+"_"
+					+vin.getProperty("ID")+"_"+ll.toString());
+			v.setProperty("Original", vout.getProperty("ID")+"_"+vin.getProperty("ID"));
+			vi=GraphHelper.addAuxVertex(g, (String) vin.getProperty("ID"), (String) vin.getProperty("ID"));
+			vo=GraphHelper.addAuxVertex(g, (String) vout.getProperty("ID"), (String) vout.getProperty("ID"));
+			
+			Edge edge1=GraphHelper.addAuxEdge(g,vo, v);
+			setEdgeCost(edge1, size, true, obj);
+
+			Edge edge2=GraphHelper.addAuxEdge(g,v, vi);
+			setEdgeCost(edge2, size, true, obj);
+		}
+	}
+	private static Graph constructAuxGraph(Graph p, Objectives obj){
+		Graph g=new TinkerGraph();
+		for (Vertex vv: p.getVertices()){
+			Vertex vin=GraphHelper.getVertex(p, GraphHelper.getVertexID(vv));
+			for(Edge e:vv.getEdges(Direction.IN)){
+		  	    //get labels from graph
+		  	    String peers=(String)e.getProperty("Peers");
+		  	    String[] tokens = peers.split("[ (,)]+");
+		  	    String[] port1=tokens[1].split("[:]");
+		  	    String[] port2=tokens[2].split("[:]");
+		  	    	
+		  	    Vertex vout=GraphHelper.getVertex(p, GraphHelper.getVertexID(e.getVertex(Direction.OUT)));
+		  	    int in,out;
+		  	    if(((String)vin.getProperty("ID")).equals(port1[0])){
+		  	    	in=Integer.parseInt(port1[1]);
+		  	    	out=Integer.parseInt(port2[1]);
+		  	    }
+		  	    else{
+		  	    	in=Integer.parseInt(port2[1]);
+		  	    	out=Integer.parseInt(port1[1]);
+		  	    }
+		  	    NodePortProperties npin=new NodePortProperties((String)vin.getProperty("Ports"),in);
+		  	    NodePortProperties npout=new NodePortProperties((String)vout.getProperty("Ports"),out);
+		  	    try {
+					Labels lin=new Labels(new FlowSpace(npin.getFlowSpace()));
+					Labels lout=new Labels(new FlowSpace(npout.getFlowSpace()));
+					Iterator<Integer> itin=lin.getIterator();
+					Iterator<Integer> itout=lout.getIterator();
+					final String s=(String)e.getProperty("Virtual");
+					if(s.equals("Yes")){
+						while (itout.hasNext()){
+							Label l=new Label(itout.next());
+							while(itin.hasNext()){
+								Label ll=new Label(itin.next());
+								splitAuxEdge(g,vout,l, vin,ll,lin.size()*lout.size(),obj);
+							}
+						}
+					}
+					else {
+						while (itin.hasNext() && itout.hasNext()){
+							Label l=new Label(itout.next());
+							Label ll=new Label(itin.next());
+							splitAuxEdge(g,vout,l,vin,ll,lin.size(),obj);							
+						}
+					}
+				
+					
+				} catch (PharosException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		return g;
+	}
+	private static Graph addSD(Graph p, String s, String d){
+		Graph g=GraphHelper.makeCopy(p);
+		if(GraphHelper.getVertex(g, s)==null){
+			Vertex vout=GraphHelper.addAuxVertexWithLabelTranslation(g, s);
+			Iterator<Vertex> v1_itr=g.query().has("Original",Compare.EQUAL,s).vertices().iterator();
+			while (v1_itr.hasNext()){
+				Edge e=GraphHelper.addAuxEdge(g, vout, v1_itr.next());
+				GraphHelper.setCost(e, true, 1);
+			}
+		}
+		if(GraphHelper.getVertex(g, d)==null){
+			Vertex vin=GraphHelper.addAuxVertexWithLabelTranslation(g, d);
+			Iterator<Vertex> v1_itr=g.query().has("Original",Compare.EQUAL,d).vertices().iterator();
+			while (v1_itr.hasNext()){
+				Edge e=GraphHelper.addAuxEdge(g, v1_itr.next(),vin);
+				GraphHelper.setCost(e, true, 1);
+			}
+		}
+		return g;
+	}
+	private static void sortList(List<Pair<String,String>> list, ComputeMode mode, final Dijkstra dijkstra){
+		if(mode==ComputeMode.LongestFirst){
+			Collections.sort(list,new Comparator<Pair<String,String>>(){
+				@Override
+				public int compare(Pair<String,String> sd1, Pair<String,String> sd2){
+					if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()>
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return -1;
+					else if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()<
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return 1;
+					else 
+						return 0;
+			}
+			});
+		}
+		else if(mode==ComputeMode.ShortestFirst){
+			Collections.sort(list,new Comparator<Pair<String,String>>(){
+				@Override
+				public int compare(Pair<String,String> sd1, Pair<String,String> sd2){
+					if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()>
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return 1;
+					else if(dijkstra.getShortestPath(sd1.fst, sd1.snd).size()<
+						dijkstra.getShortestPath(sd2.fst, sd2.snd).size())
+						return -1;
+					else 
+						return 0;
+			}
+			});
+		}
+		else {
+			//place holder for random
+		}
+	}
+	private OptimizationResult heuristic(Graph p,ComputeMode mode, Objectives obj){
+		final Dijkstra dijkstra=new Dijkstra(p);
+		List<Pair<String,String>> list=new ArrayList<Pair<String,String>>(sdpairs);
+		sortList(list,mode,dijkstra);
+		OptimizationResult result=new OptimizationResult();
+		int objective=0;
+		HashSet<String> edges=Sets.newHashSet();
+		final Graph gr=constructAuxGraph(p,obj);
+		Iterator<Pair<String,String>> itr=list.iterator();
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		while (itr.hasNext()){
+			Pair<String,String> edge=itr.next();
+			for(int i=fav.getConstants().get(edge);i>0;i--){
+				Graph g=addSD(gr,edge.fst,edge.snd);
+				Dijkstra dij=new Dijkstra(g);
+				LinkedList<Vertex> path=dij.getShortestPath(edge.fst, edge.snd);
+				if(path==null)return null;
+				else {
+					for(Edge e:GraphHelper.transformPath(gr, path)){
+						if(obj==Objectives.LabelUsage)
+							objective+=(int)e.getProperty("Cost")/2;
+						else if(obj==Objectives.PortUsage){
+							if(!edges.contains(e.getProperty("Original"))){
+								edges.add((String) e.getProperty("Original"));
+							}
+						}
+						result.nzValues.add("x"+"_"+edge.fst+"_"+edge.snd+"_"+GraphHelper.getEdgeID(e));
+					}
+					if(obj==Objectives.PortUsage)
+						GraphHelper.updateCost(gr, path);
+					GraphHelper.removePath(gr, path);
+				}
+			}
+		}
+		if(obj==Objectives.LabelUsage)
+			result.objective=String.valueOf(objective);
+		else if(obj==Objectives.PortUsage){
+			result.objective=String.valueOf(edges.size());
+		}
+		return result;
+	}
+}

@@ -1,0 +1,19 @@
+package org.renci.pharos.gui;
+
+public class LineFactory{
+	public static Line createLine(Mode mode, State state){
+		if (mode==Mode.PortMode && state==State.Provider){
+			return new PortLine();
+		}
+		else if (mode==Mode.PortMode && state==State.Request){
+			return new RequestPortLine();
+		}
+		else if (mode==Mode.NodeMode && state==State.Provider){
+			return new NodeLine();
+		}
+		else if (mode==Mode.NodeMode && state==State.Request){
+			return new RequestNodeLine();
+		}
+		else return null;
+	}
+}

@@ -1,0 +1,31 @@
+package org.renci.pharos.lp;
+
+import java.util.HashMap;
+
+import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.bidimap.DualHashBidiMap;
+
+
+class VariableInfo <K, V>{
+	private BidiMap varInfo=new DualHashBidiMap(new HashMap<K,V>());
+	void add(K k, V v){
+		varInfo.put(k, v);
+	}
+	void remove(K k){
+		varInfo.remove(k);
+	}
+	@SuppressWarnings("unchecked")
+	V getValue(K k){
+		return (V) varInfo.get(k);
+	}
+	@SuppressWarnings("unchecked")
+	K getKey(V v){
+		return (K) varInfo.getKey(v);
+	}
+	boolean hasValue(V v){
+		return varInfo.containsValue(v);
+	}
+	public boolean hasKey(K k) {
+		return varInfo.containsKey(k);
+	}
+}

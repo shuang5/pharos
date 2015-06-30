@@ -1,0 +1,27 @@
+package org.renci.pharos.lp;
+enum VarType {Int, String, LabelPair};
+public interface VariableType {	
+	public VarType getVarType() ;
+}
+
+class StringType implements VariableType{
+	public VarType getVarType() {
+		return VarType.String;
+	}
+	public StringType(){
+	}
+}
+class IntType implements VariableType{
+	public VarType getVarType() {
+		return VarType.Int;
+	}
+	public IntType(){
+	}
+}
+class LabelPairType implements VariableType{
+	public VarType getVarType() {
+		return VarType.String;
+	}
+	public LabelPairType(){
+	}
+}

@@ -1,0 +1,9 @@
+package org.renci.pharos.lp;
+
+class LabelPairType implements VariableType{
+	public VarType getVarType() {
+		return VarType.String;
+	}
+	public LabelPairType(){
+	}
+}

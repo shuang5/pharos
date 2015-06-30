@@ -1,0 +1,26 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+class ILP extends ProblemDecorator{
+	public ILP(PProblem p) {
+		pproblem=checkNotNull(p);
+		System.out.println("adding integer constraints to the problem:");
+		addIntegerConstraints();
+	}
+	
+	public void addIntegerConstraints(){
+		//integer constraints
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Boolean.class);
+		}
+		
+	}
+
+	public Variables variables() {
+		return pproblem.variables();
+	}
+
+	
+	
+}

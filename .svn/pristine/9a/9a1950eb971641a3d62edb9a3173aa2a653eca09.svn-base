@@ -1,0 +1,48 @@
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:55:49 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Oct 17, 2014 12:58:27 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:58:37 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:58:49 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:58:59 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:59:09 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:59:18 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:59:29 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Oct 17, 2014 12:59:39 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:

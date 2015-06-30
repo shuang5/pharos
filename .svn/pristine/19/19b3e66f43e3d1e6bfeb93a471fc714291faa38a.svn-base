@@ -1,0 +1,178 @@
+package org.renci.pharos.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import org.renci.doe.pharos.graph.def.Edge;
+
+public class NodeEdgePanel extends JPanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private TopologyGraph topo;
+	private JTextField idField = new JTextField(5);
+	private String[] labels={
+    		Edge.Types.L1,Edge.Types.L2, Edge.Types.L3
+        };
+    private JComboBox<?> lJCB = new JComboBox<Object>(labels);
+    
+    private JButton jb=new JButton("Rules");
+   
+    private RulesPanel rp;
+    private JList<?> lstLeft; 
+    private JList<?> lstRight;
+    private NodeLine edge;
+	public NodeEdgePanel(TopologyGraph t) {
+		topo=t;
+		rp=new RulesPanel(t);
+		edge=(NodeLine)topo.getSelectedItem();
+        //setLayout(new GridBagLayout());	
+        //GridBagConstraints c = new GridBagConstraints();
+        //Edge ID 
+        //c.gridx=0;
+        //c.gridy=0;
+        add(new JLabel("ID:"));
+        //c.gridx=1;
+        //c.gridy=0;
+        if(edge.getId()!=null) setId(edge.getId());
+        add(idField);
+        
+        //Edge Label        
+        lJCB.setSelectedIndex(-1);
+        //c.gridx=2;
+        //c.gridy=0;
+        add(new JLabel("Type:"));
+        
+        //c.gridx=3;
+        //c.gridy=0;
+        if(edge.getLinkType()!=null)setLinkType(edge.getLinkType());
+        add(lJCB);
+        
+        //left ports
+        //c.gridx=0;
+        //c.gridy=1;
+        add(new JLabel("Left:"));
+        //c.gridx=1;
+        //c.gridy=1;
+        Vector<Integer> lports=new Vector<Integer>();
+        
+        NodeNode n=(NodeNode)edge.getLeftorUpNode();
+        if (n!=null){
+			for(int i=0;i<n.getNumberOfLinks();i++){
+				lports.add(i);
+			}
+        }
+        lstLeft=new JList<Object>(lports);
+        int p=edge.getLeftOrUpPort();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lstLeft.setSelectedValue(p, false);
+        add(lstLeft);
+        
+        //right ports
+        //c.gridx=2;
+        //c.gridy=1;
+        add(new JLabel("Right:"));
+        //c.gridx=3;
+        //c.gridy=1;
+        
+        Vector<Integer> rports=new Vector<Integer>();
+        n=(NodeNode)edge.getRightorDownNode();
+        if(n!=null){
+	        for(int i=0;i<n.getNumberOfLinks();i++){
+				rports.add(i);
+			}
+        }
+        lstRight=new JList<Object>(rports);
+        p=edge.getRightOrDownPort();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lstRight.setSelectedValue(p, false);
+        add(lstRight);
+        
+       
+        //add(Box.createVerticalStrut(15)); // a spacer 
+        //add(new JLabel("Rules:"));
+        
+        jb.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                    	
+                    	int result = JOptionPane.showConfirmDialog(null, rp, 
+        	                    "Edge properties:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            	/*
+        	            	if(getId()!=null){
+        	            		edge.setId(getId());
+        	            	}
+        	            	if(getLabel()!=null){
+        	            		edge.setLabel(getLabel());
+        	            	}
+        	            	if(getCapabilities()!=null){
+        	            		edge.setCapabilities(getCapabilities());
+        	            	}
+        	            	
+        	            	*/
+        	            	
+        	            }   
+                    }
+                });
+        //c.gridx=0;
+        //c.gridy=3;
+        add(jb);
+        //add(rulesArea);
+        unsetVirtual();
+        
+	}
+	public void setVirtual(){
+		jb.setVisible(true);
+	}
+	public void unsetVirtual(){
+		jb.setVisible(false);
+	}
+	public String getId(){
+		return idField.getText();
+	}
+	public String getLinkType(){
+		if (lJCB.getSelectedItem()!=null)
+			return lJCB.getSelectedItem().toString();
+		else return null;
+	}
+	
+	public void setId(String d){
+		idField.setText(d);
+	}
+	public void setLinkType(String d){
+		lJCB.setSelectedItem(d);
+	}
+	public void setPorts(){
+        NodeNode lnode=(NodeNode)edge.getNode1();
+        NodeNode rnode=(NodeNode)edge.getNode2();
+        if (lnode!=null && rnode!=null){
+        	int i=(Integer)lstLeft.getSelectedValue();
+			NodePortProperties ppl= lnode.getPort(i);
+			if(ppl==null)ppl=new NodePortProperties();		
+			int j=(Integer)lstRight.getSelectedValue();
+			NodePortProperties ppr= rnode.getPort(j);
+			if(ppr==null)ppr=new NodePortProperties();
+			ppl.setId(String.valueOf(i));
+			ppr.setId(String.valueOf(j));
+			ppl.setPeer(ppr);
+			ppr.setPeer(ppl);
+			lnode.setPort(ppl);
+			rnode.setPort(ppr);
+			edge.setPort1(i);
+			edge.setPort2(j);
+        }
+    	
+	}
+	
+}

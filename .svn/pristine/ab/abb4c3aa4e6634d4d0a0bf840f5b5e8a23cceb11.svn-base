@@ -1,0 +1,12 @@
+Sep 22, 2014 11:14:11 PM org.renci.pharos.lp.LpSolver main
+INFO: setting source to A, destination to F
+Sep 22, 2014 11:14:16 PM org.renci.pharos.lp.LpProblem <init>
+INFO: Provider topology read
+Sep 22, 2014 11:14:19 PM org.renci.pharos.lp.LpProblem <init>
+INFO: Request topology read
+Sep 22, 2014 11:14:19 PM org.renci.pharos.lp.ILP <init>
+INFO: adding integer constraints to the problem:
+Sep 22, 2014 11:14:19 PM org.renci.pharos.lp.MCFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Sep 22, 2014 11:14:29 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:

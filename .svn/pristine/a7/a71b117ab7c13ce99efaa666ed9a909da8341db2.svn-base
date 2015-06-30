@@ -1,0 +1,17 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+
+import com.tinkerpop.blueprints.Graph;
+
+import net.sf.javailp.Result;
+
+public class OptimizationResult {
+	public String objective;
+	public ArrayList<String> nzValues=new ArrayList<String>();
+	public Result result;
+	public static Graph toGraph(Graph p,Graph r){
+		return null;
+	}
+	
+}

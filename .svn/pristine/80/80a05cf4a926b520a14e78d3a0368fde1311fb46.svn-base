@@ -1,0 +1,20 @@
+package org.renci.pharos.gui;
+
+class GUILoadMenuItem extends GUIMenuItem{
+
+	/**
+	 * 
+	 */
+	private final GUIMain mainGUI;
+
+	public GUILoadMenuItem(GUIMain mainGUI) {
+		super("Load");
+		this.mainGUI = mainGUI;
+	}
+
+	@Override
+	public void perform() {
+		this.mainGUI.loadFile();			
+	}
+	
+}

@@ -1,0 +1,43 @@
+package org.renci.pharos.lp;
+
+import java.util.Iterator;
+import java.util.Random;
+
+
+import com.google.common.collect.Iterators;
+import com.google.common.collect.PeekingIterator;
+
+public class VariableGenerator implements Iterator<String>{
+	private VariableInfo<String, String> varInfo;
+	Random rand=new Random();
+	private PeekingIterator<String> itr;
+	VariableGenerator(Iterator<String> it){
+		itr=Iterators.peekingIterator(it);
+	}
+	public VariableGenerator(VariableInfo<String, String> var,
+			Iterator<String> it) {
+		varInfo=var;
+		itr=Iterators.peekingIterator(it);
+	}
+	@Override
+	public boolean hasNext() {
+		return itr.hasNext();
+	}
+
+	@Override
+	public String next() {
+		String next=itr.next();
+		if(!varInfo.hasValue(next)) {
+			String s;
+			do{
+				s=String.valueOf(rand.nextInt(1000000));
+			}
+			while(varInfo.hasKey(s));
+			varInfo.add(s, next);
+			return s;
+		}
+		else
+			return varInfo.getKey(next);
+	}
+
+}

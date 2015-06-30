@@ -1,0 +1,9 @@
+package org.renci.pharos.lp;
+
+import java.util.Iterator;
+
+
+public interface Array1D {
+	VarType getVarType();
+	Iterator<String> iterator();
+}

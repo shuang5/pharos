@@ -1,0 +1,33 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+
+import net.sf.javailp.Linear;
+
+public class LoadBalancingMILP extends MILPSolver {
+	ArrayList<Linear> ports;
+	LoadBalancingMILP(PProblem pp, ArrayList<String> ar, ArrayList<Linear> p) {
+		super(pp, ar);
+		ports=p;
+	}
+
+	@Override
+	public void setObjective() {
+		Linear linear=new Linear();
+		for(Linear p:ports){
+			p.add(-1, "x_max");
+			problem.problem().setVarType("x_max",Integer.class);
+			problem.problem().add(p,"<=",0);
+		}
+		linear.add(1,"x_max");
+		problem.setObjective(linear, OBJ.MIN);
+		
+	}
+
+	@Override
+	public void init() {
+		problem.init();
+		
+	}
+
+}

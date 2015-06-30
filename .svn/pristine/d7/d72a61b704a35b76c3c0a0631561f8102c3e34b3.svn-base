@@ -1,0 +1,39 @@
+package org.renci.pharos.gui;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+public class PreferenceFrame extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel solver=new JLabel("Solver");
+	private JRadioButton local=new JRadioButton();
+	private JRadioButton remote=new JRadioButton();
+	private JTextField solverURL=new JTextField();
+	private JButton ok=new JButton("OK");
+	private JButton cancel=new JButton("Canel");
+	public PreferenceFrame() {
+	    initComponents();	    
+	}
+	private void initComponents() {
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Preferences");
+		FlowLayout layout = new FlowLayout();
+        getContentPane().setLayout(layout);
+        add(solver);
+        add(local);
+        add(remote);
+        add(solverURL);
+        add(ok);
+        add(cancel);
+	}
+}

@@ -1,0 +1,4 @@
+package org.renci.pharos.lp;
+public interface VariableType {	
+	public VarType getVarType() ;
+}

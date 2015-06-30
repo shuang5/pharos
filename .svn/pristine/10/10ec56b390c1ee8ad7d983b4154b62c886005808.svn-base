@@ -1,0 +1,43 @@
+package org.renci.pharos.lp;
+
+public abstract class Variable {
+	private String name;
+	public int dimension=0;
+	private int sub[];
+	public Variable(){
+		
+	}
+	public Variable(int...s){
+		setDimension(s.length);
+		for(int i=0;i<dimension;i++){
+			sub[i]=s[i];
+		}
+	}
+	
+	public int getDimension(){
+		return dimension;
+	}
+	public String getName() {
+		return name;
+	}
+	public int[] getSub() {
+		return sub;
+	}
+	public void setDimension(int d){
+		dimension=d;
+		setSub(new int[dimension]);
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setSub(int sub[]) {
+		this.sub = sub;
+	}
+	public String toString(){
+		String s=new String(name);
+		for(int i: sub){
+			s+="_"+String.valueOf(i);
+		}
+		return s;
+	}
+}

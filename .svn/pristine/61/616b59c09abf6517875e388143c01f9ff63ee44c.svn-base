@@ -1,0 +1,116 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.renci.pharos.flow.FlowPharosException;
+import org.renci.pharos.flow.FlowSpace;
+import org.renci.pharos.flow.FlowUnit;
+import org.renci.pharos.flow.FlowLabels;
+import org.renci.pharos.flow.Rules;
+import org.renci.pharos.gui.NodePortProperties;
+
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+
+class ProviderGraphReader implements PharosGraphReader{
+	/**
+	 * 
+	 */
+	private final FlowVariables4D flowVariables4D;
+
+	/**
+	 * @param flowVariables4D
+	 */
+	ProviderGraphReader(FlowVariables4D flowVariables4D) {
+		this.flowVariables4D = flowVariables4D;
+	}
+
+	@Override
+	public FlowVariables4D add(Graph graph) {
+		Iterable<Vertex> it=graph.getVertices();
+		for (Vertex v: it){
+		    Iterable<Edge> ite=v.getEdges(Direction.OUT);
+		    for (Edge e: ite){
+		  	    ArrayList<String> labels= new ArrayList<String>();
+		  	    //get labels from graph
+		  	    String peers=(String)e.getProperty("Peers");
+		  	    String[] tokens = peers.split("[ (,)]+");
+		  	    String[] port1=tokens[1].split("[:]");
+		  	    String[] port2=tokens[2].split("[:]");
+		  	    
+		  	    Vertex vin=e.getVertex(Direction.IN);	
+		  	    Vertex vout=e.getVertex(Direction.OUT);
+		  	    int in=0,out=0;
+		  	    if(((String)vin.getProperty("ID")).equals(port1[0])){
+		  	    	in=Integer.parseInt(port1[1]);
+		  	    	out=Integer.parseInt(port2[1]);
+		  	    }
+		  	    else{
+		  	    	in=Integer.parseInt(port2[1]);
+		  	    	out=Integer.parseInt(port1[1]);
+		  	    }
+		  	    NodePortProperties npin=new NodePortProperties((String)vin.getProperty("Ports"),in);
+		  	    NodePortProperties npout=new NodePortProperties((String)vout.getProperty("Ports"),out);
+		  	    try {
+					FlowLabels lin=new FlowLabels(new FlowSpace(npin.getFlowSpace()));
+					FlowLabels lout=new FlowLabels(new FlowSpace(npout.getFlowSpace()));
+					Iterator<Integer> itin=lin.getIterator();
+					Iterator<Integer> itout=lout.getIterator();
+					String s=(String)e.getProperty("Virtual");
+					if(s.equals("Yes")){
+						if(e.getProperty("Rules")==null){
+							while (itout.hasNext()){
+								Label l=new Label(itout.next());
+								while(itin.hasNext()){
+									Label ll=new Label(itin.next());
+									labels.add((new SDPair<Label>(l,ll)).toString());
+								}
+							}
+						}
+						else {
+							Rules rules=new Rules((String)e.getProperty("Rules"));
+							FlowSpace fin=new FlowSpace(npin.getFlowSpace());
+							Iterator<FlowUnit> fit=fin.fiterator();
+							while(fit.hasNext()){
+								List<FlowUnit> list=new ArrayList<FlowUnit>();
+								list.add(fit.next());
+								FlowSpace fsin=new FlowSpace(list);
+								FlowLabels llin=new FlowLabels(fsin);
+								FlowLabels llout=new FlowLabels(rules.evaluate(fsin));
+								Iterator<Integer> itllin=llin.getIterator();
+								Iterator<Integer> itllout=llout.getIterator();
+								while (itllin.hasNext() && itllout.hasNext()){
+									Label l=new Label(itllout.next());
+									Label ll=new Label(itllin.next());
+									labels.add((new SDPair<Label>(l,ll)).toString());
+								}
+							}
+						}
+					}
+					else {
+						while (itin.hasNext() && itout.hasNext()){
+							Label l=new Label(itout.next());
+							Label ll=new Label(itin.next());
+							labels.add((new SDPair<Label>(l,ll)).toString());
+						}
+					}
+					
+				} catch (FlowPharosException e1) {
+					e1.printStackTrace();
+				}
+		  	    String edge=GraphHelper.toEdgeId((String)vin.getProperty("ID"),
+		  	    		(String)vout.getProperty("ID"));
+		  	    ArrayList<String> edges=new ArrayList<String>();
+		  	    edges.add(edge);
+		  	    this.flowVariables4D.add(new NetworkTopology(edges), new LabelPairs(labels));
+		  	 }
+		  }
+		
+  	    return this.flowVariables4D;
+	}
+	
+}

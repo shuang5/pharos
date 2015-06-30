@@ -1,0 +1,13 @@
+package org.renci.pharos.gui;
+
+class NodeMenuFactory{
+	public static NodeMenu createNodeMenu(TopologyGraph tg, Mode mode){
+		if (mode==Mode.PortMode){
+			return new PortNodeMenu(tg);
+		}
+		else if (mode==Mode.NodeMode){
+			return new NodeNodeMenu(tg);
+		}
+		else return null;
+	}
+}

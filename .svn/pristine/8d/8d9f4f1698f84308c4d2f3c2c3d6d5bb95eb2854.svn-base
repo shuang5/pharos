@@ -1,0 +1,171 @@
+package org.renci.pharos.gui;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
+
+abstract class TopologyGraph{
+
+	protected Set<Drawings> itemList;
+    private Drawings selectedItem;
+    private Drawings currentItem;
+    public void setCurrentItem(Drawings d){
+    	currentItem=d;
+    }
+    public Drawings getCurrentItem(){
+    	return currentItem;
+    }
+    private MainGUI tgrt;
+    public void remove(Drawings d){
+    	removeItem(d);
+    	d.remove();
+    }
+    private void removeItem(Drawings d){
+    	if(d.type==ShapeType.NodeNode){
+    		((NodeNode)d).remove();
+    		for (Drawings line: ((Node)d).linkedToIn){
+				itemList.remove(line);
+			}
+			for (Drawings line: ((Node)d).linkedToOut){
+				itemList.remove(line);
+			}    		
+    	}
+    	else if (d.type==ShapeType.PortNode ){
+    		((PortNode)d).remove();
+			for (Drawings line: ((Node)d).linkedToIn){
+				itemList.remove(line);
+			}
+			for (Drawings line: ((Node)d).linkedToOut){
+				itemList.remove(line);
+			}
+    	}
+    		
+    	
+    	itemList.remove(d);
+    }
+    public void addItem(Drawings d){
+    	itemList.add(d);
+    }
+    
+    public void setSelectedItem(Drawings d){
+    	selectedItem=d;
+    }
+    
+    public int getListSize(){
+    	return itemList.size();
+    }
+    public Drawings getSelectedItem(){
+    	return selectedItem;
+    }
+    
+    public ShapeType getSelectedItemType(){
+    	if(hasSelectedItem())
+    		return selectedItem.type;
+    	else return null;
+    }
+	public TopologyGraph(MainGUI t) {
+		this.itemList = new HashSet<Drawings>();
+		this.selectedItem = null;
+		tgrt=t;
+	}
+	public void repaint(){
+		tgrt.repaint();
+	}
+    public boolean isItemSelected(int x, int y){
+		selectedItem=itemContains(x,y);
+		if (selectedItem!=null) return true;
+		else return false;
+	}	  
+	public boolean hasSelectedItem(){
+		if(selectedItem!=null)return true;
+		else return false;
+	}
+	public boolean hasSelectedNode(){
+		if (hasSelectedItem()){
+			if(selectedItem.type==ShapeType.PortNode || selectedItem.type==ShapeType.NodeNode)
+				return true;
+			else return false;
+		}
+		else return false;
+	}
+	public ShapeType selectedShapeType(){
+		if(!hasSelectedItem())return null;
+		return selectedItem.type;
+	}
+	
+	 //finds the item that contains (x,y)
+	 public  Drawings itemContains(int x, int y){
+		 Drawings found=null;
+		   for (Drawings d : itemList){
+			   if (d.contains(x,y)){
+				   if(d.type==ShapeType.PortNode || d.type==ShapeType.NodeNode)
+					   return d;
+				   else
+					   if (found==null)found=d;
+			   }
+		   }
+		   return found;
+	 }
+	 public void attachLines (Node n){
+		 for (Drawings d : itemList){
+			   if (d.type==ShapeType.PortLine){
+				   if (n.contains(d.x1,d.y1) && ((DirectedLine)d).getStartNode()==null){
+					   d.x1=n.centerX();
+					   d.y1=n.centerY();
+					   ((DirectedLine)d).setStartNode(n);
+					   n.addLinkedIn((Line)d);
+				   }
+				   else if(n.contains(d.x2,d.y2)&& ((DirectedLine)d).getEndNode()==null){
+					   d.x2=n.centerX();
+					   d.y2=n.centerY();
+					   ((DirectedLine)d).setEndNode(n);
+					   n.addLinkedOut((Line)d);
+				   } 
+			   }
+			   else if (d.type==ShapeType.NodeLine || d.type==ShapeType.RequestNodeLine){
+				   if (n.contains(d.x1,d.y1) && ((Line) d).getNode1()==null){
+					   d.x1=n.centerX();
+					   d.y1=n.centerY();
+					   ((UndirectedLine)d).setNode1(n);
+					   if(d.type==ShapeType.NodeLine){
+						   ((UndirectedNode)n).addLink((Line)d);
+					   }
+					   if(d.type==ShapeType.RequestNodeLine){
+						   ((UndirectedNode)n).addLinkReq((Line)d);
+					   }
+				   }
+				   else if(n.contains(d.x2,d.y2)&& ((Line)d).getNode2()==null){
+					   d.x2=n.centerX();
+					   d.y2=n.centerY();
+					   ((UndirectedLine)d).setNode2(n);
+					   if(d.type==ShapeType.NodeLine){
+						   ((UndirectedNode)n).addLink((Line)d);
+					   }
+					   if(d.type==ShapeType.RequestNodeLine){
+						   ((UndirectedNode)n).addLinkReq((Line)d);
+					   }
+				   } 
+			   }
+		   }
+	 }
+	 public void selectItem(int x, int y){
+		 selectedItem=itemContains(x,y);
+	 }
+	 public void draw(Graphics g){
+		 Graphics2D g2d = (Graphics2D) g;  
+         for (Drawings s : itemList) {
+        	 s.draw(g2d);
+         }
+	 }
+	 public void newTopo(){
+		 this.itemList = new HashSet<Drawings>();
+		 this.selectedItem = null;
+	 }
+	 abstract void openFromFile(File fileName) throws Exception;
+	 abstract void saveTofile(File fileName) throws Exception;
+	 abstract void saveRequest(File fileName); 
+}
+

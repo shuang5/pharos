@@ -1,0 +1,5 @@
+package org.renci.pharos.gui;
+
+enum ComputeMode {
+	Heuristic,ILP
+}

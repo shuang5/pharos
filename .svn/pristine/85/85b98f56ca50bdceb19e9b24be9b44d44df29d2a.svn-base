@@ -1,0 +1,10 @@
+package org.renci.pharos.lp;
+
+class SDPair<T>{
+	public T s;
+	public T d;
+	@Override
+	public String toString(){
+		return s+"-"+d;
+	}
+}

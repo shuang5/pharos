@@ -1,0 +1,67 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import net.sf.javailp.Linear;
+
+import com.sun.tools.javac.util.Pair;
+
+public class MCFlowProblem extends ProblemDecorator{
+	private final static Logger logger = Logger.getLogger(LpSolver.class.getName());
+	private HashSet<Pair<String,String>> sdpairs;
+	
+	public MCFlowProblem(SSSDFlowProblem p) {
+		checkNotNull(p);
+		pproblem=p;
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		sdpairs=new HashSet<Pair<String, String>>(fav.getConstants().keySet());
+	}
+	public void addRequestConstraints(){
+		logger.log(Level.INFO,"adding request constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addRequestConstraints();
+		}
+	}
+	public void addLabelConstraints(){
+		logger.log(Level.INFO,"adding label assignment constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addLabelConstraints();
+		}
+	}
+	public void addFlowConservationConstraints(){
+		logger.log(Level.INFO,"adding flow constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addFlowConservationConstraints();
+		}
+	}
+	public void addCapacityConstraints(){
+		logger.log(Level.INFO,"adding capacity constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		String[] s=new String[]{"+","+","+","+","*","*","*","*"};
+		ArrayList<Linear> arr=fav.generateLinears(s, fav.getSum());
+		for(Linear l:arr){
+			if(l.size()>0)problem().add(l, "<=", 1);
+			logger.log(Level.FINE,l+" <= "+ 1);
+		}
+	}
+	public Variables variables() {
+		return pproblem.variables();
+	}
+	public ArrayList<String> getProviderVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getProviderVariables();
+	}
+	public ArrayList<String> getRequestVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getRequestVariables();
+	}
+}

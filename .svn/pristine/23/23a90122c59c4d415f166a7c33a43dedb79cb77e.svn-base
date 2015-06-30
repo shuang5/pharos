@@ -1,0 +1,35 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class ILP extends ProblemDecorator{
+	private final static Logger logger = Logger.getLogger(LpSolverTest.class.getName());
+	public ILP(PProblem p) {
+		pproblem=checkNotNull(p);
+		logger.log(Level.INFO,"adding integer constraints to the problem:");
+		addIntegerConstraints();
+	}
+	
+	public void addIntegerConstraints(){
+		//integer constraints
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Boolean.class);
+		}
+		
+	}
+
+	public Variables variables() {
+		return pproblem.variables();
+	}
+
+	@Override
+	public void init() {
+		this.addIntegerConstraints();		
+	}
+
+	
+	
+}

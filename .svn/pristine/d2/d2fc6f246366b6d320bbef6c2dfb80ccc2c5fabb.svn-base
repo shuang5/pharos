@@ -1,0 +1,211 @@
+package org.renci.pharos.gui;
+
+import org.renci.doe.pharos.flow.Rules;
+
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+
+class NodeLine extends UndirectedLine{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String label;
+	private String linkType;
+	private String ID;
+	private int leftOrUpPort=-1;
+	private int rightOrDownPort=-1;
+	public NodeLine(){
+	}
+	public NodeLine(Edge e) {
+		rules=new Rules();
+   	 	type=ShapeType.NodeLine;
+	   	 if (e.getProperty("ID")!=null) {
+			 String s=(String)e.getProperty("ID");
+			 if(!s.isEmpty()) setId(s);
+		 }
+		 if (e.getProperty("LinkType")!=null) {
+			 String s=(String)e.getProperty("LinkType");
+			 if(!s.isEmpty()) setLinkType(s);
+		 }
+		 if (e.getProperty("Rules")!=null){
+			 String s=(String)e.getProperty("Rules");
+			 if(!s.isEmpty())
+				 setRules(s);
+		 }
+		 if (e.getProperty("In")!=null){
+			 String s=(String)e.getProperty("In");
+			if(!s.isEmpty()){
+				 PortProperties p=new PortProperties(s);
+				 setPort1(Integer.parseInt(p.getId()));
+			}
+		 }
+		 if (e.getProperty("Out")!=null){
+			 String s=(String)e.getProperty("Out");
+			 if(!s.isEmpty()){
+				 PortProperties p=new PortProperties(s);
+				 setPort2(Integer.parseInt(p.getId()));
+			}
+		 }
+		 
+		 setLabel(e.getLabel());
+	}
+	public void setBluePrintEdge(Edge e, boolean reverse) {
+		e.setProperty("ID", getId());
+		//by blueprint's convention
+		//if (reverse==false)
+		//port1 is equivalent to port out
+		//port2 is equivalent to port in
+		//else 
+		//port1 is port in
+		//port2 is port out
+		//when we save the graph, we lose leftness and rightness
+		if(!reverse){
+			e.setProperty("Peers","("+e.getVertex(Direction.IN).getId()+":"+String.valueOf(getPort2())+
+				","+e.getVertex(Direction.OUT).getId()+":"+String.valueOf(getPort1())+")");
+		}
+		else {
+			e.setProperty("Peers","("+e.getVertex(Direction.IN).getId()+":"+String.valueOf(getPort1())+
+					","+e.getVertex(Direction.OUT).getId()+":"+String.valueOf(getPort2())+")");
+		}
+		if(!virtual){
+			e.setProperty("Virtual", "No");
+			if(getLinkType()!=null)
+				e.setProperty("LinkType",getLinkType());
+		}
+		else {
+			e.setProperty("Virtual", "Yes");
+			if(getRules()!=null)
+				e.setProperty("Rules",getRules());
+		}
+			
+	}
+	
+	public void setLabel(String d){
+		label=d;
+	}
+	public void setId(String d){
+		ID=d;
+	}
+	public void setLinkType(String d){
+		linkType=d;
+	}
+	
+	public void setPort1(int d){
+		((NodeNode)getNode1()).associateLine2Port(this,d);
+		if(x1<x2)setLeftOrUpPort(d);
+		else if(x1>x2)setRightOrDownPort(d);
+		else if(y1>y2)setLeftOrUpPort(d);
+		else setRightOrDownPort(d);
+	}
+	public void setPort2(int d){
+		((NodeNode)getNode2()).associateLine2Port(this,d);
+		if(x1>x2)setLeftOrUpPort(d);
+		else if(x1<x2)setRightOrDownPort(d);
+		else if(y1<y2)setLeftOrUpPort(d);
+		else setRightOrDownPort(d);
+	}
+	public int getPort1(){
+		if(x1<x2)return leftOrUpPort;
+		else if(x1>x2)return rightOrDownPort;
+		else if(y1>y2)return leftOrUpPort;
+		else return rightOrDownPort;
+	}
+	public int getPort2(){
+		if(x1>x2)return leftOrUpPort;
+		else if(x1<x2)return rightOrDownPort;
+		else if(y1<y2)return leftOrUpPort;
+		else return rightOrDownPort;
+	}
+	public String getLabel(){
+		return label;
+	}
+	public String getId(){
+		return ID;
+	}
+	public String getLinkType(){
+		return linkType;
+	}
+	public int getLeftOrUpPort(){
+		return leftOrUpPort;
+	}
+	public int getRightOrDownPort(){
+		return rightOrDownPort;
+	}
+	public void setLeftOrUpPort(int d){
+		leftOrUpPort=d;
+	}
+	public void setRightOrDownPort(int d){
+		rightOrDownPort=d;
+	}
+}
+
+class RequestNodeLine extends UndirectedCurvedDottedLine{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String label;
+	private String ID;
+	private int leftPort=-1;
+	private int rightPort=-1;
+	private String request1;
+	private String request2;
+	public RequestNodeLine(){
+	}
+	public RequestNodeLine(Edge e) {
+   	 	type=ShapeType.NodeLine;
+	   	 if (e.getProperty("ID")!=null) {
+			 String s=(String)e.getProperty("ID");
+			 if(!s.isEmpty()) setId(s);
+		 }
+		 
+		 setLabel(e.getLabel());
+	}
+	public void setBluePrintEdge(Edge e, boolean reverse) {
+		e.setProperty("ID", getId());
+		e.setProperty("Request1", getRequest1());
+		e.setProperty("Request2", getRequest2());
+	}
+	
+	public void setLabel(String d){
+		label=d;
+	}
+	public void setId(String d){
+		ID=d;
+	}
+	public void setPort1(int d){
+		((NodeNode)getNode1()).associateLine2Port(this,d);
+		leftPort=d;
+	}
+	public void setPort2(int d){
+		((NodeNode)getNode2()).associateLine2Port(this,d);
+		rightPort=d;
+	}
+	public String getLabel(){
+		return label;
+	}
+	public String getId(){
+		return ID;
+	}
+	
+	public int getLeftPort(){
+		return leftPort;
+	}
+	public int getRightPort(){
+		return rightPort;
+	}
+	public String getRequest1(){
+		return request1;
+	}
+	public String getRequest2(){
+		return request2;
+	}
+	public void setRequest1(String s){
+		request1=s;
+	}
+	public void setRequest2(String s){
+		request2=s;
+	}
+}
+

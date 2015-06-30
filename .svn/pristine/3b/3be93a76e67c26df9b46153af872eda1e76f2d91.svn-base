@@ -1,0 +1,68 @@
+package org.renci.pharos.gui;
+
+import com.tinkerpop.blueprints.Vertex;
+public class PortNode extends DirectedNode{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Vertex v;
+	private PortProperties pp;
+	{
+		pp= new PortProperties();
+	}
+	public PortNode(Vertex vv) {
+    	v=vv;
+		type=ShapeType.PortNode;
+		 if (v.getProperty("Domain")!=null) 
+			 pp.setDomain((String)v.getProperty("Domain"));
+		 if (v.getProperty("DPID")!=null) 
+			 pp.setDPID((String)v.getProperty("DPID"));
+		 if (v.getProperty("Port")!=null) 
+			 pp.setPort(Integer.parseInt((String)v.getProperty("Port")));
+		 if (v.getProperty("Flowspace")!=null) {
+			 String s=(String)(v.getProperty("Flowspace"));
+			 if (!s.isEmpty())
+				try {
+					pp.setFlowspace((String)v.getProperty("Flowspace"));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 }
+		 if (v.getProperty("Flowvisor")!=null) {
+			 String s=(String)(v.getProperty("Flowvisor"));
+			 if (!s.isEmpty())pp.setFlowvisor((String)v.getProperty("Flowvisor"));
+		 }
+    	
+	}
+	public PortNode() {
+		// TODO Auto-generated constructor stub
+	}
+	Vertex getBluePrintVertex(){
+		return v;
+	}
+	public PortProperties portproperties(){
+		return pp;
+	}
+	void setBluePrintVertex(Vertex vv){
+		if(pp.getDomain()!=null)
+				vv.setProperty("Domain",pp.getDomain());
+		if(pp.getDPID()!=null)
+			vv.setProperty("DPID",pp.getDPID());
+		if(pp.getId()!=null)
+			vv.setProperty("ID",pp.getId());
+		if(pp.getPort()!=null)
+			vv.setProperty("Port",pp.getPort());
+		if(pp.getType()!=null)
+			vv.setProperty("Type",pp.getType());
+		if(pp.getFlowSpace()!=null)
+			vv.setProperty("Flowspace",pp.getFlowSpace());
+		if(pp.getFlowvisor()!=null)
+			vv.setProperty("Flowvisor",pp.getFlowvisor());
+		v=vv;
+	}
+	
+	
+}
+

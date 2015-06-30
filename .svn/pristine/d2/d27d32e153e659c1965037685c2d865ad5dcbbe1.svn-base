@@ -1,0 +1,14 @@
+package org.renci.pharos.lp;
+
+import java.util.List;
+
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+
+public interface Heuristic {
+	public void setEdgeCost(Edge e,int cost, boolean fictitious);
+	public void updateEdgeCost(Graph g,List<Vertex> p);
+	public void updateObjective(Edge e);
+	public String getObjective();
+}

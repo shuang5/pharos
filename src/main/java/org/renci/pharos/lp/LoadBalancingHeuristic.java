@@ -1,0 +1,62 @@
+package org.renci.pharos.lp;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+
+import org.renci.pharos.gui.Objectives;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.sun.tools.javac.util.Pair;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+
+class LoadBalancingHeuristic extends Heuristic {
+	private HashMap<String,Integer> load=Maps.newHashMap();
+	private HashSet<String> edges=Sets.newHashSet();
+	LoadBalancingHeuristic(List<Pair<String,String>> l,HashMap<Pair<String,String>,Integer> h){
+		super(Objectives.LoadBalancing,l,h);
+	}
+	
+	@Override
+	public void setEdgeCost(Edge e, int cost, boolean fictitious) {
+		GraphHelper.setCost(e, fictitious, 1);
+
+	}
+
+	@Override
+	public void updateEdgeCost(Graph g, List<Vertex> p) {
+		GraphHelper.updateCost(g, p, -100);
+
+	}
+
+	@Override
+	public void updateObjective(Edge e) {
+		if(!edges.contains(e.getProperty("Original"))){
+			edges.add((String) e.getProperty("Original"));
+		}
+		if(!load.containsKey(e.getProperty("Original"))){
+			load.put((String) e.getProperty("Original"),1);
+		}
+		else {
+			int i=load.get(e.getProperty("Original"));
+			load.put((String) e.getProperty("Original"),++i);
+		}
+
+	}
+
+	@Override
+	public String getObjective() {
+		int max=0;
+		for(Map.Entry<String, Integer> entry: load.entrySet()){
+			if(entry.getValue()>max){
+				max=entry.getValue();
+			}
+		}
+		return String.valueOf(max);
+	}
+
+}

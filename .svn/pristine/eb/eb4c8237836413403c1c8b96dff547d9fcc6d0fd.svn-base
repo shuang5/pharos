@@ -1,0 +1,166 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import net.sf.javailp.Linear;
+
+import org.apache.commons.lang.ArrayUtils;
+
+import com.google.common.collect.Maps;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+
+class SSSDFlowProblem extends ProblemDecorator{
+	private final static Logger logger = Logger.getLogger(LpSolver.class.getName());
+	private String sourceid=null;
+	private String destid=null;
+	
+	public void addFlowConservationConstraints(){
+		logger.log(Level.INFO,"adding flow constraints:");
+		Graph pgraph=getProviderTopo();
+		Iterable<Vertex> it=pgraph.getVertices();
+		
+		  for (Vertex v: it){
+			  String id=(String)v.getProperty("ID");
+			  boolean labeltranslation=false;
+			  if(((String)v.getProperty("LabelTranslation")).equals("yes"))
+				  labeltranslation=true;
+			  else labeltranslation=false;
+			  FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+			  if(id.equals(sourceid)){
+				  String[] s=new String[]{sourceid,destid,"*","*",id,"+","+","+"};
+				  ArrayList<Linear> arr= 
+						  fav.generateLinears(s, fav.getSub());
+				  for(Linear l:arr){
+					  problem().add(l, "=", 0);
+					  logger.log(Level.FINER, l+" = 0");
+				  }
+			  }
+			  else if(id.equals(destid)){
+				  String[] s=new String[]{sourceid,destid,"*","*","+",id,"+","+"};
+				  ArrayList<Linear> arr= 
+						  fav.generateLinears(s, fav.getSub());
+				  for(Linear l:arr){
+					  problem().add(l, "=", 0);
+					  logger.log(Level.FINER, l+" = 0");
+				  }
+			  }
+			  else{
+				  Iterator<String> itt=fav.getRequest().iterator(sourceid, destid, "*", "*");
+				  while(itt.hasNext()){
+					  String req=itt.next();
+					  String[] array=req.split("[_]");
+					  if(labeltranslation){
+						  //if the node can translate label, \sum_in=\sum_out
+						  String[] prv={id,"+","+","+"};
+						  String[] both1=(String[]) ArrayUtils.addAll(array, prv);
+						  Linear l1=fav.getSum().operate(both1);
+						  
+						  String[] prv2={"+",id,"+","+"};
+						  String[] both2=(String[]) ArrayUtils.addAll(array, prv2);
+						  Linear l2=fav.getSum().operate(both2);
+						  Linear ll=new Linear();
+						  List<Object> va=l1.getVariables();
+						  for(Object obj:va){
+							  ll.add(1,obj);
+						  }
+						  va=l2.getVariables();
+						  for(Object obj:va){
+							  ll.add(-1,obj);
+						  }
+						  problem().add(ll, "=", 0);
+						  logger.log(Level.FINER, ll+" = 0");
+					  }
+					  else {
+						//if the node can NOT translate label, \sum_in=\sum_out for every label
+						  Iterator<String> it1=fav.getProvider().iterator(id,"*","*","*");
+						  Iterator<String> it2=fav.filteredIterator(it1, new NthDimIterator(2));
+						  HashMap<Linear,Boolean> map=Maps.newHashMap();
+						  while(it2.hasNext()){
+							  String it2next=it2.next();
+							  String label=fav.getProvider().getNthDim(it2next, 2);
+							  String[] prv={id,"+",label,"+"};
+							  String[] both1=(String[]) ArrayUtils.addAll(array, prv);
+							  Linear l1=fav.getSum().operate(both1);
+							  String[] prv2={"+",id,"+",label};
+							  String[] both2=(String[]) ArrayUtils.addAll(array, prv2);
+							  Linear l2=fav.getSum().operate(both2);
+							  Linear ll=new Linear();
+							  List<Object> va=l1.getVariables();
+							  for(Object obj:va){
+								  ll.add(1,obj);
+							  }
+							  va=l2.getVariables();
+							  for(Object obj:va){
+								  ll.add(-1,obj);
+							  }
+							  if(!map.containsKey(ll)){
+								  map.put(ll, true);
+								  problem().add(ll, "=", 0);
+								  logger.log(Level.FINER, ll+" = 0");
+							  }
+						  }					  
+					  }
+				  }
+			  }
+		  }
+	}
+	public void addRequestConstraints(){
+		logger.log(Level.INFO,"adding request constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		FlowVariables4D fv=fav.getRequest();
+		if(sourceid!=null && destid!=null){
+			String[] s=new String[]{sourceid,destid,"+","+"};
+			Linear l=fv.getSum().operate(s);
+			problem().add(l, "=", fav.demand(sourceid, destid));
+			logger.log(Level.FINER, l+" = "+ fav.demand(sourceid, destid));
+		}
+	}
+	public void addLabelConstraints(){
+		logger.log(Level.INFO,"adding label assignment constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		FlowVariables4D fv=fav.getRequest();
+		String[] s=new String[]{sourceid,destid,"*","+"};
+		ArrayList<Linear> arr=fv.generateLinears(s, fv.getSum());
+		for(Linear l:arr){
+			problem().add(l, "<=", 1);
+			logger.log(Level.FINER, l+" <= "+ 1);
+		}
+	}
+	public void addCapacityConstraints(){
+		logger.log(Level.INFO,"adding capacity constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		String[] s=new String[]{sourceid,destid,"+","+","*","*","*","*"};
+		ArrayList<Linear> arr=fav.generateLinears(s, fav.getSum());
+		for(Linear l:arr){
+			problem().add(l, "<=", 1);
+			logger.log(Level.FINER,l+" <= "+ 1);
+		}
+	}
+	public SSSDFlowProblem(PProblem p) {
+		checkNotNull(p);
+		pproblem=p;
+	}
+	public SSSDFlowProblem(PProblem p, String sid,String did) {
+		pproblem=checkNotNull(p);
+		sourceid=checkNotNull(sid);
+		destid=checkNotNull(did);
+	}
+	public void setSource(String ID) {
+		sourceid=ID;		
+	}
+	public void setDestination(String ID) {
+		destid=ID;		
+	}
+
+	public Variables variables() {
+		return pproblem.variables();
+	}
+}

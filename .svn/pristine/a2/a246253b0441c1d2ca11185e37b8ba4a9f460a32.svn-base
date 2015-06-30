@@ -1,0 +1,222 @@
+package org.renci.pharos.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import org.renci.doe.pharos.flow.FlowUnit;
+
+abstract public class FsPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Node node;
+	protected JTextField fsField;
+	protected JTextField requestField;
+	protected JTextArea fsArea;
+	protected JScrollPane scroll;
+	
+	public FsPanel(Node n) {
+		//SpringLayout layout = new SpringLayout();
+        //setLayout(new GridLayout(3, 2));	
+		node=n;
+		fsField = new JTextField(10);
+		requestField = new JTextField(10);
+		fsArea = new JTextArea();
+		scroll=new JScrollPane (fsArea, 
+		  		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	}
+};
+class PortFsPanel extends FsPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	PortFsPanel(Node n){
+		super(n);
+	    add(new JLabel("Flow Space:"));
+	    add(fsField);
+	    //add(new JLabel("Mask:"));
+	    //add(maskField);
+	    JButton addflowunit = new JButton("Add");
+	    addflowunit.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {    
+                    	try{
+                    		FlowUnit fu=new FlowUnit(fsField.getText());
+                    		((PortNode)node).portproperties().flowspace.add(fu);
+                    		fsField.setText(null);
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    }
+                });
+	    add(addflowunit);
+	    
+	    JButton andflowspace = new JButton("remove");
+	    andflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	try{
+                    		FlowUnit fu=new FlowUnit(fsField.getText());
+                    		((PortNode)node).portproperties().flowspace.remove(fu);
+                    		fsField.setText(null);
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    	 
+                    }
+                });
+	    add(andflowspace);
+	    JButton orflowspace = new JButton("Or");
+	    orflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	
+                    	JOptionPane.showMessageDialog(null, "Not implemented!");
+                    }
+                });
+	    add(orflowspace);
+	    
+	    JButton show = new JButton("Show");
+	    show.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {      
+                    	if (((PortNode)node).portproperties().flowspace!=null){
+                    		fsArea.setText(((PortNode)node).portproperties().flowspace.toString());
+                    	}
+                    	int result = JOptionPane.showConfirmDialog(null, scroll, 
+        	                    "FlowSpace:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            }   
+                    }
+                });
+	    add(show);
+	}
+}
+
+class NodeFsPanel extends FsPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int portSelected=-1;
+	NodeFsPanel(Node n){
+		super(n);
+		add(new JLabel("Ports"));
+		Vector<Integer> ports=new Vector<Integer>();
+		//since we assume links are all bidirectional, number of inlinks = that of outlinks
+		for(int i=0;i<n.getNumberOfInLinks();i++){
+			ports.add(i);
+		}
+		JList<?> lst=new JList<Object>(ports);
+		lst.addListSelectionListener(
+            new ListSelectionListener() {
+            	public void valueChanged(ListSelectionEvent e) {
+            		JList<?> jl=(JList<?>)e.getSource();
+    				portSelected=(Integer)jl.getSelectedValue();
+    				fsArea.setText(((NodeNode)node).portproperties(portSelected).flowspace.toString());
+    			}
+            });
+		add(lst);
+	    add(new JLabel("Flow Space:"));
+	    add(fsField);
+	    //add(new JLabel("Mask:"));
+	    //add(maskField);
+	    JButton addflowunit = new JButton("Add");
+	    addflowunit.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {    
+                    	try{
+                    		if(portSelected!=-1){
+                    			FlowUnit fu=new FlowUnit(fsField.getText());
+                    			((NodeNode)node).portproperties(portSelected).addFlowSpace(fu);
+                    			fsField.setText(null);
+                    		}
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    }
+                });
+	    add(addflowunit);
+	    
+	    JButton andflowspace = new JButton("remove");
+	    andflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	try{
+                    		if(portSelected!=-1){
+	                    		FlowUnit fu=new FlowUnit(fsField.getText());
+	                    		((NodeNode)node).portproperties(portSelected).removeFlowSpace(fu);
+	                    		fsField.setText(null);
+                    		}
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    	 
+                    }
+                });
+	    add(andflowspace);
+	    JButton orflowspace = new JButton("Or");
+	    orflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	
+                    	JOptionPane.showMessageDialog(null, "Not implemented!");
+                    }
+                });
+	    add(orflowspace);
+	    
+	    JButton show = new JButton("Show");
+	    show.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {      
+                    	if (((NodeNode)node).portproperties(portSelected).flowspace!=null){
+                    		fsArea.setText(((NodeNode)node).portproperties(portSelected).flowspace.toString());
+                    	}
+                    	int result = JOptionPane.showConfirmDialog(null, scroll, 
+        	                    "FlowSpace:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            }   
+                    }
+                });
+	    add(show);
+	    /*
+	    JButton request = new JButton("Request");
+	    show.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {      
+                    	if (((NodeNode)node).portproperties(portSelected).flowspace!=null){
+                    		String u=String.valueOf(((NodeNode)node).portproperties(portSelected).getUnitsRequested());
+                    		requestField.setText(u);
+                    	}
+                    	int result = JOptionPane.showConfirmDialog(null, scroll, 
+        	                    "FlowSpace:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            	String u=requestField.getText();
+        	            	((NodeNode)node).portproperties(portSelected).setUnitsRequested(Integer.parseInt(u));
+        	            }   
+                    }
+                });
+	    add(request);
+	    add(requestField);
+	    */
+	}
+}

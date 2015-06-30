@@ -1,0 +1,34 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+
+import net.sf.javailp.Linear;
+
+public class PortUsageMILP extends MILP {
+	ArrayList<Linear> ports;
+	PortUsageMILP(PProblem pp, ArrayList<String> ar,ArrayList<Linear> p) {
+		super(pp, ar);
+		ports=p;
+	}
+
+	@Override
+	public void setObjective() {
+		Linear linear=new Linear();
+		for(Linear p:ports){
+			String v=FlowAssignmentVariables8D.getRoutingVariable((String) p.get(0).getVariable());
+			problem.problem().setVarType(v,Boolean.class);
+			linear.add(1,v);
+			p.add(-1*p.size(), v);
+			problem.problem().add(p,"<=",0);
+		}
+		problem.setObjective(linear, OBJ.MIN);
+		
+	}
+
+	@Override
+	public void init() {
+		problem.init();
+		
+	}
+
+}

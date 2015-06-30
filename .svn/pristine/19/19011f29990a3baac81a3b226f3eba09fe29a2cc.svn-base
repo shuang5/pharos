@@ -1,0 +1,45 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+public abstract class Variables {
+	public int dimension=0;
+	private String name="x";
+	public Variables(){}
+	public Variables(Variable v){
+		setDimension(v.getDimension());
+		name=Variable.getName();
+	}
+	public int getDimension(){
+		return dimension;
+	}
+	public void setDimension(int d){
+		dimension=d;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNthDim(String s,int i){
+		if(i>dimension-1)throw new IndexOutOfBoundsException("out of range");
+		else{
+			String delim="[_]";
+			String[] tokens=s.split(delim);
+			return tokens[i];
+		}
+	}
+	Iterator<String> filteredIterator(Iterator<String> it, Filter f){
+		return new FilterIterator(it,f);
+	}
+	public int size(){
+		return getAllVariables().size();
+	}
+	public abstract String getVariable(String... s);
+	public abstract ArrayList<String> getAllVariables();
+	public abstract Iterator<String> iterator();
+}
+

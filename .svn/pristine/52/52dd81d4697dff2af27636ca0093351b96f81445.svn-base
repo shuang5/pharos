@@ -1,0 +1,88 @@
+package org.renci.pharos.lp;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.google.common.collect.Maps;
+import com.sun.tools.javac.util.Pair;
+
+
+class EdgeDisc{
+    String id;
+    private int value;
+    public boolean canDoConversion=false;
+    public EdgeDisc(String s1, int val) {
+            id=s1;
+            value=val;
+    }
+    
+    @Override
+    public String toString() {
+            return "EdgeDisc [id=" + id + ", value=" + value + "]";
+    }
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+}
+abstract class Matrix {
+	//externally ID is used to uniquely identify a node or an edge
+	//internally id is an integer that Blueprints automatically assigns as the identifier
+	//we need a quick way to find the id from ID
+	protected HashMap<String,Integer> nodeID2id=Maps.newHashMap();
+	protected HashMap<String,Integer> edgeID2id=Maps.newHashMap();
+	public int nodeidfromStringID(String ID){
+		return nodeID2id.get(ID);
+	}
+	public int edgeidfromStringID(String ID){
+		return edgeID2id.get(ID);
+	}
+	
+}
+
+public class NodeAdjacencyMatrix extends Matrix {
+	//matrix(i,j) = EdgeDisc 
+	//intenally we use hashmap<pair<i,j>,EdgeDisc>
+	private HashMap<Pair<Integer,Integer>, EdgeDisc> matrix = Maps.newHashMap();
+	
+	
+	public NodeAdjacencyMatrix(Graph graph) {
+		Iterable<Vertex> it=graph.getVertices();
+		for (Vertex v: it){
+			  nodeID2id.put((String)v.getProperty("ID"), Integer.parseInt((String)v.getId()));
+			  Iterable<Edge> ite=v.getEdges(Direction.OUT);
+			  for (Edge e: ite){
+				  //System.out.println(e.getId());
+				  edgeID2id.put((String)e.getProperty("ID"), Integer.parseInt((String)v.getId()));
+				  String r1=(String)e.getProperty("Request1");
+				  String r2=(String)e.getProperty("Request2");
+				  String delims="[:]";
+				  String[] tokens1=r1.split(delims);
+				  String[] tokens2=r2.split(delims);
+				  int demand=Math.min(Integer.parseInt(tokens1[1]),Integer.parseInt(tokens2[1]));
+				  Vertex vv=e.getVertex(Direction.IN);
+				  //System.out.println(v.getId()+":"+vv.getId());
+				  Pair<Integer,Integer> edge= new Pair<Integer,Integer>
+						  (Integer.parseInt((String) v.getId()),Integer.parseInt((String) vv.getId()));
+				  EdgeDisc ed=new EdgeDisc((String) e.getId(),demand);
+				  matrix.put(edge, ed);
+				  
+			  }
+			  
+		  }
+	}
+	public Iterator<Entry<Pair<Integer, Integer>, EdgeDisc>> getIterator(){
+		return matrix.entrySet().iterator();
+	}
+	
+
+}

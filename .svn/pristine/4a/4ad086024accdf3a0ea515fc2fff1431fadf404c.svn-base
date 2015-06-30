@@ -1,0 +1,9 @@
+package org.renci.pharos.lp;
+
+class IntType implements VariableType{
+	public VarType getVarType() {
+		return VarType.Int;
+	}
+	public IntType(){
+	}
+}

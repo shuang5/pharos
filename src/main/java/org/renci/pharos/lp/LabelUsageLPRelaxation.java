@@ -1,0 +1,16 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+
+
+class LabelUsageLPRelaxation extends LabelUsageMILP{
+	LabelUsageLPRelaxation(PProblem pp, ArrayList<String> ar) {
+		super(pp, ar);
+	}
+
+	@Override
+	public void init() {
+		((MCFlowProblem)problem).lprelaxinit();
+		
+	}
+}

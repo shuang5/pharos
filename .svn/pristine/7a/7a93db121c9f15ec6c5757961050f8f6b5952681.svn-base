@@ -1,0 +1,10 @@
+package choiceNet;
+
+public abstract class DelayMetricDecorator implements Metric{
+	
+	Metric metric;
+	DelayMetricDecorator(Metric m){
+		metric=m;
+	}
+	
+}

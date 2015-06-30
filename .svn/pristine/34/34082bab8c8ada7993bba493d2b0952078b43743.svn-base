@@ -1,0 +1,5 @@
+package org.renci.pharos.lp;
+
+public enum ComputeMode {
+	Heuristic,ILP, LPRelaxation
+}

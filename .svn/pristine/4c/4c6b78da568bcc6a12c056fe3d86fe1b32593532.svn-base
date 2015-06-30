@@ -1,0 +1,62 @@
+package org.renci.pharos.gui;
+
+import org.renci.doe.pharos.flow.Rules;
+
+import com.tinkerpop.blueprints.Edge;
+
+public class PortLine extends DirectedLine{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String label;
+	private String capabilities;
+	private String ID;
+	public PortLine(){
+	}
+	public PortLine(Edge e) {
+		rules=new Rules();
+   	 	type=ShapeType.PortLine;
+		 if (e.getProperty("Capabilities")!=null) {
+			 String s=(String)e.getProperty("Capabilities");
+			 if(!s.isEmpty()) setCapabilities(s);
+		 }
+		 if (e.getProperty("Rules")!=null){
+			 String s=(String)e.getProperty("Rules");
+			 if(!s.isEmpty())
+				 setRules(s);
+		 }
+		 
+		 setLabel(e.getLabel());
+	}
+	public void setBluePrintEdge(Edge e,boolean reverse) {
+		if(!virtual)
+			if(getCapabilities()!=null)
+				e.setProperty("Capabilities",getCapabilities());
+		else 
+			if(getRules()!=null)
+				e.setProperty("Rules",getRules());
+			
+	}
+	
+	public void setLabel(String d){
+		label=d;
+	}
+	public void setId(String d){
+		ID=d;
+	}
+	public void setCapabilities(String d){
+		capabilities=d;
+	}
+	
+	
+	public String getLabel(){
+		return label;
+	}
+	public String getId(){
+		return ID;
+	}
+	public String getCapabilities(){
+		return capabilities;
+	}
+}

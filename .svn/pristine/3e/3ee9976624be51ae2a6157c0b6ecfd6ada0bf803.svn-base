@@ -1,0 +1,899 @@
+Sep 22, 2014 6:40:36 PM org.renci.pharos.lp.LpSolver main
+INFO: setting source to A, destination to F
+Sep 22, 2014 6:40:40 PM org.renci.pharos.lp.LpProblem <init>
+INFO: Provider topology read
+Sep 22, 2014 6:40:42 PM org.renci.pharos.lp.LpProblem <init>
+INFO: Request topology read
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.ILP <init>
+INFO: adding integer constraints to the problem:
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+INFO: adding label assignment constraints:
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+FINE: 1*x_A_F_1_4 + 1*x_A_F_1_5 + 1*x_A_F_1_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+FINE: 1*x_A_F_2_4 + 1*x_A_F_2_5 + 1*x_A_F_2_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addLabelConstraints
+FINE: 1*x_A_F_3_4 + 1*x_A_F_3_5 + 1*x_A_F_3_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+INFO: adding capacity constraints:
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_A_B_1_1 + 1*x_A_F_1_5_A_B_1_1 + 1*x_A_F_1_6_A_B_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_A_C_1_1 + 1*x_A_F_1_5_A_C_1_1 + 1*x_A_F_1_6_A_C_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_B_1_1 + 1*x_A_F_1_5_D_B_1_1 + 1*x_A_F_1_6_D_B_1_1 + 1*x_A_F_2_4_D_B_1_1 + 1*x_A_F_2_5_D_B_1_1 + 1*x_A_F_2_6_D_B_1_1 + 1*x_A_F_3_4_D_B_1_1 + 1*x_A_F_3_5_D_B_1_1 + 1*x_A_F_3_6_D_B_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_B_2_2 + 1*x_A_F_1_5_D_B_2_2 + 1*x_A_F_1_6_D_B_2_2 + 1*x_A_F_2_4_D_B_2_2 + 1*x_A_F_2_5_D_B_2_2 + 1*x_A_F_2_6_D_B_2_2 + 1*x_A_F_3_4_D_B_2_2 + 1*x_A_F_3_5_D_B_2_2 + 1*x_A_F_3_6_D_B_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_B_3_3 + 1*x_A_F_1_5_D_B_3_3 + 1*x_A_F_1_6_D_B_3_3 + 1*x_A_F_2_4_D_B_3_3 + 1*x_A_F_2_5_D_B_3_3 + 1*x_A_F_2_6_D_B_3_3 + 1*x_A_F_3_4_D_B_3_3 + 1*x_A_F_3_5_D_B_3_3 + 1*x_A_F_3_6_D_B_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_B_D_1_1 + 1*x_A_F_1_5_B_D_1_1 + 1*x_A_F_1_6_B_D_1_1 + 1*x_A_F_2_4_B_D_1_1 + 1*x_A_F_2_5_B_D_1_1 + 1*x_A_F_2_6_B_D_1_1 + 1*x_A_F_3_4_B_D_1_1 + 1*x_A_F_3_5_B_D_1_1 + 1*x_A_F_3_6_B_D_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_B_D_2_2 + 1*x_A_F_1_5_B_D_2_2 + 1*x_A_F_1_6_B_D_2_2 + 1*x_A_F_2_4_B_D_2_2 + 1*x_A_F_2_5_B_D_2_2 + 1*x_A_F_2_6_B_D_2_2 + 1*x_A_F_3_4_B_D_2_2 + 1*x_A_F_3_5_B_D_2_2 + 1*x_A_F_3_6_B_D_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_B_D_3_3 + 1*x_A_F_1_5_B_D_3_3 + 1*x_A_F_1_6_B_D_3_3 + 1*x_A_F_2_4_B_D_3_3 + 1*x_A_F_2_5_B_D_3_3 + 1*x_A_F_2_6_B_D_3_3 + 1*x_A_F_3_4_B_D_3_3 + 1*x_A_F_3_5_B_D_3_3 + 1*x_A_F_3_6_B_D_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_A_D_1_1 + 1*x_A_F_1_5_A_D_1_1 + 1*x_A_F_1_6_A_D_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_C_D_1_1 + 1*x_A_F_1_5_C_D_1_1 + 1*x_A_F_1_6_C_D_1_1 + 1*x_A_F_2_4_C_D_1_1 + 1*x_A_F_2_5_C_D_1_1 + 1*x_A_F_2_6_C_D_1_1 + 1*x_A_F_3_4_C_D_1_1 + 1*x_A_F_3_5_C_D_1_1 + 1*x_A_F_3_6_C_D_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_C_D_2_2 + 1*x_A_F_1_5_C_D_2_2 + 1*x_A_F_1_6_C_D_2_2 + 1*x_A_F_2_4_C_D_2_2 + 1*x_A_F_2_5_C_D_2_2 + 1*x_A_F_2_6_C_D_2_2 + 1*x_A_F_3_4_C_D_2_2 + 1*x_A_F_3_5_C_D_2_2 + 1*x_A_F_3_6_C_D_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_C_D_3_3 + 1*x_A_F_1_5_C_D_3_3 + 1*x_A_F_1_6_C_D_3_3 + 1*x_A_F_2_4_C_D_3_3 + 1*x_A_F_2_5_C_D_3_3 + 1*x_A_F_2_6_C_D_3_3 + 1*x_A_F_3_4_C_D_3_3 + 1*x_A_F_3_5_C_D_3_3 + 1*x_A_F_3_6_C_D_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_C_1_1 + 1*x_A_F_1_5_D_C_1_1 + 1*x_A_F_1_6_D_C_1_1 + 1*x_A_F_2_4_D_C_1_1 + 1*x_A_F_2_5_D_C_1_1 + 1*x_A_F_2_6_D_C_1_1 + 1*x_A_F_3_4_D_C_1_1 + 1*x_A_F_3_5_D_C_1_1 + 1*x_A_F_3_6_D_C_1_1 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_C_2_2 + 1*x_A_F_1_5_D_C_2_2 + 1*x_A_F_1_6_D_C_2_2 + 1*x_A_F_2_4_D_C_2_2 + 1*x_A_F_2_5_D_C_2_2 + 1*x_A_F_2_6_D_C_2_2 + 1*x_A_F_3_4_D_C_2_2 + 1*x_A_F_3_5_D_C_2_2 + 1*x_A_F_3_6_D_C_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_C_3_3 + 1*x_A_F_1_5_D_C_3_3 + 1*x_A_F_1_6_D_C_3_3 + 1*x_A_F_2_4_D_C_3_3 + 1*x_A_F_2_5_D_C_3_3 + 1*x_A_F_2_6_D_C_3_3 + 1*x_A_F_3_4_D_C_3_3 + 1*x_A_F_3_5_D_C_3_3 + 1*x_A_F_3_6_D_C_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_E_4_4 + 1*x_A_F_1_5_D_E_4_4 + 1*x_A_F_1_6_D_E_4_4 + 1*x_A_F_2_4_D_E_4_4 + 1*x_A_F_2_5_D_E_4_4 + 1*x_A_F_2_6_D_E_4_4 + 1*x_A_F_3_4_D_E_4_4 + 1*x_A_F_3_5_D_E_4_4 + 1*x_A_F_3_6_D_E_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_E_5_5 + 1*x_A_F_1_5_D_E_5_5 + 1*x_A_F_1_6_D_E_5_5 + 1*x_A_F_2_4_D_E_5_5 + 1*x_A_F_2_5_D_E_5_5 + 1*x_A_F_2_6_D_E_5_5 + 1*x_A_F_3_4_D_E_5_5 + 1*x_A_F_3_5_D_E_5_5 + 1*x_A_F_3_6_D_E_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_E_6_6 + 1*x_A_F_1_5_D_E_6_6 + 1*x_A_F_1_6_D_E_6_6 + 1*x_A_F_2_4_D_E_6_6 + 1*x_A_F_2_5_D_E_6_6 + 1*x_A_F_2_6_D_E_6_6 + 1*x_A_F_3_4_D_E_6_6 + 1*x_A_F_3_5_D_E_6_6 + 1*x_A_F_3_6_D_E_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_D_4_4 + 1*x_A_F_1_5_E_D_4_4 + 1*x_A_F_1_6_E_D_4_4 + 1*x_A_F_2_4_E_D_4_4 + 1*x_A_F_2_5_E_D_4_4 + 1*x_A_F_2_6_E_D_4_4 + 1*x_A_F_3_4_E_D_4_4 + 1*x_A_F_3_5_E_D_4_4 + 1*x_A_F_3_6_E_D_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_D_5_5 + 1*x_A_F_1_5_E_D_5_5 + 1*x_A_F_1_6_E_D_5_5 + 1*x_A_F_2_4_E_D_5_5 + 1*x_A_F_2_5_E_D_5_5 + 1*x_A_F_2_6_E_D_5_5 + 1*x_A_F_3_4_E_D_5_5 + 1*x_A_F_3_5_E_D_5_5 + 1*x_A_F_3_6_E_D_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_D_6_6 + 1*x_A_F_1_5_E_D_6_6 + 1*x_A_F_1_6_E_D_6_6 + 1*x_A_F_2_4_E_D_6_6 + 1*x_A_F_2_5_E_D_6_6 + 1*x_A_F_2_6_E_D_6_6 + 1*x_A_F_3_4_E_D_6_6 + 1*x_A_F_3_5_E_D_6_6 + 1*x_A_F_3_6_E_D_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_E_4_4 + 1*x_A_F_1_5_G_E_4_4 + 1*x_A_F_1_6_G_E_4_4 + 1*x_A_F_2_4_G_E_4_4 + 1*x_A_F_2_5_G_E_4_4 + 1*x_A_F_2_6_G_E_4_4 + 1*x_A_F_3_4_G_E_4_4 + 1*x_A_F_3_5_G_E_4_4 + 1*x_A_F_3_6_G_E_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_E_5_5 + 1*x_A_F_1_5_G_E_5_5 + 1*x_A_F_1_6_G_E_5_5 + 1*x_A_F_2_4_G_E_5_5 + 1*x_A_F_2_5_G_E_5_5 + 1*x_A_F_2_6_G_E_5_5 + 1*x_A_F_3_4_G_E_5_5 + 1*x_A_F_3_5_G_E_5_5 + 1*x_A_F_3_6_G_E_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_E_6_6 + 1*x_A_F_1_5_G_E_6_6 + 1*x_A_F_1_6_G_E_6_6 + 1*x_A_F_2_4_G_E_6_6 + 1*x_A_F_2_5_G_E_6_6 + 1*x_A_F_2_6_G_E_6_6 + 1*x_A_F_3_4_G_E_6_6 + 1*x_A_F_3_5_G_E_6_6 + 1*x_A_F_3_6_G_E_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_G_4_4 + 1*x_A_F_1_5_E_G_4_4 + 1*x_A_F_1_6_E_G_4_4 + 1*x_A_F_2_4_E_G_4_4 + 1*x_A_F_2_5_E_G_4_4 + 1*x_A_F_2_6_E_G_4_4 + 1*x_A_F_3_4_E_G_4_4 + 1*x_A_F_3_5_E_G_4_4 + 1*x_A_F_3_6_E_G_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_G_5_5 + 1*x_A_F_1_5_E_G_5_5 + 1*x_A_F_1_6_E_G_5_5 + 1*x_A_F_2_4_E_G_5_5 + 1*x_A_F_2_5_E_G_5_5 + 1*x_A_F_2_6_E_G_5_5 + 1*x_A_F_3_4_E_G_5_5 + 1*x_A_F_3_5_E_G_5_5 + 1*x_A_F_3_6_E_G_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_G_6_6 + 1*x_A_F_1_5_E_G_6_6 + 1*x_A_F_1_6_E_G_6_6 + 1*x_A_F_2_4_E_G_6_6 + 1*x_A_F_2_5_E_G_6_6 + 1*x_A_F_2_6_E_G_6_6 + 1*x_A_F_3_4_E_G_6_6 + 1*x_A_F_3_5_E_G_6_6 + 1*x_A_F_3_6_E_G_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_G_4_4 + 1*x_A_F_1_5_D_G_4_4 + 1*x_A_F_1_6_D_G_4_4 + 1*x_A_F_2_4_D_G_4_4 + 1*x_A_F_2_5_D_G_4_4 + 1*x_A_F_2_6_D_G_4_4 + 1*x_A_F_3_4_D_G_4_4 + 1*x_A_F_3_5_D_G_4_4 + 1*x_A_F_3_6_D_G_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_G_5_5 + 1*x_A_F_1_5_D_G_5_5 + 1*x_A_F_1_6_D_G_5_5 + 1*x_A_F_2_4_D_G_5_5 + 1*x_A_F_2_5_D_G_5_5 + 1*x_A_F_2_6_D_G_5_5 + 1*x_A_F_3_4_D_G_5_5 + 1*x_A_F_3_5_D_G_5_5 + 1*x_A_F_3_6_D_G_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_D_G_6_6 + 1*x_A_F_1_5_D_G_6_6 + 1*x_A_F_1_6_D_G_6_6 + 1*x_A_F_2_4_D_G_6_6 + 1*x_A_F_2_5_D_G_6_6 + 1*x_A_F_2_6_D_G_6_6 + 1*x_A_F_3_4_D_G_6_6 + 1*x_A_F_3_5_D_G_6_6 + 1*x_A_F_3_6_D_G_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_D_4_4 + 1*x_A_F_1_5_G_D_4_4 + 1*x_A_F_1_6_G_D_4_4 + 1*x_A_F_2_4_G_D_4_4 + 1*x_A_F_2_5_G_D_4_4 + 1*x_A_F_2_6_G_D_4_4 + 1*x_A_F_3_4_G_D_4_4 + 1*x_A_F_3_5_G_D_4_4 + 1*x_A_F_3_6_G_D_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_D_5_5 + 1*x_A_F_1_5_G_D_5_5 + 1*x_A_F_1_6_G_D_5_5 + 1*x_A_F_2_4_G_D_5_5 + 1*x_A_F_2_5_G_D_5_5 + 1*x_A_F_2_6_G_D_5_5 + 1*x_A_F_3_4_G_D_5_5 + 1*x_A_F_3_5_G_D_5_5 + 1*x_A_F_3_6_G_D_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_D_6_6 + 1*x_A_F_1_5_G_D_6_6 + 1*x_A_F_1_6_G_D_6_6 + 1*x_A_F_2_4_G_D_6_6 + 1*x_A_F_2_5_G_D_6_6 + 1*x_A_F_2_6_G_D_6_6 + 1*x_A_F_3_4_G_D_6_6 + 1*x_A_F_3_5_G_D_6_6 + 1*x_A_F_3_6_G_D_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_E_4_4 + 1*x_A_F_1_5_I_E_4_4 + 1*x_A_F_1_6_I_E_4_4 + 1*x_A_F_2_4_I_E_4_4 + 1*x_A_F_2_5_I_E_4_4 + 1*x_A_F_2_6_I_E_4_4 + 1*x_A_F_3_4_I_E_4_4 + 1*x_A_F_3_5_I_E_4_4 + 1*x_A_F_3_6_I_E_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_E_5_5 + 1*x_A_F_1_5_I_E_5_5 + 1*x_A_F_1_6_I_E_5_5 + 1*x_A_F_2_4_I_E_5_5 + 1*x_A_F_2_5_I_E_5_5 + 1*x_A_F_2_6_I_E_5_5 + 1*x_A_F_3_4_I_E_5_5 + 1*x_A_F_3_5_I_E_5_5 + 1*x_A_F_3_6_I_E_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_E_6_6 + 1*x_A_F_1_5_I_E_6_6 + 1*x_A_F_1_6_I_E_6_6 + 1*x_A_F_2_4_I_E_6_6 + 1*x_A_F_2_5_I_E_6_6 + 1*x_A_F_2_6_I_E_6_6 + 1*x_A_F_3_4_I_E_6_6 + 1*x_A_F_3_5_I_E_6_6 + 1*x_A_F_3_6_I_E_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_F_4_4 + 1*x_A_F_2_4_H_F_4_4 + 1*x_A_F_3_4_H_F_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_I_4_4 + 1*x_A_F_1_5_E_I_4_4 + 1*x_A_F_1_6_E_I_4_4 + 1*x_A_F_2_4_E_I_4_4 + 1*x_A_F_2_5_E_I_4_4 + 1*x_A_F_2_6_E_I_4_4 + 1*x_A_F_3_4_E_I_4_4 + 1*x_A_F_3_5_E_I_4_4 + 1*x_A_F_3_6_E_I_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_I_5_5 + 1*x_A_F_1_5_E_I_5_5 + 1*x_A_F_1_6_E_I_5_5 + 1*x_A_F_2_4_E_I_5_5 + 1*x_A_F_2_5_E_I_5_5 + 1*x_A_F_2_6_E_I_5_5 + 1*x_A_F_3_4_E_I_5_5 + 1*x_A_F_3_5_E_I_5_5 + 1*x_A_F_3_6_E_I_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_I_6_6 + 1*x_A_F_1_5_E_I_6_6 + 1*x_A_F_1_6_E_I_6_6 + 1*x_A_F_2_4_E_I_6_6 + 1*x_A_F_2_5_E_I_6_6 + 1*x_A_F_2_6_E_I_6_6 + 1*x_A_F_3_4_E_I_6_6 + 1*x_A_F_3_5_E_I_6_6 + 1*x_A_F_3_6_E_I_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_E_4_4 + 1*x_A_F_1_5_H_E_4_4 + 1*x_A_F_1_6_H_E_4_4 + 1*x_A_F_2_4_H_E_4_4 + 1*x_A_F_2_5_H_E_4_4 + 1*x_A_F_2_6_H_E_4_4 + 1*x_A_F_3_4_H_E_4_4 + 1*x_A_F_3_5_H_E_4_4 + 1*x_A_F_3_6_H_E_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_E_5_5 + 1*x_A_F_1_5_H_E_5_5 + 1*x_A_F_1_6_H_E_5_5 + 1*x_A_F_2_4_H_E_5_5 + 1*x_A_F_2_5_H_E_5_5 + 1*x_A_F_2_6_H_E_5_5 + 1*x_A_F_3_4_H_E_5_5 + 1*x_A_F_3_5_H_E_5_5 + 1*x_A_F_3_6_H_E_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_E_6_6 + 1*x_A_F_1_5_H_E_6_6 + 1*x_A_F_1_6_H_E_6_6 + 1*x_A_F_2_4_H_E_6_6 + 1*x_A_F_2_5_H_E_6_6 + 1*x_A_F_2_6_H_E_6_6 + 1*x_A_F_3_4_H_E_6_6 + 1*x_A_F_3_5_H_E_6_6 + 1*x_A_F_3_6_H_E_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_H_4_4 + 1*x_A_F_1_5_E_H_4_4 + 1*x_A_F_1_6_E_H_4_4 + 1*x_A_F_2_4_E_H_4_4 + 1*x_A_F_2_5_E_H_4_4 + 1*x_A_F_2_6_E_H_4_4 + 1*x_A_F_3_4_E_H_4_4 + 1*x_A_F_3_5_E_H_4_4 + 1*x_A_F_3_6_E_H_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_H_5_5 + 1*x_A_F_1_5_E_H_5_5 + 1*x_A_F_1_6_E_H_5_5 + 1*x_A_F_2_4_E_H_5_5 + 1*x_A_F_2_5_E_H_5_5 + 1*x_A_F_2_6_E_H_5_5 + 1*x_A_F_3_4_E_H_5_5 + 1*x_A_F_3_5_E_H_5_5 + 1*x_A_F_3_6_E_H_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_E_H_6_6 + 1*x_A_F_1_5_E_H_6_6 + 1*x_A_F_1_6_E_H_6_6 + 1*x_A_F_2_4_E_H_6_6 + 1*x_A_F_2_5_E_H_6_6 + 1*x_A_F_2_6_E_H_6_6 + 1*x_A_F_3_4_E_H_6_6 + 1*x_A_F_3_5_E_H_6_6 + 1*x_A_F_3_6_E_H_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_F_4_4 + 1*x_A_F_2_4_G_F_4_4 + 1*x_A_F_3_4_G_F_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_G_4_4 + 1*x_A_F_1_5_I_G_4_4 + 1*x_A_F_1_6_I_G_4_4 + 1*x_A_F_2_4_I_G_4_4 + 1*x_A_F_2_5_I_G_4_4 + 1*x_A_F_2_6_I_G_4_4 + 1*x_A_F_3_4_I_G_4_4 + 1*x_A_F_3_5_I_G_4_4 + 1*x_A_F_3_6_I_G_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_G_5_5 + 1*x_A_F_1_5_I_G_5_5 + 1*x_A_F_1_6_I_G_5_5 + 1*x_A_F_2_4_I_G_5_5 + 1*x_A_F_2_5_I_G_5_5 + 1*x_A_F_2_6_I_G_5_5 + 1*x_A_F_3_4_I_G_5_5 + 1*x_A_F_3_5_I_G_5_5 + 1*x_A_F_3_6_I_G_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_G_6_6 + 1*x_A_F_1_5_I_G_6_6 + 1*x_A_F_1_6_I_G_6_6 + 1*x_A_F_2_4_I_G_6_6 + 1*x_A_F_2_5_I_G_6_6 + 1*x_A_F_2_6_I_G_6_6 + 1*x_A_F_3_4_I_G_6_6 + 1*x_A_F_3_5_I_G_6_6 + 1*x_A_F_3_6_I_G_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_I_4_4 + 1*x_A_F_1_5_G_I_4_4 + 1*x_A_F_1_6_G_I_4_4 + 1*x_A_F_2_4_G_I_4_4 + 1*x_A_F_2_5_G_I_4_4 + 1*x_A_F_2_6_G_I_4_4 + 1*x_A_F_3_4_G_I_4_4 + 1*x_A_F_3_5_G_I_4_4 + 1*x_A_F_3_6_G_I_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_I_5_5 + 1*x_A_F_1_5_G_I_5_5 + 1*x_A_F_1_6_G_I_5_5 + 1*x_A_F_2_4_G_I_5_5 + 1*x_A_F_2_5_G_I_5_5 + 1*x_A_F_2_6_G_I_5_5 + 1*x_A_F_3_4_G_I_5_5 + 1*x_A_F_3_5_G_I_5_5 + 1*x_A_F_3_6_G_I_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_G_I_6_6 + 1*x_A_F_1_5_G_I_6_6 + 1*x_A_F_1_6_G_I_6_6 + 1*x_A_F_2_4_G_I_6_6 + 1*x_A_F_2_5_G_I_6_6 + 1*x_A_F_2_6_G_I_6_6 + 1*x_A_F_3_4_G_I_6_6 + 1*x_A_F_3_5_G_I_6_6 + 1*x_A_F_3_6_G_I_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_F_4_4 + 1*x_A_F_2_4_I_F_4_4 + 1*x_A_F_3_4_I_F_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_H_4_4 + 1*x_A_F_1_5_I_H_4_4 + 1*x_A_F_1_6_I_H_4_4 + 1*x_A_F_2_4_I_H_4_4 + 1*x_A_F_2_5_I_H_4_4 + 1*x_A_F_2_6_I_H_4_4 + 1*x_A_F_3_4_I_H_4_4 + 1*x_A_F_3_5_I_H_4_4 + 1*x_A_F_3_6_I_H_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_H_5_5 + 1*x_A_F_1_5_I_H_5_5 + 1*x_A_F_1_6_I_H_5_5 + 1*x_A_F_2_4_I_H_5_5 + 1*x_A_F_2_5_I_H_5_5 + 1*x_A_F_2_6_I_H_5_5 + 1*x_A_F_3_4_I_H_5_5 + 1*x_A_F_3_5_I_H_5_5 + 1*x_A_F_3_6_I_H_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_I_H_6_6 + 1*x_A_F_1_5_I_H_6_6 + 1*x_A_F_1_6_I_H_6_6 + 1*x_A_F_2_4_I_H_6_6 + 1*x_A_F_2_5_I_H_6_6 + 1*x_A_F_2_6_I_H_6_6 + 1*x_A_F_3_4_I_H_6_6 + 1*x_A_F_3_5_I_H_6_6 + 1*x_A_F_3_6_I_H_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_I_4_4 + 1*x_A_F_1_5_H_I_4_4 + 1*x_A_F_1_6_H_I_4_4 + 1*x_A_F_2_4_H_I_4_4 + 1*x_A_F_2_5_H_I_4_4 + 1*x_A_F_2_6_H_I_4_4 + 1*x_A_F_3_4_H_I_4_4 + 1*x_A_F_3_5_H_I_4_4 + 1*x_A_F_3_6_H_I_4_4 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_I_5_5 + 1*x_A_F_1_5_H_I_5_5 + 1*x_A_F_1_6_H_I_5_5 + 1*x_A_F_2_4_H_I_5_5 + 1*x_A_F_2_5_H_I_5_5 + 1*x_A_F_2_6_H_I_5_5 + 1*x_A_F_3_4_H_I_5_5 + 1*x_A_F_3_5_H_I_5_5 + 1*x_A_F_3_6_H_I_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_4_H_I_6_6 + 1*x_A_F_1_5_H_I_6_6 + 1*x_A_F_1_6_H_I_6_6 + 1*x_A_F_2_4_H_I_6_6 + 1*x_A_F_2_5_H_I_6_6 + 1*x_A_F_2_6_H_I_6_6 + 1*x_A_F_3_4_H_I_6_6 + 1*x_A_F_3_5_H_I_6_6 + 1*x_A_F_3_6_H_I_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_5_H_F_5_5 + 1*x_A_F_2_5_H_F_5_5 + 1*x_A_F_3_5_H_F_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_5_G_F_5_5 + 1*x_A_F_2_5_G_F_5_5 + 1*x_A_F_3_5_G_F_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_5_I_F_5_5 + 1*x_A_F_2_5_I_F_5_5 + 1*x_A_F_3_5_I_F_5_5 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_6_H_F_6_6 + 1*x_A_F_2_6_H_F_6_6 + 1*x_A_F_3_6_H_F_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_6_G_F_6_6 + 1*x_A_F_2_6_G_F_6_6 + 1*x_A_F_3_6_G_F_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_1_6_I_F_6_6 + 1*x_A_F_2_6_I_F_6_6 + 1*x_A_F_3_6_I_F_6_6 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_2_4_A_B_2_2 + 1*x_A_F_2_5_A_B_2_2 + 1*x_A_F_2_6_A_B_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_2_4_A_C_2_2 + 1*x_A_F_2_5_A_C_2_2 + 1*x_A_F_2_6_A_C_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_2_4_A_D_2_2 + 1*x_A_F_2_5_A_D_2_2 + 1*x_A_F_2_6_A_D_2_2 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_3_4_A_B_3_3 + 1*x_A_F_3_5_A_B_3_3 + 1*x_A_F_3_6_A_B_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_3_4_A_C_3_3 + 1*x_A_F_3_5_A_C_3_3 + 1*x_A_F_3_6_A_C_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addCapacityConstraints
+FINE: 1*x_A_F_3_4_A_D_3_3 + 1*x_A_F_3_5_A_D_3_3 + 1*x_A_F_3_6_A_D_3_3 <= 1
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+INFO: adding request constraints:
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addRequestConstraints
+FINE: 1*x_A_F_1_4_A_B_1_1 + 1*x_A_F_1_4_A_C_1_1 + 1*x_A_F_1_4_D_B_1_1 + 1*x_A_F_1_4_D_B_2_2 + 1*x_A_F_1_4_D_B_3_3 + 1*x_A_F_1_4_B_D_1_1 + 1*x_A_F_1_4_B_D_2_2 + 1*x_A_F_1_4_B_D_3_3 + 1*x_A_F_1_4_A_D_1_1 + 1*x_A_F_1_4_C_D_1_1 + 1*x_A_F_1_4_C_D_2_2 + 1*x_A_F_1_4_C_D_3_3 + 1*x_A_F_1_4_D_C_1_1 + 1*x_A_F_1_4_D_C_2_2 + 1*x_A_F_1_4_D_C_3_3 + 1*x_A_F_1_4_D_E_4_4 + 1*x_A_F_1_4_D_E_5_5 + 1*x_A_F_1_4_D_E_6_6 + 1*x_A_F_1_4_E_D_4_4 + 1*x_A_F_1_4_E_D_5_5 + 1*x_A_F_1_4_E_D_6_6 + 1*x_A_F_1_4_G_E_4_4 + 1*x_A_F_1_4_G_E_5_5 + 1*x_A_F_1_4_G_E_6_6 + 1*x_A_F_1_4_E_G_4_4 + 1*x_A_F_1_4_E_G_5_5 + 1*x_A_F_1_4_E_G_6_6 + 1*x_A_F_1_4_D_G_4_4 + 1*x_A_F_1_4_D_G_5_5 + 1*x_A_F_1_4_D_G_6_6 + 1*x_A_F_1_4_G_D_4_4 + 1*x_A_F_1_4_G_D_5_5 + 1*x_A_F_1_4_G_D_6_6 + 1*x_A_F_1_4_I_E_4_4 + 1*x_A_F_1_4_I_E_5_5 + 1*x_A_F_1_4_I_E_6_6 + 1*x_A_F_1_4_H_F_4_4 + 1*x_A_F_1_4_E_I_4_4 + 1*x_A_F_1_4_E_I_5_5 + 1*x_A_F_1_4_E_I_6_6 + 1*x_A_F_1_4_H_E_4_4 + 1*x_A_F_1_4_H_E_5_5 + 1*x_A_F_1_4_H_E_6_6 + 1*x_A_F_1_4_E_H_4_4 + 1*x_A_F_1_4_E_H_5_5 + 1*x_A_F_1_4_E_H_6_6 + 1*x_A_F_1_4_G_F_4_4 + 1*x_A_F_1_4_I_G_4_4 + 1*x_A_F_1_4_I_G_5_5 + 1*x_A_F_1_4_I_G_6_6 + 1*x_A_F_1_4_G_I_4_4 + 1*x_A_F_1_4_G_I_5_5 + 1*x_A_F_1_4_G_I_6_6 + 1*x_A_F_1_4_I_F_4_4 + 1*x_A_F_1_4_I_H_4_4 + 1*x_A_F_1_4_I_H_5_5 + 1*x_A_F_1_4_I_H_6_6 + 1*x_A_F_1_4_H_I_4_4 + 1*x_A_F_1_4_H_I_5_5 + 1*x_A_F_1_4_H_I_6_6 + 1*x_A_F_1_5_A_B_1_1 + 1*x_A_F_1_5_A_C_1_1 + 1*x_A_F_1_5_D_B_1_1 + 1*x_A_F_1_5_D_B_2_2 + 1*x_A_F_1_5_D_B_3_3 + 1*x_A_F_1_5_B_D_1_1 + 1*x_A_F_1_5_B_D_2_2 + 1*x_A_F_1_5_B_D_3_3 + 1*x_A_F_1_5_A_D_1_1 + 1*x_A_F_1_5_C_D_1_1 + 1*x_A_F_1_5_C_D_2_2 + 1*x_A_F_1_5_C_D_3_3 + 1*x_A_F_1_5_D_C_1_1 + 1*x_A_F_1_5_D_C_2_2 + 1*x_A_F_1_5_D_C_3_3 + 1*x_A_F_1_5_D_E_4_4 + 1*x_A_F_1_5_D_E_5_5 + 1*x_A_F_1_5_D_E_6_6 + 1*x_A_F_1_5_E_D_4_4 + 1*x_A_F_1_5_E_D_5_5 + 1*x_A_F_1_5_E_D_6_6 + 1*x_A_F_1_5_G_E_4_4 + 1*x_A_F_1_5_G_E_5_5 + 1*x_A_F_1_5_G_E_6_6 + 1*x_A_F_1_5_E_G_4_4 + 1*x_A_F_1_5_E_G_5_5 + 1*x_A_F_1_5_E_G_6_6 + 1*x_A_F_1_5_D_G_4_4 + 1*x_A_F_1_5_D_G_5_5 + 1*x_A_F_1_5_D_G_6_6 + 1*x_A_F_1_5_G_D_4_4 + 1*x_A_F_1_5_G_D_5_5 + 1*x_A_F_1_5_G_D_6_6 + 1*x_A_F_1_5_I_E_4_4 + 1*x_A_F_1_5_I_E_5_5 + 1*x_A_F_1_5_I_E_6_6 + 1*x_A_F_1_5_H_F_5_5 + 1*x_A_F_1_5_E_I_4_4 + 1*x_A_F_1_5_E_I_5_5 + 1*x_A_F_1_5_E_I_6_6 + 1*x_A_F_1_5_H_E_4_4 + 1*x_A_F_1_5_H_E_5_5 + 1*x_A_F_1_5_H_E_6_6 + 1*x_A_F_1_5_E_H_4_4 + 1*x_A_F_1_5_E_H_5_5 + 1*x_A_F_1_5_E_H_6_6 + 1*x_A_F_1_5_G_F_5_5 + 1*x_A_F_1_5_I_G_4_4 + 1*x_A_F_1_5_I_G_5_5 + 1*x_A_F_1_5_I_G_6_6 + 1*x_A_F_1_5_G_I_4_4 + 1*x_A_F_1_5_G_I_5_5 + 1*x_A_F_1_5_G_I_6_6 + 1*x_A_F_1_5_I_F_5_5 + 1*x_A_F_1_5_I_H_4_4 + 1*x_A_F_1_5_I_H_5_5 + 1*x_A_F_1_5_I_H_6_6 + 1*x_A_F_1_5_H_I_4_4 + 1*x_A_F_1_5_H_I_5_5 + 1*x_A_F_1_5_H_I_6_6 + 1*x_A_F_1_6_A_B_1_1 + 1*x_A_F_1_6_A_C_1_1 + 1*x_A_F_1_6_D_B_1_1 + 1*x_A_F_1_6_D_B_2_2 + 1*x_A_F_1_6_D_B_3_3 + 1*x_A_F_1_6_B_D_1_1 + 1*x_A_F_1_6_B_D_2_2 + 1*x_A_F_1_6_B_D_3_3 + 1*x_A_F_1_6_A_D_1_1 + 1*x_A_F_1_6_C_D_1_1 + 1*x_A_F_1_6_C_D_2_2 + 1*x_A_F_1_6_C_D_3_3 + 1*x_A_F_1_6_D_C_1_1 + 1*x_A_F_1_6_D_C_2_2 + 1*x_A_F_1_6_D_C_3_3 + 1*x_A_F_1_6_D_E_4_4 + 1*x_A_F_1_6_D_E_5_5 + 1*x_A_F_1_6_D_E_6_6 + 1*x_A_F_1_6_E_D_4_4 + 1*x_A_F_1_6_E_D_5_5 + 1*x_A_F_1_6_E_D_6_6 + 1*x_A_F_1_6_G_E_4_4 + 1*x_A_F_1_6_G_E_5_5 + 1*x_A_F_1_6_G_E_6_6 + 1*x_A_F_1_6_E_G_4_4 + 1*x_A_F_1_6_E_G_5_5 + 1*x_A_F_1_6_E_G_6_6 + 1*x_A_F_1_6_D_G_4_4 + 1*x_A_F_1_6_D_G_5_5 + 1*x_A_F_1_6_D_G_6_6 + 1*x_A_F_1_6_G_D_4_4 + 1*x_A_F_1_6_G_D_5_5 + 1*x_A_F_1_6_G_D_6_6 + 1*x_A_F_1_6_I_E_4_4 + 1*x_A_F_1_6_I_E_5_5 + 1*x_A_F_1_6_I_E_6_6 + 1*x_A_F_1_6_H_F_6_6 + 1*x_A_F_1_6_E_I_4_4 + 1*x_A_F_1_6_E_I_5_5 + 1*x_A_F_1_6_E_I_6_6 + 1*x_A_F_1_6_H_E_4_4 + 1*x_A_F_1_6_H_E_5_5 + 1*x_A_F_1_6_H_E_6_6 + 1*x_A_F_1_6_E_H_4_4 + 1*x_A_F_1_6_E_H_5_5 + 1*x_A_F_1_6_E_H_6_6 + 1*x_A_F_1_6_G_F_6_6 + 1*x_A_F_1_6_I_G_4_4 + 1*x_A_F_1_6_I_G_5_5 + 1*x_A_F_1_6_I_G_6_6 + 1*x_A_F_1_6_G_I_4_4 + 1*x_A_F_1_6_G_I_5_5 + 1*x_A_F_1_6_G_I_6_6 + 1*x_A_F_1_6_I_F_6_6 + 1*x_A_F_1_6_I_H_4_4 + 1*x_A_F_1_6_I_H_5_5 + 1*x_A_F_1_6_I_H_6_6 + 1*x_A_F_1_6_H_I_4_4 + 1*x_A_F_1_6_H_I_5_5 + 1*x_A_F_1_6_H_I_6_6 + 1*x_A_F_2_4_A_B_2_2 + 1*x_A_F_2_4_A_C_2_2 + 1*x_A_F_2_4_D_B_1_1 + 1*x_A_F_2_4_D_B_2_2 + 1*x_A_F_2_4_D_B_3_3 + 1*x_A_F_2_4_B_D_1_1 + 1*x_A_F_2_4_B_D_2_2 + 1*x_A_F_2_4_B_D_3_3 + 1*x_A_F_2_4_A_D_2_2 + 1*x_A_F_2_4_C_D_1_1 + 1*x_A_F_2_4_C_D_2_2 + 1*x_A_F_2_4_C_D_3_3 + 1*x_A_F_2_4_D_C_1_1 + 1*x_A_F_2_4_D_C_2_2 + 1*x_A_F_2_4_D_C_3_3 + 1*x_A_F_2_4_D_E_4_4 + 1*x_A_F_2_4_D_E_5_5 + 1*x_A_F_2_4_D_E_6_6 + 1*x_A_F_2_4_E_D_4_4 + 1*x_A_F_2_4_E_D_5_5 + 1*x_A_F_2_4_E_D_6_6 + 1*x_A_F_2_4_G_E_4_4 + 1*x_A_F_2_4_G_E_5_5 + 1*x_A_F_2_4_G_E_6_6 + 1*x_A_F_2_4_E_G_4_4 + 1*x_A_F_2_4_E_G_5_5 + 1*x_A_F_2_4_E_G_6_6 + 1*x_A_F_2_4_D_G_4_4 + 1*x_A_F_2_4_D_G_5_5 + 1*x_A_F_2_4_D_G_6_6 + 1*x_A_F_2_4_G_D_4_4 + 1*x_A_F_2_4_G_D_5_5 + 1*x_A_F_2_4_G_D_6_6 + 1*x_A_F_2_4_I_E_4_4 + 1*x_A_F_2_4_I_E_5_5 + 1*x_A_F_2_4_I_E_6_6 + 1*x_A_F_2_4_H_F_4_4 + 1*x_A_F_2_4_E_I_4_4 + 1*x_A_F_2_4_E_I_5_5 + 1*x_A_F_2_4_E_I_6_6 + 1*x_A_F_2_4_H_E_4_4 + 1*x_A_F_2_4_H_E_5_5 + 1*x_A_F_2_4_H_E_6_6 + 1*x_A_F_2_4_E_H_4_4 + 1*x_A_F_2_4_E_H_5_5 + 1*x_A_F_2_4_E_H_6_6 + 1*x_A_F_2_4_G_F_4_4 + 1*x_A_F_2_4_I_G_4_4 + 1*x_A_F_2_4_I_G_5_5 + 1*x_A_F_2_4_I_G_6_6 + 1*x_A_F_2_4_G_I_4_4 + 1*x_A_F_2_4_G_I_5_5 + 1*x_A_F_2_4_G_I_6_6 + 1*x_A_F_2_4_I_F_4_4 + 1*x_A_F_2_4_I_H_4_4 + 1*x_A_F_2_4_I_H_5_5 + 1*x_A_F_2_4_I_H_6_6 + 1*x_A_F_2_4_H_I_4_4 + 1*x_A_F_2_4_H_I_5_5 + 1*x_A_F_2_4_H_I_6_6 + 1*x_A_F_2_5_A_B_2_2 + 1*x_A_F_2_5_A_C_2_2 + 1*x_A_F_2_5_D_B_1_1 + 1*x_A_F_2_5_D_B_2_2 + 1*x_A_F_2_5_D_B_3_3 + 1*x_A_F_2_5_B_D_1_1 + 1*x_A_F_2_5_B_D_2_2 + 1*x_A_F_2_5_B_D_3_3 + 1*x_A_F_2_5_A_D_2_2 + 1*x_A_F_2_5_C_D_1_1 + 1*x_A_F_2_5_C_D_2_2 + 1*x_A_F_2_5_C_D_3_3 + 1*x_A_F_2_5_D_C_1_1 + 1*x_A_F_2_5_D_C_2_2 + 1*x_A_F_2_5_D_C_3_3 + 1*x_A_F_2_5_D_E_4_4 + 1*x_A_F_2_5_D_E_5_5 + 1*x_A_F_2_5_D_E_6_6 + 1*x_A_F_2_5_E_D_4_4 + 1*x_A_F_2_5_E_D_5_5 + 1*x_A_F_2_5_E_D_6_6 + 1*x_A_F_2_5_G_E_4_4 + 1*x_A_F_2_5_G_E_5_5 + 1*x_A_F_2_5_G_E_6_6 + 1*x_A_F_2_5_E_G_4_4 + 1*x_A_F_2_5_E_G_5_5 + 1*x_A_F_2_5_E_G_6_6 + 1*x_A_F_2_5_D_G_4_4 + 1*x_A_F_2_5_D_G_5_5 + 1*x_A_F_2_5_D_G_6_6 + 1*x_A_F_2_5_G_D_4_4 + 1*x_A_F_2_5_G_D_5_5 + 1*x_A_F_2_5_G_D_6_6 + 1*x_A_F_2_5_I_E_4_4 + 1*x_A_F_2_5_I_E_5_5 + 1*x_A_F_2_5_I_E_6_6 + 1*x_A_F_2_5_H_F_5_5 + 1*x_A_F_2_5_E_I_4_4 + 1*x_A_F_2_5_E_I_5_5 + 1*x_A_F_2_5_E_I_6_6 + 1*x_A_F_2_5_H_E_4_4 + 1*x_A_F_2_5_H_E_5_5 + 1*x_A_F_2_5_H_E_6_6 + 1*x_A_F_2_5_E_H_4_4 + 1*x_A_F_2_5_E_H_5_5 + 1*x_A_F_2_5_E_H_6_6 + 1*x_A_F_2_5_G_F_5_5 + 1*x_A_F_2_5_I_G_4_4 + 1*x_A_F_2_5_I_G_5_5 + 1*x_A_F_2_5_I_G_6_6 + 1*x_A_F_2_5_G_I_4_4 + 1*x_A_F_2_5_G_I_5_5 + 1*x_A_F_2_5_G_I_6_6 + 1*x_A_F_2_5_I_F_5_5 + 1*x_A_F_2_5_I_H_4_4 + 1*x_A_F_2_5_I_H_5_5 + 1*x_A_F_2_5_I_H_6_6 + 1*x_A_F_2_5_H_I_4_4 + 1*x_A_F_2_5_H_I_5_5 + 1*x_A_F_2_5_H_I_6_6 + 1*x_A_F_2_6_A_B_2_2 + 1*x_A_F_2_6_A_C_2_2 + 1*x_A_F_2_6_D_B_1_1 + 1*x_A_F_2_6_D_B_2_2 + 1*x_A_F_2_6_D_B_3_3 + 1*x_A_F_2_6_B_D_1_1 + 1*x_A_F_2_6_B_D_2_2 + 1*x_A_F_2_6_B_D_3_3 + 1*x_A_F_2_6_A_D_2_2 + 1*x_A_F_2_6_C_D_1_1 + 1*x_A_F_2_6_C_D_2_2 + 1*x_A_F_2_6_C_D_3_3 + 1*x_A_F_2_6_D_C_1_1 + 1*x_A_F_2_6_D_C_2_2 + 1*x_A_F_2_6_D_C_3_3 + 1*x_A_F_2_6_D_E_4_4 + 1*x_A_F_2_6_D_E_5_5 + 1*x_A_F_2_6_D_E_6_6 + 1*x_A_F_2_6_E_D_4_4 + 1*x_A_F_2_6_E_D_5_5 + 1*x_A_F_2_6_E_D_6_6 + 1*x_A_F_2_6_G_E_4_4 + 1*x_A_F_2_6_G_E_5_5 + 1*x_A_F_2_6_G_E_6_6 + 1*x_A_F_2_6_E_G_4_4 + 1*x_A_F_2_6_E_G_5_5 + 1*x_A_F_2_6_E_G_6_6 + 1*x_A_F_2_6_D_G_4_4 + 1*x_A_F_2_6_D_G_5_5 + 1*x_A_F_2_6_D_G_6_6 + 1*x_A_F_2_6_G_D_4_4 + 1*x_A_F_2_6_G_D_5_5 + 1*x_A_F_2_6_G_D_6_6 + 1*x_A_F_2_6_I_E_4_4 + 1*x_A_F_2_6_I_E_5_5 + 1*x_A_F_2_6_I_E_6_6 + 1*x_A_F_2_6_H_F_6_6 + 1*x_A_F_2_6_E_I_4_4 + 1*x_A_F_2_6_E_I_5_5 + 1*x_A_F_2_6_E_I_6_6 + 1*x_A_F_2_6_H_E_4_4 + 1*x_A_F_2_6_H_E_5_5 + 1*x_A_F_2_6_H_E_6_6 + 1*x_A_F_2_6_E_H_4_4 + 1*x_A_F_2_6_E_H_5_5 + 1*x_A_F_2_6_E_H_6_6 + 1*x_A_F_2_6_G_F_6_6 + 1*x_A_F_2_6_I_G_4_4 + 1*x_A_F_2_6_I_G_5_5 + 1*x_A_F_2_6_I_G_6_6 + 1*x_A_F_2_6_G_I_4_4 + 1*x_A_F_2_6_G_I_5_5 + 1*x_A_F_2_6_G_I_6_6 + 1*x_A_F_2_6_I_F_6_6 + 1*x_A_F_2_6_I_H_4_4 + 1*x_A_F_2_6_I_H_5_5 + 1*x_A_F_2_6_I_H_6_6 + 1*x_A_F_2_6_H_I_4_4 + 1*x_A_F_2_6_H_I_5_5 + 1*x_A_F_2_6_H_I_6_6 + 1*x_A_F_3_4_A_B_3_3 + 1*x_A_F_3_4_A_C_3_3 + 1*x_A_F_3_4_D_B_1_1 + 1*x_A_F_3_4_D_B_2_2 + 1*x_A_F_3_4_D_B_3_3 + 1*x_A_F_3_4_B_D_1_1 + 1*x_A_F_3_4_B_D_2_2 + 1*x_A_F_3_4_B_D_3_3 + 1*x_A_F_3_4_A_D_3_3 + 1*x_A_F_3_4_C_D_1_1 + 1*x_A_F_3_4_C_D_2_2 + 1*x_A_F_3_4_C_D_3_3 + 1*x_A_F_3_4_D_C_1_1 + 1*x_A_F_3_4_D_C_2_2 + 1*x_A_F_3_4_D_C_3_3 + 1*x_A_F_3_4_D_E_4_4 + 1*x_A_F_3_4_D_E_5_5 + 1*x_A_F_3_4_D_E_6_6 + 1*x_A_F_3_4_E_D_4_4 + 1*x_A_F_3_4_E_D_5_5 + 1*x_A_F_3_4_E_D_6_6 + 1*x_A_F_3_4_G_E_4_4 + 1*x_A_F_3_4_G_E_5_5 + 1*x_A_F_3_4_G_E_6_6 + 1*x_A_F_3_4_E_G_4_4 + 1*x_A_F_3_4_E_G_5_5 + 1*x_A_F_3_4_E_G_6_6 + 1*x_A_F_3_4_D_G_4_4 + 1*x_A_F_3_4_D_G_5_5 + 1*x_A_F_3_4_D_G_6_6 + 1*x_A_F_3_4_G_D_4_4 + 1*x_A_F_3_4_G_D_5_5 + 1*x_A_F_3_4_G_D_6_6 + 1*x_A_F_3_4_I_E_4_4 + 1*x_A_F_3_4_I_E_5_5 + 1*x_A_F_3_4_I_E_6_6 + 1*x_A_F_3_4_H_F_4_4 + 1*x_A_F_3_4_E_I_4_4 + 1*x_A_F_3_4_E_I_5_5 + 1*x_A_F_3_4_E_I_6_6 + 1*x_A_F_3_4_H_E_4_4 + 1*x_A_F_3_4_H_E_5_5 + 1*x_A_F_3_4_H_E_6_6 + 1*x_A_F_3_4_E_H_4_4 + 1*x_A_F_3_4_E_H_5_5 + 1*x_A_F_3_4_E_H_6_6 + 1*x_A_F_3_4_G_F_4_4 + 1*x_A_F_3_4_I_G_4_4 + 1*x_A_F_3_4_I_G_5_5 + 1*x_A_F_3_4_I_G_6_6 + 1*x_A_F_3_4_G_I_4_4 + 1*x_A_F_3_4_G_I_5_5 + 1*x_A_F_3_4_G_I_6_6 + 1*x_A_F_3_4_I_F_4_4 + 1*x_A_F_3_4_I_H_4_4 + 1*x_A_F_3_4_I_H_5_5 + 1*x_A_F_3_4_I_H_6_6 + 1*x_A_F_3_4_H_I_4_4 + 1*x_A_F_3_4_H_I_5_5 + 1*x_A_F_3_4_H_I_6_6 + 1*x_A_F_3_5_A_B_3_3 + 1*x_A_F_3_5_A_C_3_3 + 1*x_A_F_3_5_D_B_1_1 + 1*x_A_F_3_5_D_B_2_2 + 1*x_A_F_3_5_D_B_3_3 + 1*x_A_F_3_5_B_D_1_1 + 1*x_A_F_3_5_B_D_2_2 + 1*x_A_F_3_5_B_D_3_3 + 1*x_A_F_3_5_A_D_3_3 + 1*x_A_F_3_5_C_D_1_1 + 1*x_A_F_3_5_C_D_2_2 + 1*x_A_F_3_5_C_D_3_3 + 1*x_A_F_3_5_D_C_1_1 + 1*x_A_F_3_5_D_C_2_2 + 1*x_A_F_3_5_D_C_3_3 + 1*x_A_F_3_5_D_E_4_4 + 1*x_A_F_3_5_D_E_5_5 + 1*x_A_F_3_5_D_E_6_6 + 1*x_A_F_3_5_E_D_4_4 + 1*x_A_F_3_5_E_D_5_5 + 1*x_A_F_3_5_E_D_6_6 + 1*x_A_F_3_5_G_E_4_4 + 1*x_A_F_3_5_G_E_5_5 + 1*x_A_F_3_5_G_E_6_6 + 1*x_A_F_3_5_E_G_4_4 + 1*x_A_F_3_5_E_G_5_5 + 1*x_A_F_3_5_E_G_6_6 + 1*x_A_F_3_5_D_G_4_4 + 1*x_A_F_3_5_D_G_5_5 + 1*x_A_F_3_5_D_G_6_6 + 1*x_A_F_3_5_G_D_4_4 + 1*x_A_F_3_5_G_D_5_5 + 1*x_A_F_3_5_G_D_6_6 + 1*x_A_F_3_5_I_E_4_4 + 1*x_A_F_3_5_I_E_5_5 + 1*x_A_F_3_5_I_E_6_6 + 1*x_A_F_3_5_H_F_5_5 + 1*x_A_F_3_5_E_I_4_4 + 1*x_A_F_3_5_E_I_5_5 + 1*x_A_F_3_5_E_I_6_6 + 1*x_A_F_3_5_H_E_4_4 + 1*x_A_F_3_5_H_E_5_5 + 1*x_A_F_3_5_H_E_6_6 + 1*x_A_F_3_5_E_H_4_4 + 1*x_A_F_3_5_E_H_5_5 + 1*x_A_F_3_5_E_H_6_6 + 1*x_A_F_3_5_G_F_5_5 + 1*x_A_F_3_5_I_G_4_4 + 1*x_A_F_3_5_I_G_5_5 + 1*x_A_F_3_5_I_G_6_6 + 1*x_A_F_3_5_G_I_4_4 + 1*x_A_F_3_5_G_I_5_5 + 1*x_A_F_3_5_G_I_6_6 + 1*x_A_F_3_5_I_F_5_5 + 1*x_A_F_3_5_I_H_4_4 + 1*x_A_F_3_5_I_H_5_5 + 1*x_A_F_3_5_I_H_6_6 + 1*x_A_F_3_5_H_I_4_4 + 1*x_A_F_3_5_H_I_5_5 + 1*x_A_F_3_5_H_I_6_6 + 1*x_A_F_3_6_A_B_3_3 + 1*x_A_F_3_6_A_C_3_3 + 1*x_A_F_3_6_D_B_1_1 + 1*x_A_F_3_6_D_B_2_2 + 1*x_A_F_3_6_D_B_3_3 + 1*x_A_F_3_6_B_D_1_1 + 1*x_A_F_3_6_B_D_2_2 + 1*x_A_F_3_6_B_D_3_3 + 1*x_A_F_3_6_A_D_3_3 + 1*x_A_F_3_6_C_D_1_1 + 1*x_A_F_3_6_C_D_2_2 + 1*x_A_F_3_6_C_D_3_3 + 1*x_A_F_3_6_D_C_1_1 + 1*x_A_F_3_6_D_C_2_2 + 1*x_A_F_3_6_D_C_3_3 + 1*x_A_F_3_6_D_E_4_4 + 1*x_A_F_3_6_D_E_5_5 + 1*x_A_F_3_6_D_E_6_6 + 1*x_A_F_3_6_E_D_4_4 + 1*x_A_F_3_6_E_D_5_5 + 1*x_A_F_3_6_E_D_6_6 + 1*x_A_F_3_6_G_E_4_4 + 1*x_A_F_3_6_G_E_5_5 + 1*x_A_F_3_6_G_E_6_6 + 1*x_A_F_3_6_E_G_4_4 + 1*x_A_F_3_6_E_G_5_5 + 1*x_A_F_3_6_E_G_6_6 + 1*x_A_F_3_6_D_G_4_4 + 1*x_A_F_3_6_D_G_5_5 + 1*x_A_F_3_6_D_G_6_6 + 1*x_A_F_3_6_G_D_4_4 + 1*x_A_F_3_6_G_D_5_5 + 1*x_A_F_3_6_G_D_6_6 + 1*x_A_F_3_6_I_E_4_4 + 1*x_A_F_3_6_I_E_5_5 + 1*x_A_F_3_6_I_E_6_6 + 1*x_A_F_3_6_H_F_6_6 + 1*x_A_F_3_6_E_I_4_4 + 1*x_A_F_3_6_E_I_5_5 + 1*x_A_F_3_6_E_I_6_6 + 1*x_A_F_3_6_H_E_4_4 + 1*x_A_F_3_6_H_E_5_5 + 1*x_A_F_3_6_H_E_6_6 + 1*x_A_F_3_6_E_H_4_4 + 1*x_A_F_3_6_E_H_5_5 + 1*x_A_F_3_6_E_H_6_6 + 1*x_A_F_3_6_G_F_6_6 + 1*x_A_F_3_6_I_G_4_4 + 1*x_A_F_3_6_I_G_5_5 + 1*x_A_F_3_6_I_G_6_6 + 1*x_A_F_3_6_G_I_4_4 + 1*x_A_F_3_6_G_I_5_5 + 1*x_A_F_3_6_G_I_6_6 + 1*x_A_F_3_6_I_F_6_6 + 1*x_A_F_3_6_I_H_4_4 + 1*x_A_F_3_6_I_H_5_5 + 1*x_A_F_3_6_I_H_6_6 + 1*x_A_F_3_6_H_I_4_4 + 1*x_A_F_3_6_H_I_5_5 + 1*x_A_F_3_6_H_I_6_6 = 4
+Sep 22, 2014 6:40:43 PM org.renci.pharos.lp.SSSDFlowProblem addFlowConservationConstraints
+INFO: adding flow constraints:
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_E_D_4_4 + 1*x_A_F_1_4_E_G_4_4 + 1*x_A_F_1_4_E_I_4_4 + 1*x_A_F_1_4_E_H_4_4 + -1*x_A_F_1_4_D_E_4_4 + -1*x_A_F_1_4_G_E_4_4 + -1*x_A_F_1_4_I_E_4_4 + -1*x_A_F_1_4_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_E_D_5_5 + 1*x_A_F_1_4_E_G_5_5 + 1*x_A_F_1_4_E_I_5_5 + 1*x_A_F_1_4_E_H_5_5 + -1*x_A_F_1_4_D_E_5_5 + -1*x_A_F_1_4_G_E_5_5 + -1*x_A_F_1_4_I_E_5_5 + -1*x_A_F_1_4_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_E_D_6_6 + 1*x_A_F_1_4_E_G_6_6 + 1*x_A_F_1_4_E_I_6_6 + 1*x_A_F_1_4_E_H_6_6 + -1*x_A_F_1_4_D_E_6_6 + -1*x_A_F_1_4_G_E_6_6 + -1*x_A_F_1_4_I_E_6_6 + -1*x_A_F_1_4_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_E_D_4_4 + 1*x_A_F_1_5_E_G_4_4 + 1*x_A_F_1_5_E_I_4_4 + 1*x_A_F_1_5_E_H_4_4 + -1*x_A_F_1_5_D_E_4_4 + -1*x_A_F_1_5_G_E_4_4 + -1*x_A_F_1_5_I_E_4_4 + -1*x_A_F_1_5_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_E_D_5_5 + 1*x_A_F_1_5_E_G_5_5 + 1*x_A_F_1_5_E_I_5_5 + 1*x_A_F_1_5_E_H_5_5 + -1*x_A_F_1_5_D_E_5_5 + -1*x_A_F_1_5_G_E_5_5 + -1*x_A_F_1_5_I_E_5_5 + -1*x_A_F_1_5_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_E_D_6_6 + 1*x_A_F_1_5_E_G_6_6 + 1*x_A_F_1_5_E_I_6_6 + 1*x_A_F_1_5_E_H_6_6 + -1*x_A_F_1_5_D_E_6_6 + -1*x_A_F_1_5_G_E_6_6 + -1*x_A_F_1_5_I_E_6_6 + -1*x_A_F_1_5_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_E_D_4_4 + 1*x_A_F_1_6_E_G_4_4 + 1*x_A_F_1_6_E_I_4_4 + 1*x_A_F_1_6_E_H_4_4 + -1*x_A_F_1_6_D_E_4_4 + -1*x_A_F_1_6_G_E_4_4 + -1*x_A_F_1_6_I_E_4_4 + -1*x_A_F_1_6_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_E_D_5_5 + 1*x_A_F_1_6_E_G_5_5 + 1*x_A_F_1_6_E_I_5_5 + 1*x_A_F_1_6_E_H_5_5 + -1*x_A_F_1_6_D_E_5_5 + -1*x_A_F_1_6_G_E_5_5 + -1*x_A_F_1_6_I_E_5_5 + -1*x_A_F_1_6_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_E_D_6_6 + 1*x_A_F_1_6_E_G_6_6 + 1*x_A_F_1_6_E_I_6_6 + 1*x_A_F_1_6_E_H_6_6 + -1*x_A_F_1_6_D_E_6_6 + -1*x_A_F_1_6_G_E_6_6 + -1*x_A_F_1_6_I_E_6_6 + -1*x_A_F_1_6_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_E_D_4_4 + 1*x_A_F_2_4_E_G_4_4 + 1*x_A_F_2_4_E_I_4_4 + 1*x_A_F_2_4_E_H_4_4 + -1*x_A_F_2_4_D_E_4_4 + -1*x_A_F_2_4_G_E_4_4 + -1*x_A_F_2_4_I_E_4_4 + -1*x_A_F_2_4_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_E_D_5_5 + 1*x_A_F_2_4_E_G_5_5 + 1*x_A_F_2_4_E_I_5_5 + 1*x_A_F_2_4_E_H_5_5 + -1*x_A_F_2_4_D_E_5_5 + -1*x_A_F_2_4_G_E_5_5 + -1*x_A_F_2_4_I_E_5_5 + -1*x_A_F_2_4_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_E_D_6_6 + 1*x_A_F_2_4_E_G_6_6 + 1*x_A_F_2_4_E_I_6_6 + 1*x_A_F_2_4_E_H_6_6 + -1*x_A_F_2_4_D_E_6_6 + -1*x_A_F_2_4_G_E_6_6 + -1*x_A_F_2_4_I_E_6_6 + -1*x_A_F_2_4_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_E_D_4_4 + 1*x_A_F_2_5_E_G_4_4 + 1*x_A_F_2_5_E_I_4_4 + 1*x_A_F_2_5_E_H_4_4 + -1*x_A_F_2_5_D_E_4_4 + -1*x_A_F_2_5_G_E_4_4 + -1*x_A_F_2_5_I_E_4_4 + -1*x_A_F_2_5_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_E_D_5_5 + 1*x_A_F_2_5_E_G_5_5 + 1*x_A_F_2_5_E_I_5_5 + 1*x_A_F_2_5_E_H_5_5 + -1*x_A_F_2_5_D_E_5_5 + -1*x_A_F_2_5_G_E_5_5 + -1*x_A_F_2_5_I_E_5_5 + -1*x_A_F_2_5_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_E_D_6_6 + 1*x_A_F_2_5_E_G_6_6 + 1*x_A_F_2_5_E_I_6_6 + 1*x_A_F_2_5_E_H_6_6 + -1*x_A_F_2_5_D_E_6_6 + -1*x_A_F_2_5_G_E_6_6 + -1*x_A_F_2_5_I_E_6_6 + -1*x_A_F_2_5_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_E_D_4_4 + 1*x_A_F_2_6_E_G_4_4 + 1*x_A_F_2_6_E_I_4_4 + 1*x_A_F_2_6_E_H_4_4 + -1*x_A_F_2_6_D_E_4_4 + -1*x_A_F_2_6_G_E_4_4 + -1*x_A_F_2_6_I_E_4_4 + -1*x_A_F_2_6_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_E_D_5_5 + 1*x_A_F_2_6_E_G_5_5 + 1*x_A_F_2_6_E_I_5_5 + 1*x_A_F_2_6_E_H_5_5 + -1*x_A_F_2_6_D_E_5_5 + -1*x_A_F_2_6_G_E_5_5 + -1*x_A_F_2_6_I_E_5_5 + -1*x_A_F_2_6_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_E_D_6_6 + 1*x_A_F_2_6_E_G_6_6 + 1*x_A_F_2_6_E_I_6_6 + 1*x_A_F_2_6_E_H_6_6 + -1*x_A_F_2_6_D_E_6_6 + -1*x_A_F_2_6_G_E_6_6 + -1*x_A_F_2_6_I_E_6_6 + -1*x_A_F_2_6_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_E_D_4_4 + 1*x_A_F_3_4_E_G_4_4 + 1*x_A_F_3_4_E_I_4_4 + 1*x_A_F_3_4_E_H_4_4 + -1*x_A_F_3_4_D_E_4_4 + -1*x_A_F_3_4_G_E_4_4 + -1*x_A_F_3_4_I_E_4_4 + -1*x_A_F_3_4_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_E_D_5_5 + 1*x_A_F_3_4_E_G_5_5 + 1*x_A_F_3_4_E_I_5_5 + 1*x_A_F_3_4_E_H_5_5 + -1*x_A_F_3_4_D_E_5_5 + -1*x_A_F_3_4_G_E_5_5 + -1*x_A_F_3_4_I_E_5_5 + -1*x_A_F_3_4_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_E_D_6_6 + 1*x_A_F_3_4_E_G_6_6 + 1*x_A_F_3_4_E_I_6_6 + 1*x_A_F_3_4_E_H_6_6 + -1*x_A_F_3_4_D_E_6_6 + -1*x_A_F_3_4_G_E_6_6 + -1*x_A_F_3_4_I_E_6_6 + -1*x_A_F_3_4_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_E_D_4_4 + 1*x_A_F_3_5_E_G_4_4 + 1*x_A_F_3_5_E_I_4_4 + 1*x_A_F_3_5_E_H_4_4 + -1*x_A_F_3_5_D_E_4_4 + -1*x_A_F_3_5_G_E_4_4 + -1*x_A_F_3_5_I_E_4_4 + -1*x_A_F_3_5_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_E_D_5_5 + 1*x_A_F_3_5_E_G_5_5 + 1*x_A_F_3_5_E_I_5_5 + 1*x_A_F_3_5_E_H_5_5 + -1*x_A_F_3_5_D_E_5_5 + -1*x_A_F_3_5_G_E_5_5 + -1*x_A_F_3_5_I_E_5_5 + -1*x_A_F_3_5_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_E_D_6_6 + 1*x_A_F_3_5_E_G_6_6 + 1*x_A_F_3_5_E_I_6_6 + 1*x_A_F_3_5_E_H_6_6 + -1*x_A_F_3_5_D_E_6_6 + -1*x_A_F_3_5_G_E_6_6 + -1*x_A_F_3_5_I_E_6_6 + -1*x_A_F_3_5_H_E_6_6 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_E_D_4_4 + 1*x_A_F_3_6_E_G_4_4 + 1*x_A_F_3_6_E_I_4_4 + 1*x_A_F_3_6_E_H_4_4 + -1*x_A_F_3_6_D_E_4_4 + -1*x_A_F_3_6_G_E_4_4 + -1*x_A_F_3_6_I_E_4_4 + -1*x_A_F_3_6_H_E_4_4 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_E_D_5_5 + 1*x_A_F_3_6_E_G_5_5 + 1*x_A_F_3_6_E_I_5_5 + 1*x_A_F_3_6_E_H_5_5 + -1*x_A_F_3_6_D_E_5_5 + -1*x_A_F_3_6_G_E_5_5 + -1*x_A_F_3_6_I_E_5_5 + -1*x_A_F_3_6_H_E_5_5 = 0
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: E has labeltranslation
+Sep 22, 2014 6:42:37 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_E_D_6_6 + 1*x_A_F_3_6_E_G_6_6 + 1*x_A_F_3_6_E_I_6_6 + 1*x_A_F_3_6_E_H_6_6 + -1*x_A_F_3_6_D_E_6_6 + -1*x_A_F_3_6_G_E_6_6 + -1*x_A_F_3_6_I_E_6_6 + -1*x_A_F_3_6_H_E_6_6 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_B_D_1_1 + -1*x_A_F_1_4_A_B_1_1 + -1*x_A_F_1_4_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_B_D_2_2 + -1*x_A_F_1_4_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_B_D_3_3 + -1*x_A_F_1_4_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_B_D_1_1 + -1*x_A_F_1_5_A_B_1_1 + -1*x_A_F_1_5_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_B_D_2_2 + -1*x_A_F_1_5_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_B_D_3_3 + -1*x_A_F_1_5_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_B_D_1_1 + -1*x_A_F_1_6_A_B_1_1 + -1*x_A_F_1_6_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_B_D_2_2 + -1*x_A_F_1_6_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_B_D_3_3 + -1*x_A_F_1_6_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_B_D_1_1 + -1*x_A_F_2_4_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_B_D_2_2 + -1*x_A_F_2_4_A_B_2_2 + -1*x_A_F_2_4_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_B_D_3_3 + -1*x_A_F_2_4_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_B_D_1_1 + -1*x_A_F_2_5_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_B_D_2_2 + -1*x_A_F_2_5_A_B_2_2 + -1*x_A_F_2_5_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_B_D_3_3 + -1*x_A_F_2_5_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_B_D_1_1 + -1*x_A_F_2_6_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_B_D_2_2 + -1*x_A_F_2_6_A_B_2_2 + -1*x_A_F_2_6_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_B_D_3_3 + -1*x_A_F_2_6_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_B_D_1_1 + -1*x_A_F_3_4_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_B_D_2_2 + -1*x_A_F_3_4_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_B_D_3_3 + -1*x_A_F_3_4_A_B_3_3 + -1*x_A_F_3_4_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_B_D_1_1 + -1*x_A_F_3_5_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_B_D_2_2 + -1*x_A_F_3_5_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_B_D_3_3 + -1*x_A_F_3_5_A_B_3_3 + -1*x_A_F_3_5_D_B_3_3 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_B_D_1_1 + -1*x_A_F_3_6_D_B_1_1 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_B_D_2_2 + -1*x_A_F_3_6_D_B_2_2 = 0
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: B has labeltranslation
+Sep 22, 2014 6:43:44 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_B_D_3_3 + -1*x_A_F_3_6_A_B_3_3 + -1*x_A_F_3_6_D_B_3_3 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_G_E_4_4 + 1*x_A_F_1_4_G_D_4_4 + 1*x_A_F_1_4_G_F_4_4 + 1*x_A_F_1_4_G_I_4_4 + -1*x_A_F_1_4_E_G_4_4 + -1*x_A_F_1_4_D_G_4_4 + -1*x_A_F_1_4_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_G_E_5_5 + 1*x_A_F_1_4_G_D_5_5 + 1*x_A_F_1_4_G_I_5_5 + -1*x_A_F_1_4_E_G_5_5 + -1*x_A_F_1_4_D_G_5_5 + -1*x_A_F_1_4_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_G_E_6_6 + 1*x_A_F_1_4_G_D_6_6 + 1*x_A_F_1_4_G_I_6_6 + -1*x_A_F_1_4_E_G_6_6 + -1*x_A_F_1_4_D_G_6_6 + -1*x_A_F_1_4_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_G_E_4_4 + 1*x_A_F_1_5_G_D_4_4 + 1*x_A_F_1_5_G_I_4_4 + -1*x_A_F_1_5_E_G_4_4 + -1*x_A_F_1_5_D_G_4_4 + -1*x_A_F_1_5_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_G_E_5_5 + 1*x_A_F_1_5_G_D_5_5 + 1*x_A_F_1_5_G_F_5_5 + 1*x_A_F_1_5_G_I_5_5 + -1*x_A_F_1_5_E_G_5_5 + -1*x_A_F_1_5_D_G_5_5 + -1*x_A_F_1_5_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_G_E_6_6 + 1*x_A_F_1_5_G_D_6_6 + 1*x_A_F_1_5_G_I_6_6 + -1*x_A_F_1_5_E_G_6_6 + -1*x_A_F_1_5_D_G_6_6 + -1*x_A_F_1_5_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_G_E_4_4 + 1*x_A_F_1_6_G_D_4_4 + 1*x_A_F_1_6_G_I_4_4 + -1*x_A_F_1_6_E_G_4_4 + -1*x_A_F_1_6_D_G_4_4 + -1*x_A_F_1_6_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_G_E_5_5 + 1*x_A_F_1_6_G_D_5_5 + 1*x_A_F_1_6_G_I_5_5 + -1*x_A_F_1_6_E_G_5_5 + -1*x_A_F_1_6_D_G_5_5 + -1*x_A_F_1_6_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_G_E_6_6 + 1*x_A_F_1_6_G_D_6_6 + 1*x_A_F_1_6_G_F_6_6 + 1*x_A_F_1_6_G_I_6_6 + -1*x_A_F_1_6_E_G_6_6 + -1*x_A_F_1_6_D_G_6_6 + -1*x_A_F_1_6_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_G_E_4_4 + 1*x_A_F_2_4_G_D_4_4 + 1*x_A_F_2_4_G_F_4_4 + 1*x_A_F_2_4_G_I_4_4 + -1*x_A_F_2_4_E_G_4_4 + -1*x_A_F_2_4_D_G_4_4 + -1*x_A_F_2_4_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_G_E_5_5 + 1*x_A_F_2_4_G_D_5_5 + 1*x_A_F_2_4_G_I_5_5 + -1*x_A_F_2_4_E_G_5_5 + -1*x_A_F_2_4_D_G_5_5 + -1*x_A_F_2_4_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_G_E_6_6 + 1*x_A_F_2_4_G_D_6_6 + 1*x_A_F_2_4_G_I_6_6 + -1*x_A_F_2_4_E_G_6_6 + -1*x_A_F_2_4_D_G_6_6 + -1*x_A_F_2_4_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_G_E_4_4 + 1*x_A_F_2_5_G_D_4_4 + 1*x_A_F_2_5_G_I_4_4 + -1*x_A_F_2_5_E_G_4_4 + -1*x_A_F_2_5_D_G_4_4 + -1*x_A_F_2_5_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_G_E_5_5 + 1*x_A_F_2_5_G_D_5_5 + 1*x_A_F_2_5_G_F_5_5 + 1*x_A_F_2_5_G_I_5_5 + -1*x_A_F_2_5_E_G_5_5 + -1*x_A_F_2_5_D_G_5_5 + -1*x_A_F_2_5_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_G_E_6_6 + 1*x_A_F_2_5_G_D_6_6 + 1*x_A_F_2_5_G_I_6_6 + -1*x_A_F_2_5_E_G_6_6 + -1*x_A_F_2_5_D_G_6_6 + -1*x_A_F_2_5_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_G_E_4_4 + 1*x_A_F_2_6_G_D_4_4 + 1*x_A_F_2_6_G_I_4_4 + -1*x_A_F_2_6_E_G_4_4 + -1*x_A_F_2_6_D_G_4_4 + -1*x_A_F_2_6_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_G_E_5_5 + 1*x_A_F_2_6_G_D_5_5 + 1*x_A_F_2_6_G_I_5_5 + -1*x_A_F_2_6_E_G_5_5 + -1*x_A_F_2_6_D_G_5_5 + -1*x_A_F_2_6_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_G_E_6_6 + 1*x_A_F_2_6_G_D_6_6 + 1*x_A_F_2_6_G_F_6_6 + 1*x_A_F_2_6_G_I_6_6 + -1*x_A_F_2_6_E_G_6_6 + -1*x_A_F_2_6_D_G_6_6 + -1*x_A_F_2_6_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_G_E_4_4 + 1*x_A_F_3_4_G_D_4_4 + 1*x_A_F_3_4_G_F_4_4 + 1*x_A_F_3_4_G_I_4_4 + -1*x_A_F_3_4_E_G_4_4 + -1*x_A_F_3_4_D_G_4_4 + -1*x_A_F_3_4_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_G_E_5_5 + 1*x_A_F_3_4_G_D_5_5 + 1*x_A_F_3_4_G_I_5_5 + -1*x_A_F_3_4_E_G_5_5 + -1*x_A_F_3_4_D_G_5_5 + -1*x_A_F_3_4_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_G_E_6_6 + 1*x_A_F_3_4_G_D_6_6 + 1*x_A_F_3_4_G_I_6_6 + -1*x_A_F_3_4_E_G_6_6 + -1*x_A_F_3_4_D_G_6_6 + -1*x_A_F_3_4_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_G_E_4_4 + 1*x_A_F_3_5_G_D_4_4 + 1*x_A_F_3_5_G_I_4_4 + -1*x_A_F_3_5_E_G_4_4 + -1*x_A_F_3_5_D_G_4_4 + -1*x_A_F_3_5_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_G_E_5_5 + 1*x_A_F_3_5_G_D_5_5 + 1*x_A_F_3_5_G_F_5_5 + 1*x_A_F_3_5_G_I_5_5 + -1*x_A_F_3_5_E_G_5_5 + -1*x_A_F_3_5_D_G_5_5 + -1*x_A_F_3_5_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_G_E_6_6 + 1*x_A_F_3_5_G_D_6_6 + 1*x_A_F_3_5_G_I_6_6 + -1*x_A_F_3_5_E_G_6_6 + -1*x_A_F_3_5_D_G_6_6 + -1*x_A_F_3_5_I_G_6_6 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_G_E_4_4 + 1*x_A_F_3_6_G_D_4_4 + 1*x_A_F_3_6_G_I_4_4 + -1*x_A_F_3_6_E_G_4_4 + -1*x_A_F_3_6_D_G_4_4 + -1*x_A_F_3_6_I_G_4_4 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_G_E_5_5 + 1*x_A_F_3_6_G_D_5_5 + 1*x_A_F_3_6_G_I_5_5 + -1*x_A_F_3_6_E_G_5_5 + -1*x_A_F_3_6_D_G_5_5 + -1*x_A_F_3_6_I_G_5_5 = 0
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: G has labeltranslation
+Sep 22, 2014 6:43:59 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_G_E_6_6 + 1*x_A_F_3_6_G_D_6_6 + 1*x_A_F_3_6_G_F_6_6 + 1*x_A_F_3_6_G_I_6_6 + -1*x_A_F_3_6_E_G_6_6 + -1*x_A_F_3_6_D_G_6_6 + -1*x_A_F_3_6_I_G_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_H_F_4_4 + 1*x_A_F_1_4_H_E_4_4 + 1*x_A_F_1_4_H_I_4_4 + -1*x_A_F_1_4_E_H_4_4 + -1*x_A_F_1_4_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_H_E_5_5 + 1*x_A_F_1_4_H_I_5_5 + -1*x_A_F_1_4_E_H_5_5 + -1*x_A_F_1_4_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_H_E_6_6 + 1*x_A_F_1_4_H_I_6_6 + -1*x_A_F_1_4_E_H_6_6 + -1*x_A_F_1_4_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_H_E_4_4 + 1*x_A_F_1_5_H_I_4_4 + -1*x_A_F_1_5_E_H_4_4 + -1*x_A_F_1_5_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_H_F_5_5 + 1*x_A_F_1_5_H_E_5_5 + 1*x_A_F_1_5_H_I_5_5 + -1*x_A_F_1_5_E_H_5_5 + -1*x_A_F_1_5_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_H_E_6_6 + 1*x_A_F_1_5_H_I_6_6 + -1*x_A_F_1_5_E_H_6_6 + -1*x_A_F_1_5_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_H_E_4_4 + 1*x_A_F_1_6_H_I_4_4 + -1*x_A_F_1_6_E_H_4_4 + -1*x_A_F_1_6_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_H_E_5_5 + 1*x_A_F_1_6_H_I_5_5 + -1*x_A_F_1_6_E_H_5_5 + -1*x_A_F_1_6_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_H_F_6_6 + 1*x_A_F_1_6_H_E_6_6 + 1*x_A_F_1_6_H_I_6_6 + -1*x_A_F_1_6_E_H_6_6 + -1*x_A_F_1_6_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_H_F_4_4 + 1*x_A_F_2_4_H_E_4_4 + 1*x_A_F_2_4_H_I_4_4 + -1*x_A_F_2_4_E_H_4_4 + -1*x_A_F_2_4_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_H_E_5_5 + 1*x_A_F_2_4_H_I_5_5 + -1*x_A_F_2_4_E_H_5_5 + -1*x_A_F_2_4_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_H_E_6_6 + 1*x_A_F_2_4_H_I_6_6 + -1*x_A_F_2_4_E_H_6_6 + -1*x_A_F_2_4_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_H_E_4_4 + 1*x_A_F_2_5_H_I_4_4 + -1*x_A_F_2_5_E_H_4_4 + -1*x_A_F_2_5_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_H_F_5_5 + 1*x_A_F_2_5_H_E_5_5 + 1*x_A_F_2_5_H_I_5_5 + -1*x_A_F_2_5_E_H_5_5 + -1*x_A_F_2_5_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_H_E_6_6 + 1*x_A_F_2_5_H_I_6_6 + -1*x_A_F_2_5_E_H_6_6 + -1*x_A_F_2_5_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_H_E_4_4 + 1*x_A_F_2_6_H_I_4_4 + -1*x_A_F_2_6_E_H_4_4 + -1*x_A_F_2_6_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_H_E_5_5 + 1*x_A_F_2_6_H_I_5_5 + -1*x_A_F_2_6_E_H_5_5 + -1*x_A_F_2_6_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_H_F_6_6 + 1*x_A_F_2_6_H_E_6_6 + 1*x_A_F_2_6_H_I_6_6 + -1*x_A_F_2_6_E_H_6_6 + -1*x_A_F_2_6_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_H_F_4_4 + 1*x_A_F_3_4_H_E_4_4 + 1*x_A_F_3_4_H_I_4_4 + -1*x_A_F_3_4_E_H_4_4 + -1*x_A_F_3_4_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_H_E_5_5 + 1*x_A_F_3_4_H_I_5_5 + -1*x_A_F_3_4_E_H_5_5 + -1*x_A_F_3_4_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_H_E_6_6 + 1*x_A_F_3_4_H_I_6_6 + -1*x_A_F_3_4_E_H_6_6 + -1*x_A_F_3_4_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_H_E_4_4 + 1*x_A_F_3_5_H_I_4_4 + -1*x_A_F_3_5_E_H_4_4 + -1*x_A_F_3_5_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_H_F_5_5 + 1*x_A_F_3_5_H_E_5_5 + 1*x_A_F_3_5_H_I_5_5 + -1*x_A_F_3_5_E_H_5_5 + -1*x_A_F_3_5_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_H_E_6_6 + 1*x_A_F_3_5_H_I_6_6 + -1*x_A_F_3_5_E_H_6_6 + -1*x_A_F_3_5_I_H_6_6 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_H_E_4_4 + 1*x_A_F_3_6_H_I_4_4 + -1*x_A_F_3_6_E_H_4_4 + -1*x_A_F_3_6_I_H_4_4 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_H_E_5_5 + 1*x_A_F_3_6_H_I_5_5 + -1*x_A_F_3_6_E_H_5_5 + -1*x_A_F_3_6_I_H_5_5 = 0
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: H has labeltranslation
+Sep 22, 2014 6:46:10 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_H_F_6_6 + 1*x_A_F_3_6_H_E_6_6 + 1*x_A_F_3_6_H_I_6_6 + -1*x_A_F_3_6_E_H_6_6 + -1*x_A_F_3_6_I_H_6_6 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_1_4_H_F_4_4 + 1*x_A_F_1_4_G_F_4_4 + 1*x_A_F_1_4_I_F_4_4 + -1*x_A_F_1_4 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_1_5_H_F_5_5 + 1*x_A_F_1_5_G_F_5_5 + 1*x_A_F_1_5_I_F_5_5 + -1*x_A_F_1_5 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_1_6_H_F_6_6 + 1*x_A_F_1_6_G_F_6_6 + 1*x_A_F_1_6_I_F_6_6 + -1*x_A_F_1_6 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_2_4_H_F_4_4 + 1*x_A_F_2_4_G_F_4_4 + 1*x_A_F_2_4_I_F_4_4 + -1*x_A_F_2_4 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_2_5_H_F_5_5 + 1*x_A_F_2_5_G_F_5_5 + 1*x_A_F_2_5_I_F_5_5 + -1*x_A_F_2_5 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_2_6_H_F_6_6 + 1*x_A_F_2_6_G_F_6_6 + 1*x_A_F_2_6_I_F_6_6 + -1*x_A_F_2_6 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_3_4_H_F_4_4 + 1*x_A_F_3_4_G_F_4_4 + 1*x_A_F_3_4_I_F_4_4 + -1*x_A_F_3_4 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_3_5_H_F_5_5 + 1*x_A_F_3_5_G_F_5_5 + 1*x_A_F_3_5_I_F_5_5 + -1*x_A_F_3_5 = 0
+Sep 22, 2014 6:48:40 PM org.renci.pharos.lp.SSSDFlowProblem$DestNode add
+FINE: 1*x_A_F_3_6_H_F_6_6 + 1*x_A_F_3_6_G_F_6_6 + 1*x_A_F_3_6_I_F_6_6 + -1*x_A_F_3_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_I_E_4_4 + 1*x_A_F_1_4_I_G_4_4 + 1*x_A_F_1_4_I_F_4_4 + 1*x_A_F_1_4_I_H_4_4 + -1*x_A_F_1_4_E_I_4_4 + -1*x_A_F_1_4_G_I_4_4 + -1*x_A_F_1_4_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_I_E_5_5 + 1*x_A_F_1_4_I_G_5_5 + 1*x_A_F_1_4_I_H_5_5 + -1*x_A_F_1_4_E_I_5_5 + -1*x_A_F_1_4_G_I_5_5 + -1*x_A_F_1_4_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_I_E_6_6 + 1*x_A_F_1_4_I_G_6_6 + 1*x_A_F_1_4_I_H_6_6 + -1*x_A_F_1_4_E_I_6_6 + -1*x_A_F_1_4_G_I_6_6 + -1*x_A_F_1_4_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_I_E_4_4 + 1*x_A_F_1_5_I_G_4_4 + 1*x_A_F_1_5_I_H_4_4 + -1*x_A_F_1_5_E_I_4_4 + -1*x_A_F_1_5_G_I_4_4 + -1*x_A_F_1_5_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_I_E_5_5 + 1*x_A_F_1_5_I_G_5_5 + 1*x_A_F_1_5_I_F_5_5 + 1*x_A_F_1_5_I_H_5_5 + -1*x_A_F_1_5_E_I_5_5 + -1*x_A_F_1_5_G_I_5_5 + -1*x_A_F_1_5_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_I_E_6_6 + 1*x_A_F_1_5_I_G_6_6 + 1*x_A_F_1_5_I_H_6_6 + -1*x_A_F_1_5_E_I_6_6 + -1*x_A_F_1_5_G_I_6_6 + -1*x_A_F_1_5_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_I_E_4_4 + 1*x_A_F_1_6_I_G_4_4 + 1*x_A_F_1_6_I_H_4_4 + -1*x_A_F_1_6_E_I_4_4 + -1*x_A_F_1_6_G_I_4_4 + -1*x_A_F_1_6_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_I_E_5_5 + 1*x_A_F_1_6_I_G_5_5 + 1*x_A_F_1_6_I_H_5_5 + -1*x_A_F_1_6_E_I_5_5 + -1*x_A_F_1_6_G_I_5_5 + -1*x_A_F_1_6_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_I_E_6_6 + 1*x_A_F_1_6_I_G_6_6 + 1*x_A_F_1_6_I_F_6_6 + 1*x_A_F_1_6_I_H_6_6 + -1*x_A_F_1_6_E_I_6_6 + -1*x_A_F_1_6_G_I_6_6 + -1*x_A_F_1_6_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_I_E_4_4 + 1*x_A_F_2_4_I_G_4_4 + 1*x_A_F_2_4_I_F_4_4 + 1*x_A_F_2_4_I_H_4_4 + -1*x_A_F_2_4_E_I_4_4 + -1*x_A_F_2_4_G_I_4_4 + -1*x_A_F_2_4_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_I_E_5_5 + 1*x_A_F_2_4_I_G_5_5 + 1*x_A_F_2_4_I_H_5_5 + -1*x_A_F_2_4_E_I_5_5 + -1*x_A_F_2_4_G_I_5_5 + -1*x_A_F_2_4_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_I_E_6_6 + 1*x_A_F_2_4_I_G_6_6 + 1*x_A_F_2_4_I_H_6_6 + -1*x_A_F_2_4_E_I_6_6 + -1*x_A_F_2_4_G_I_6_6 + -1*x_A_F_2_4_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_I_E_4_4 + 1*x_A_F_2_5_I_G_4_4 + 1*x_A_F_2_5_I_H_4_4 + -1*x_A_F_2_5_E_I_4_4 + -1*x_A_F_2_5_G_I_4_4 + -1*x_A_F_2_5_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_I_E_5_5 + 1*x_A_F_2_5_I_G_5_5 + 1*x_A_F_2_5_I_F_5_5 + 1*x_A_F_2_5_I_H_5_5 + -1*x_A_F_2_5_E_I_5_5 + -1*x_A_F_2_5_G_I_5_5 + -1*x_A_F_2_5_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_I_E_6_6 + 1*x_A_F_2_5_I_G_6_6 + 1*x_A_F_2_5_I_H_6_6 + -1*x_A_F_2_5_E_I_6_6 + -1*x_A_F_2_5_G_I_6_6 + -1*x_A_F_2_5_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_I_E_4_4 + 1*x_A_F_2_6_I_G_4_4 + 1*x_A_F_2_6_I_H_4_4 + -1*x_A_F_2_6_E_I_4_4 + -1*x_A_F_2_6_G_I_4_4 + -1*x_A_F_2_6_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_I_E_5_5 + 1*x_A_F_2_6_I_G_5_5 + 1*x_A_F_2_6_I_H_5_5 + -1*x_A_F_2_6_E_I_5_5 + -1*x_A_F_2_6_G_I_5_5 + -1*x_A_F_2_6_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_I_E_6_6 + 1*x_A_F_2_6_I_G_6_6 + 1*x_A_F_2_6_I_F_6_6 + 1*x_A_F_2_6_I_H_6_6 + -1*x_A_F_2_6_E_I_6_6 + -1*x_A_F_2_6_G_I_6_6 + -1*x_A_F_2_6_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_I_E_4_4 + 1*x_A_F_3_4_I_G_4_4 + 1*x_A_F_3_4_I_F_4_4 + 1*x_A_F_3_4_I_H_4_4 + -1*x_A_F_3_4_E_I_4_4 + -1*x_A_F_3_4_G_I_4_4 + -1*x_A_F_3_4_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_I_E_5_5 + 1*x_A_F_3_4_I_G_5_5 + 1*x_A_F_3_4_I_H_5_5 + -1*x_A_F_3_4_E_I_5_5 + -1*x_A_F_3_4_G_I_5_5 + -1*x_A_F_3_4_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_I_E_6_6 + 1*x_A_F_3_4_I_G_6_6 + 1*x_A_F_3_4_I_H_6_6 + -1*x_A_F_3_4_E_I_6_6 + -1*x_A_F_3_4_G_I_6_6 + -1*x_A_F_3_4_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_I_E_4_4 + 1*x_A_F_3_5_I_G_4_4 + 1*x_A_F_3_5_I_H_4_4 + -1*x_A_F_3_5_E_I_4_4 + -1*x_A_F_3_5_G_I_4_4 + -1*x_A_F_3_5_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_I_E_5_5 + 1*x_A_F_3_5_I_G_5_5 + 1*x_A_F_3_5_I_F_5_5 + 1*x_A_F_3_5_I_H_5_5 + -1*x_A_F_3_5_E_I_5_5 + -1*x_A_F_3_5_G_I_5_5 + -1*x_A_F_3_5_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_I_E_6_6 + 1*x_A_F_3_5_I_G_6_6 + 1*x_A_F_3_5_I_H_6_6 + -1*x_A_F_3_5_E_I_6_6 + -1*x_A_F_3_5_G_I_6_6 + -1*x_A_F_3_5_H_I_6_6 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_I_E_4_4 + 1*x_A_F_3_6_I_G_4_4 + 1*x_A_F_3_6_I_H_4_4 + -1*x_A_F_3_6_E_I_4_4 + -1*x_A_F_3_6_G_I_4_4 + -1*x_A_F_3_6_H_I_4_4 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_I_E_5_5 + 1*x_A_F_3_6_I_G_5_5 + 1*x_A_F_3_6_I_H_5_5 + -1*x_A_F_3_6_E_I_5_5 + -1*x_A_F_3_6_G_I_5_5 + -1*x_A_F_3_6_H_I_5_5 = 0
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: I has labeltranslation
+Sep 22, 2014 6:49:08 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_I_E_6_6 + 1*x_A_F_3_6_I_G_6_6 + 1*x_A_F_3_6_I_F_6_6 + 1*x_A_F_3_6_I_H_6_6 + -1*x_A_F_3_6_E_I_6_6 + -1*x_A_F_3_6_G_I_6_6 + -1*x_A_F_3_6_H_I_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_1_4_A_B_1_1 + 1*x_A_F_1_4_A_C_1_1 + 1*x_A_F_1_4_A_D_1_1 + -1*x_A_F_1_4 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_1_5_A_B_1_1 + 1*x_A_F_1_5_A_C_1_1 + 1*x_A_F_1_5_A_D_1_1 + -1*x_A_F_1_5 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_1_6_A_B_1_1 + 1*x_A_F_1_6_A_C_1_1 + 1*x_A_F_1_6_A_D_1_1 + -1*x_A_F_1_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_2_4_A_B_2_2 + 1*x_A_F_2_4_A_C_2_2 + 1*x_A_F_2_4_A_D_2_2 + -1*x_A_F_2_4 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_2_5_A_B_2_2 + 1*x_A_F_2_5_A_C_2_2 + 1*x_A_F_2_5_A_D_2_2 + -1*x_A_F_2_5 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_2_6_A_B_2_2 + 1*x_A_F_2_6_A_C_2_2 + 1*x_A_F_2_6_A_D_2_2 + -1*x_A_F_2_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_3_4_A_B_3_3 + 1*x_A_F_3_4_A_C_3_3 + 1*x_A_F_3_4_A_D_3_3 + -1*x_A_F_3_4 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_3_5_A_B_3_3 + 1*x_A_F_3_5_A_C_3_3 + 1*x_A_F_3_5_A_D_3_3 + -1*x_A_F_3_5 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$SourceNode add
+FINE: 1*x_A_F_3_6_A_B_3_3 + 1*x_A_F_3_6_A_C_3_3 + 1*x_A_F_3_6_A_D_3_3 + -1*x_A_F_3_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_1_4_D_B_1_1 + 1*x_A_F_1_4_D_B_2_2 + 1*x_A_F_1_4_D_B_3_3 + 1*x_A_F_1_4_D_C_1_1 + 1*x_A_F_1_4_D_C_2_2 + 1*x_A_F_1_4_D_C_3_3 + 1*x_A_F_1_4_D_E_4_4 + 1*x_A_F_1_4_D_E_5_5 + 1*x_A_F_1_4_D_E_6_6 + 1*x_A_F_1_4_D_G_4_4 + 1*x_A_F_1_4_D_G_5_5 + 1*x_A_F_1_4_D_G_6_6 + -1*x_A_F_1_4_B_D_1_1 + -1*x_A_F_1_4_B_D_2_2 + -1*x_A_F_1_4_B_D_3_3 + -1*x_A_F_1_4_A_D_1_1 + -1*x_A_F_1_4_C_D_1_1 + -1*x_A_F_1_4_C_D_2_2 + -1*x_A_F_1_4_C_D_3_3 + -1*x_A_F_1_4_E_D_4_4 + -1*x_A_F_1_4_E_D_5_5 + -1*x_A_F_1_4_E_D_6_6 + -1*x_A_F_1_4_G_D_4_4 + -1*x_A_F_1_4_G_D_5_5 + -1*x_A_F_1_4_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_1_5_D_B_1_1 + 1*x_A_F_1_5_D_B_2_2 + 1*x_A_F_1_5_D_B_3_3 + 1*x_A_F_1_5_D_C_1_1 + 1*x_A_F_1_5_D_C_2_2 + 1*x_A_F_1_5_D_C_3_3 + 1*x_A_F_1_5_D_E_4_4 + 1*x_A_F_1_5_D_E_5_5 + 1*x_A_F_1_5_D_E_6_6 + 1*x_A_F_1_5_D_G_4_4 + 1*x_A_F_1_5_D_G_5_5 + 1*x_A_F_1_5_D_G_6_6 + -1*x_A_F_1_5_B_D_1_1 + -1*x_A_F_1_5_B_D_2_2 + -1*x_A_F_1_5_B_D_3_3 + -1*x_A_F_1_5_A_D_1_1 + -1*x_A_F_1_5_C_D_1_1 + -1*x_A_F_1_5_C_D_2_2 + -1*x_A_F_1_5_C_D_3_3 + -1*x_A_F_1_5_E_D_4_4 + -1*x_A_F_1_5_E_D_5_5 + -1*x_A_F_1_5_E_D_6_6 + -1*x_A_F_1_5_G_D_4_4 + -1*x_A_F_1_5_G_D_5_5 + -1*x_A_F_1_5_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_1_6_D_B_1_1 + 1*x_A_F_1_6_D_B_2_2 + 1*x_A_F_1_6_D_B_3_3 + 1*x_A_F_1_6_D_C_1_1 + 1*x_A_F_1_6_D_C_2_2 + 1*x_A_F_1_6_D_C_3_3 + 1*x_A_F_1_6_D_E_4_4 + 1*x_A_F_1_6_D_E_5_5 + 1*x_A_F_1_6_D_E_6_6 + 1*x_A_F_1_6_D_G_4_4 + 1*x_A_F_1_6_D_G_5_5 + 1*x_A_F_1_6_D_G_6_6 + -1*x_A_F_1_6_B_D_1_1 + -1*x_A_F_1_6_B_D_2_2 + -1*x_A_F_1_6_B_D_3_3 + -1*x_A_F_1_6_A_D_1_1 + -1*x_A_F_1_6_C_D_1_1 + -1*x_A_F_1_6_C_D_2_2 + -1*x_A_F_1_6_C_D_3_3 + -1*x_A_F_1_6_E_D_4_4 + -1*x_A_F_1_6_E_D_5_5 + -1*x_A_F_1_6_E_D_6_6 + -1*x_A_F_1_6_G_D_4_4 + -1*x_A_F_1_6_G_D_5_5 + -1*x_A_F_1_6_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_2_4_D_B_1_1 + 1*x_A_F_2_4_D_B_2_2 + 1*x_A_F_2_4_D_B_3_3 + 1*x_A_F_2_4_D_C_1_1 + 1*x_A_F_2_4_D_C_2_2 + 1*x_A_F_2_4_D_C_3_3 + 1*x_A_F_2_4_D_E_4_4 + 1*x_A_F_2_4_D_E_5_5 + 1*x_A_F_2_4_D_E_6_6 + 1*x_A_F_2_4_D_G_4_4 + 1*x_A_F_2_4_D_G_5_5 + 1*x_A_F_2_4_D_G_6_6 + -1*x_A_F_2_4_B_D_1_1 + -1*x_A_F_2_4_B_D_2_2 + -1*x_A_F_2_4_B_D_3_3 + -1*x_A_F_2_4_A_D_2_2 + -1*x_A_F_2_4_C_D_1_1 + -1*x_A_F_2_4_C_D_2_2 + -1*x_A_F_2_4_C_D_3_3 + -1*x_A_F_2_4_E_D_4_4 + -1*x_A_F_2_4_E_D_5_5 + -1*x_A_F_2_4_E_D_6_6 + -1*x_A_F_2_4_G_D_4_4 + -1*x_A_F_2_4_G_D_5_5 + -1*x_A_F_2_4_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_2_5_D_B_1_1 + 1*x_A_F_2_5_D_B_2_2 + 1*x_A_F_2_5_D_B_3_3 + 1*x_A_F_2_5_D_C_1_1 + 1*x_A_F_2_5_D_C_2_2 + 1*x_A_F_2_5_D_C_3_3 + 1*x_A_F_2_5_D_E_4_4 + 1*x_A_F_2_5_D_E_5_5 + 1*x_A_F_2_5_D_E_6_6 + 1*x_A_F_2_5_D_G_4_4 + 1*x_A_F_2_5_D_G_5_5 + 1*x_A_F_2_5_D_G_6_6 + -1*x_A_F_2_5_B_D_1_1 + -1*x_A_F_2_5_B_D_2_2 + -1*x_A_F_2_5_B_D_3_3 + -1*x_A_F_2_5_A_D_2_2 + -1*x_A_F_2_5_C_D_1_1 + -1*x_A_F_2_5_C_D_2_2 + -1*x_A_F_2_5_C_D_3_3 + -1*x_A_F_2_5_E_D_4_4 + -1*x_A_F_2_5_E_D_5_5 + -1*x_A_F_2_5_E_D_6_6 + -1*x_A_F_2_5_G_D_4_4 + -1*x_A_F_2_5_G_D_5_5 + -1*x_A_F_2_5_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_2_6_D_B_1_1 + 1*x_A_F_2_6_D_B_2_2 + 1*x_A_F_2_6_D_B_3_3 + 1*x_A_F_2_6_D_C_1_1 + 1*x_A_F_2_6_D_C_2_2 + 1*x_A_F_2_6_D_C_3_3 + 1*x_A_F_2_6_D_E_4_4 + 1*x_A_F_2_6_D_E_5_5 + 1*x_A_F_2_6_D_E_6_6 + 1*x_A_F_2_6_D_G_4_4 + 1*x_A_F_2_6_D_G_5_5 + 1*x_A_F_2_6_D_G_6_6 + -1*x_A_F_2_6_B_D_1_1 + -1*x_A_F_2_6_B_D_2_2 + -1*x_A_F_2_6_B_D_3_3 + -1*x_A_F_2_6_A_D_2_2 + -1*x_A_F_2_6_C_D_1_1 + -1*x_A_F_2_6_C_D_2_2 + -1*x_A_F_2_6_C_D_3_3 + -1*x_A_F_2_6_E_D_4_4 + -1*x_A_F_2_6_E_D_5_5 + -1*x_A_F_2_6_E_D_6_6 + -1*x_A_F_2_6_G_D_4_4 + -1*x_A_F_2_6_G_D_5_5 + -1*x_A_F_2_6_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_3_4_D_B_1_1 + 1*x_A_F_3_4_D_B_2_2 + 1*x_A_F_3_4_D_B_3_3 + 1*x_A_F_3_4_D_C_1_1 + 1*x_A_F_3_4_D_C_2_2 + 1*x_A_F_3_4_D_C_3_3 + 1*x_A_F_3_4_D_E_4_4 + 1*x_A_F_3_4_D_E_5_5 + 1*x_A_F_3_4_D_E_6_6 + 1*x_A_F_3_4_D_G_4_4 + 1*x_A_F_3_4_D_G_5_5 + 1*x_A_F_3_4_D_G_6_6 + -1*x_A_F_3_4_B_D_1_1 + -1*x_A_F_3_4_B_D_2_2 + -1*x_A_F_3_4_B_D_3_3 + -1*x_A_F_3_4_A_D_3_3 + -1*x_A_F_3_4_C_D_1_1 + -1*x_A_F_3_4_C_D_2_2 + -1*x_A_F_3_4_C_D_3_3 + -1*x_A_F_3_4_E_D_4_4 + -1*x_A_F_3_4_E_D_5_5 + -1*x_A_F_3_4_E_D_6_6 + -1*x_A_F_3_4_G_D_4_4 + -1*x_A_F_3_4_G_D_5_5 + -1*x_A_F_3_4_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_3_5_D_B_1_1 + 1*x_A_F_3_5_D_B_2_2 + 1*x_A_F_3_5_D_B_3_3 + 1*x_A_F_3_5_D_C_1_1 + 1*x_A_F_3_5_D_C_2_2 + 1*x_A_F_3_5_D_C_3_3 + 1*x_A_F_3_5_D_E_4_4 + 1*x_A_F_3_5_D_E_5_5 + 1*x_A_F_3_5_D_E_6_6 + 1*x_A_F_3_5_D_G_4_4 + 1*x_A_F_3_5_D_G_5_5 + 1*x_A_F_3_5_D_G_6_6 + -1*x_A_F_3_5_B_D_1_1 + -1*x_A_F_3_5_B_D_2_2 + -1*x_A_F_3_5_B_D_3_3 + -1*x_A_F_3_5_A_D_3_3 + -1*x_A_F_3_5_C_D_1_1 + -1*x_A_F_3_5_C_D_2_2 + -1*x_A_F_3_5_C_D_3_3 + -1*x_A_F_3_5_E_D_4_4 + -1*x_A_F_3_5_E_D_5_5 + -1*x_A_F_3_5_E_D_6_6 + -1*x_A_F_3_5_G_D_4_4 + -1*x_A_F_3_5_G_D_5_5 + -1*x_A_F_3_5_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: D has No labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeWithLabelTran add
+FINE: 1*x_A_F_3_6_D_B_1_1 + 1*x_A_F_3_6_D_B_2_2 + 1*x_A_F_3_6_D_B_3_3 + 1*x_A_F_3_6_D_C_1_1 + 1*x_A_F_3_6_D_C_2_2 + 1*x_A_F_3_6_D_C_3_3 + 1*x_A_F_3_6_D_E_4_4 + 1*x_A_F_3_6_D_E_5_5 + 1*x_A_F_3_6_D_E_6_6 + 1*x_A_F_3_6_D_G_4_4 + 1*x_A_F_3_6_D_G_5_5 + 1*x_A_F_3_6_D_G_6_6 + -1*x_A_F_3_6_B_D_1_1 + -1*x_A_F_3_6_B_D_2_2 + -1*x_A_F_3_6_B_D_3_3 + -1*x_A_F_3_6_A_D_3_3 + -1*x_A_F_3_6_C_D_1_1 + -1*x_A_F_3_6_C_D_2_2 + -1*x_A_F_3_6_C_D_3_3 + -1*x_A_F_3_6_E_D_4_4 + -1*x_A_F_3_6_E_D_5_5 + -1*x_A_F_3_6_E_D_6_6 + -1*x_A_F_3_6_G_D_4_4 + -1*x_A_F_3_6_G_D_5_5 + -1*x_A_F_3_6_G_D_6_6 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_C_D_1_1 + -1*x_A_F_1_4_A_C_1_1 + -1*x_A_F_1_4_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_C_D_2_2 + -1*x_A_F_1_4_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_4_C_D_3_3 + -1*x_A_F_1_4_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_C_D_1_1 + -1*x_A_F_1_5_A_C_1_1 + -1*x_A_F_1_5_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_C_D_2_2 + -1*x_A_F_1_5_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_5_C_D_3_3 + -1*x_A_F_1_5_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_C_D_1_1 + -1*x_A_F_1_6_A_C_1_1 + -1*x_A_F_1_6_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_C_D_2_2 + -1*x_A_F_1_6_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_1_6_C_D_3_3 + -1*x_A_F_1_6_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_C_D_1_1 + -1*x_A_F_2_4_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_C_D_2_2 + -1*x_A_F_2_4_A_C_2_2 + -1*x_A_F_2_4_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_4_C_D_3_3 + -1*x_A_F_2_4_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_C_D_1_1 + -1*x_A_F_2_5_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_C_D_2_2 + -1*x_A_F_2_5_A_C_2_2 + -1*x_A_F_2_5_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_5_C_D_3_3 + -1*x_A_F_2_5_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_C_D_1_1 + -1*x_A_F_2_6_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_C_D_2_2 + -1*x_A_F_2_6_A_C_2_2 + -1*x_A_F_2_6_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_2_6_C_D_3_3 + -1*x_A_F_2_6_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_C_D_1_1 + -1*x_A_F_3_4_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_C_D_2_2 + -1*x_A_F_3_4_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_4_C_D_3_3 + -1*x_A_F_3_4_A_C_3_3 + -1*x_A_F_3_4_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_C_D_1_1 + -1*x_A_F_3_5_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_C_D_2_2 + -1*x_A_F_3_5_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_5_C_D_3_3 + -1*x_A_F_3_5_A_C_3_3 + -1*x_A_F_3_5_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_C_D_1_1 + -1*x_A_F_3_6_D_C_1_1 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_C_D_2_2 + -1*x_A_F_3_6_D_C_2_2 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: C has labeltranslation
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.SSSDFlowProblem$IntermediateNodeNoLabelTran add
+FINE: 1*x_A_F_3_6_C_D_3_3 + -1*x_A_F_3_6_A_C_3_3 + -1*x_A_F_3_6_D_C_3_3 = 0
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.LpSolver main
+INFO: setting objective function
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.LpSolver main
+INFO: number of variables is: 1080
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.LpProblem setObjective
+INFO: Min: 1*x_A_F_1_4_A_B_1_1 + 1*x_A_F_1_4_A_C_1_1 + 1*x_A_F_1_4_D_B_1_1 + 1*x_A_F_1_4_D_B_2_2 + 1*x_A_F_1_4_D_B_3_3 + 1*x_A_F_1_4_B_D_1_1 + 1*x_A_F_1_4_B_D_2_2 + 1*x_A_F_1_4_B_D_3_3 + 1*x_A_F_1_4_A_D_1_1 + 1*x_A_F_1_4_C_D_1_1 + 1*x_A_F_1_4_C_D_2_2 + 1*x_A_F_1_4_C_D_3_3 + 1*x_A_F_1_4_D_C_1_1 + 1*x_A_F_1_4_D_C_2_2 + 1*x_A_F_1_4_D_C_3_3 + 1*x_A_F_1_4_D_E_4_4 + 1*x_A_F_1_4_D_E_5_5 + 1*x_A_F_1_4_D_E_6_6 + 1*x_A_F_1_4_E_D_4_4 + 1*x_A_F_1_4_E_D_5_5 + 1*x_A_F_1_4_E_D_6_6 + 1*x_A_F_1_4_G_E_4_4 + 1*x_A_F_1_4_G_E_5_5 + 1*x_A_F_1_4_G_E_6_6 + 1*x_A_F_1_4_E_G_4_4 + 1*x_A_F_1_4_E_G_5_5 + 1*x_A_F_1_4_E_G_6_6 + 1*x_A_F_1_4_D_G_4_4 + 1*x_A_F_1_4_D_G_5_5 + 1*x_A_F_1_4_D_G_6_6 + 1*x_A_F_1_4_G_D_4_4 + 1*x_A_F_1_4_G_D_5_5 + 1*x_A_F_1_4_G_D_6_6 + 1*x_A_F_1_4_I_E_4_4 + 1*x_A_F_1_4_I_E_5_5 + 1*x_A_F_1_4_I_E_6_6 + 1*x_A_F_1_4_H_F_4_4 + 1*x_A_F_1_4_E_I_4_4 + 1*x_A_F_1_4_E_I_5_5 + 1*x_A_F_1_4_E_I_6_6 + 1*x_A_F_1_4_H_E_4_4 + 1*x_A_F_1_4_H_E_5_5 + 1*x_A_F_1_4_H_E_6_6 + 1*x_A_F_1_4_E_H_4_4 + 1*x_A_F_1_4_E_H_5_5 + 1*x_A_F_1_4_E_H_6_6 + 1*x_A_F_1_4_G_F_4_4 + 1*x_A_F_1_4_I_G_4_4 + 1*x_A_F_1_4_I_G_5_5 + 1*x_A_F_1_4_I_G_6_6 + 1*x_A_F_1_4_G_I_4_4 + 1*x_A_F_1_4_G_I_5_5 + 1*x_A_F_1_4_G_I_6_6 + 1*x_A_F_1_4_I_F_4_4 + 1*x_A_F_1_4_I_H_4_4 + 1*x_A_F_1_4_I_H_5_5 + 1*x_A_F_1_4_I_H_6_6 + 1*x_A_F_1_4_H_I_4_4 + 1*x_A_F_1_4_H_I_5_5 + 1*x_A_F_1_4_H_I_6_6 + 1*x_A_F_1_5_A_B_1_1 + 1*x_A_F_1_5_A_C_1_1 + 1*x_A_F_1_5_D_B_1_1 + 1*x_A_F_1_5_D_B_2_2 + 1*x_A_F_1_5_D_B_3_3 + 1*x_A_F_1_5_B_D_1_1 + 1*x_A_F_1_5_B_D_2_2 + 1*x_A_F_1_5_B_D_3_3 + 1*x_A_F_1_5_A_D_1_1 + 1*x_A_F_1_5_C_D_1_1 + 1*x_A_F_1_5_C_D_2_2 + 1*x_A_F_1_5_C_D_3_3 + 1*x_A_F_1_5_D_C_1_1 + 1*x_A_F_1_5_D_C_2_2 + 1*x_A_F_1_5_D_C_3_3 + 1*x_A_F_1_5_D_E_4_4 + 1*x_A_F_1_5_D_E_5_5 + 1*x_A_F_1_5_D_E_6_6 + 1*x_A_F_1_5_E_D_4_4 + 1*x_A_F_1_5_E_D_5_5 + 1*x_A_F_1_5_E_D_6_6 + 1*x_A_F_1_5_G_E_4_4 + 1*x_A_F_1_5_G_E_5_5 + 1*x_A_F_1_5_G_E_6_6 + 1*x_A_F_1_5_E_G_4_4 + 1*x_A_F_1_5_E_G_5_5 + 1*x_A_F_1_5_E_G_6_6 + 1*x_A_F_1_5_D_G_4_4 + 1*x_A_F_1_5_D_G_5_5 + 1*x_A_F_1_5_D_G_6_6 + 1*x_A_F_1_5_G_D_4_4 + 1*x_A_F_1_5_G_D_5_5 + 1*x_A_F_1_5_G_D_6_6 + 1*x_A_F_1_5_I_E_4_4 + 1*x_A_F_1_5_I_E_5_5 + 1*x_A_F_1_5_I_E_6_6 + 1*x_A_F_1_5_H_F_5_5 + 1*x_A_F_1_5_E_I_4_4 + 1*x_A_F_1_5_E_I_5_5 + 1*x_A_F_1_5_E_I_6_6 + 1*x_A_F_1_5_H_E_4_4 + 1*x_A_F_1_5_H_E_5_5 + 1*x_A_F_1_5_H_E_6_6 + 1*x_A_F_1_5_E_H_4_4 + 1*x_A_F_1_5_E_H_5_5 + 1*x_A_F_1_5_E_H_6_6 + 1*x_A_F_1_5_G_F_5_5 + 1*x_A_F_1_5_I_G_4_4 + 1*x_A_F_1_5_I_G_5_5 + 1*x_A_F_1_5_I_G_6_6 + 1*x_A_F_1_5_G_I_4_4 + 1*x_A_F_1_5_G_I_5_5 + 1*x_A_F_1_5_G_I_6_6 + 1*x_A_F_1_5_I_F_5_5 + 1*x_A_F_1_5_I_H_4_4 + 1*x_A_F_1_5_I_H_5_5 + 1*x_A_F_1_5_I_H_6_6 + 1*x_A_F_1_5_H_I_4_4 + 1*x_A_F_1_5_H_I_5_5 + 1*x_A_F_1_5_H_I_6_6 + 1*x_A_F_1_6_A_B_1_1 + 1*x_A_F_1_6_A_C_1_1 + 1*x_A_F_1_6_D_B_1_1 + 1*x_A_F_1_6_D_B_2_2 + 1*x_A_F_1_6_D_B_3_3 + 1*x_A_F_1_6_B_D_1_1 + 1*x_A_F_1_6_B_D_2_2 + 1*x_A_F_1_6_B_D_3_3 + 1*x_A_F_1_6_A_D_1_1 + 1*x_A_F_1_6_C_D_1_1 + 1*x_A_F_1_6_C_D_2_2 + 1*x_A_F_1_6_C_D_3_3 + 1*x_A_F_1_6_D_C_1_1 + 1*x_A_F_1_6_D_C_2_2 + 1*x_A_F_1_6_D_C_3_3 + 1*x_A_F_1_6_D_E_4_4 + 1*x_A_F_1_6_D_E_5_5 + 1*x_A_F_1_6_D_E_6_6 + 1*x_A_F_1_6_E_D_4_4 + 1*x_A_F_1_6_E_D_5_5 + 1*x_A_F_1_6_E_D_6_6 + 1*x_A_F_1_6_G_E_4_4 + 1*x_A_F_1_6_G_E_5_5 + 1*x_A_F_1_6_G_E_6_6 + 1*x_A_F_1_6_E_G_4_4 + 1*x_A_F_1_6_E_G_5_5 + 1*x_A_F_1_6_E_G_6_6 + 1*x_A_F_1_6_D_G_4_4 + 1*x_A_F_1_6_D_G_5_5 + 1*x_A_F_1_6_D_G_6_6 + 1*x_A_F_1_6_G_D_4_4 + 1*x_A_F_1_6_G_D_5_5 + 1*x_A_F_1_6_G_D_6_6 + 1*x_A_F_1_6_I_E_4_4 + 1*x_A_F_1_6_I_E_5_5 + 1*x_A_F_1_6_I_E_6_6 + 1*x_A_F_1_6_H_F_6_6 + 1*x_A_F_1_6_E_I_4_4 + 1*x_A_F_1_6_E_I_5_5 + 1*x_A_F_1_6_E_I_6_6 + 1*x_A_F_1_6_H_E_4_4 + 1*x_A_F_1_6_H_E_5_5 + 1*x_A_F_1_6_H_E_6_6 + 1*x_A_F_1_6_E_H_4_4 + 1*x_A_F_1_6_E_H_5_5 + 1*x_A_F_1_6_E_H_6_6 + 1*x_A_F_1_6_G_F_6_6 + 1*x_A_F_1_6_I_G_4_4 + 1*x_A_F_1_6_I_G_5_5 + 1*x_A_F_1_6_I_G_6_6 + 1*x_A_F_1_6_G_I_4_4 + 1*x_A_F_1_6_G_I_5_5 + 1*x_A_F_1_6_G_I_6_6 + 1*x_A_F_1_6_I_F_6_6 + 1*x_A_F_1_6_I_H_4_4 + 1*x_A_F_1_6_I_H_5_5 + 1*x_A_F_1_6_I_H_6_6 + 1*x_A_F_1_6_H_I_4_4 + 1*x_A_F_1_6_H_I_5_5 + 1*x_A_F_1_6_H_I_6_6 + 1*x_A_F_2_4_A_B_2_2 + 1*x_A_F_2_4_A_C_2_2 + 1*x_A_F_2_4_D_B_1_1 + 1*x_A_F_2_4_D_B_2_2 + 1*x_A_F_2_4_D_B_3_3 + 1*x_A_F_2_4_B_D_1_1 + 1*x_A_F_2_4_B_D_2_2 + 1*x_A_F_2_4_B_D_3_3 + 1*x_A_F_2_4_A_D_2_2 + 1*x_A_F_2_4_C_D_1_1 + 1*x_A_F_2_4_C_D_2_2 + 1*x_A_F_2_4_C_D_3_3 + 1*x_A_F_2_4_D_C_1_1 + 1*x_A_F_2_4_D_C_2_2 + 1*x_A_F_2_4_D_C_3_3 + 1*x_A_F_2_4_D_E_4_4 + 1*x_A_F_2_4_D_E_5_5 + 1*x_A_F_2_4_D_E_6_6 + 1*x_A_F_2_4_E_D_4_4 + 1*x_A_F_2_4_E_D_5_5 + 1*x_A_F_2_4_E_D_6_6 + 1*x_A_F_2_4_G_E_4_4 + 1*x_A_F_2_4_G_E_5_5 + 1*x_A_F_2_4_G_E_6_6 + 1*x_A_F_2_4_E_G_4_4 + 1*x_A_F_2_4_E_G_5_5 + 1*x_A_F_2_4_E_G_6_6 + 1*x_A_F_2_4_D_G_4_4 + 1*x_A_F_2_4_D_G_5_5 + 1*x_A_F_2_4_D_G_6_6 + 1*x_A_F_2_4_G_D_4_4 + 1*x_A_F_2_4_G_D_5_5 + 1*x_A_F_2_4_G_D_6_6 + 1*x_A_F_2_4_I_E_4_4 + 1*x_A_F_2_4_I_E_5_5 + 1*x_A_F_2_4_I_E_6_6 + 1*x_A_F_2_4_H_F_4_4 + 1*x_A_F_2_4_E_I_4_4 + 1*x_A_F_2_4_E_I_5_5 + 1*x_A_F_2_4_E_I_6_6 + 1*x_A_F_2_4_H_E_4_4 + 1*x_A_F_2_4_H_E_5_5 + 1*x_A_F_2_4_H_E_6_6 + 1*x_A_F_2_4_E_H_4_4 + 1*x_A_F_2_4_E_H_5_5 + 1*x_A_F_2_4_E_H_6_6 + 1*x_A_F_2_4_G_F_4_4 + 1*x_A_F_2_4_I_G_4_4 + 1*x_A_F_2_4_I_G_5_5 + 1*x_A_F_2_4_I_G_6_6 + 1*x_A_F_2_4_G_I_4_4 + 1*x_A_F_2_4_G_I_5_5 + 1*x_A_F_2_4_G_I_6_6 + 1*x_A_F_2_4_I_F_4_4 + 1*x_A_F_2_4_I_H_4_4 + 1*x_A_F_2_4_I_H_5_5 + 1*x_A_F_2_4_I_H_6_6 + 1*x_A_F_2_4_H_I_4_4 + 1*x_A_F_2_4_H_I_5_5 + 1*x_A_F_2_4_H_I_6_6 + 1*x_A_F_2_5_A_B_2_2 + 1*x_A_F_2_5_A_C_2_2 + 1*x_A_F_2_5_D_B_1_1 + 1*x_A_F_2_5_D_B_2_2 + 1*x_A_F_2_5_D_B_3_3 + 1*x_A_F_2_5_B_D_1_1 + 1*x_A_F_2_5_B_D_2_2 + 1*x_A_F_2_5_B_D_3_3 + 1*x_A_F_2_5_A_D_2_2 + 1*x_A_F_2_5_C_D_1_1 + 1*x_A_F_2_5_C_D_2_2 + 1*x_A_F_2_5_C_D_3_3 + 1*x_A_F_2_5_D_C_1_1 + 1*x_A_F_2_5_D_C_2_2 + 1*x_A_F_2_5_D_C_3_3 + 1*x_A_F_2_5_D_E_4_4 + 1*x_A_F_2_5_D_E_5_5 + 1*x_A_F_2_5_D_E_6_6 + 1*x_A_F_2_5_E_D_4_4 + 1*x_A_F_2_5_E_D_5_5 + 1*x_A_F_2_5_E_D_6_6 + 1*x_A_F_2_5_G_E_4_4 + 1*x_A_F_2_5_G_E_5_5 + 1*x_A_F_2_5_G_E_6_6 + 1*x_A_F_2_5_E_G_4_4 + 1*x_A_F_2_5_E_G_5_5 + 1*x_A_F_2_5_E_G_6_6 + 1*x_A_F_2_5_D_G_4_4 + 1*x_A_F_2_5_D_G_5_5 + 1*x_A_F_2_5_D_G_6_6 + 1*x_A_F_2_5_G_D_4_4 + 1*x_A_F_2_5_G_D_5_5 + 1*x_A_F_2_5_G_D_6_6 + 1*x_A_F_2_5_I_E_4_4 + 1*x_A_F_2_5_I_E_5_5 + 1*x_A_F_2_5_I_E_6_6 + 1*x_A_F_2_5_H_F_5_5 + 1*x_A_F_2_5_E_I_4_4 + 1*x_A_F_2_5_E_I_5_5 + 1*x_A_F_2_5_E_I_6_6 + 1*x_A_F_2_5_H_E_4_4 + 1*x_A_F_2_5_H_E_5_5 + 1*x_A_F_2_5_H_E_6_6 + 1*x_A_F_2_5_E_H_4_4 + 1*x_A_F_2_5_E_H_5_5 + 1*x_A_F_2_5_E_H_6_6 + 1*x_A_F_2_5_G_F_5_5 + 1*x_A_F_2_5_I_G_4_4 + 1*x_A_F_2_5_I_G_5_5 + 1*x_A_F_2_5_I_G_6_6 + 1*x_A_F_2_5_G_I_4_4 + 1*x_A_F_2_5_G_I_5_5 + 1*x_A_F_2_5_G_I_6_6 + 1*x_A_F_2_5_I_F_5_5 + 1*x_A_F_2_5_I_H_4_4 + 1*x_A_F_2_5_I_H_5_5 + 1*x_A_F_2_5_I_H_6_6 + 1*x_A_F_2_5_H_I_4_4 + 1*x_A_F_2_5_H_I_5_5 + 1*x_A_F_2_5_H_I_6_6 + 1*x_A_F_2_6_A_B_2_2 + 1*x_A_F_2_6_A_C_2_2 + 1*x_A_F_2_6_D_B_1_1 + 1*x_A_F_2_6_D_B_2_2 + 1*x_A_F_2_6_D_B_3_3 + 1*x_A_F_2_6_B_D_1_1 + 1*x_A_F_2_6_B_D_2_2 + 1*x_A_F_2_6_B_D_3_3 + 1*x_A_F_2_6_A_D_2_2 + 1*x_A_F_2_6_C_D_1_1 + 1*x_A_F_2_6_C_D_2_2 + 1*x_A_F_2_6_C_D_3_3 + 1*x_A_F_2_6_D_C_1_1 + 1*x_A_F_2_6_D_C_2_2 + 1*x_A_F_2_6_D_C_3_3 + 1*x_A_F_2_6_D_E_4_4 + 1*x_A_F_2_6_D_E_5_5 + 1*x_A_F_2_6_D_E_6_6 + 1*x_A_F_2_6_E_D_4_4 + 1*x_A_F_2_6_E_D_5_5 + 1*x_A_F_2_6_E_D_6_6 + 1*x_A_F_2_6_G_E_4_4 + 1*x_A_F_2_6_G_E_5_5 + 1*x_A_F_2_6_G_E_6_6 + 1*x_A_F_2_6_E_G_4_4 + 1*x_A_F_2_6_E_G_5_5 + 1*x_A_F_2_6_E_G_6_6 + 1*x_A_F_2_6_D_G_4_4 + 1*x_A_F_2_6_D_G_5_5 + 1*x_A_F_2_6_D_G_6_6 + 1*x_A_F_2_6_G_D_4_4 + 1*x_A_F_2_6_G_D_5_5 + 1*x_A_F_2_6_G_D_6_6 + 1*x_A_F_2_6_I_E_4_4 + 1*x_A_F_2_6_I_E_5_5 + 1*x_A_F_2_6_I_E_6_6 + 1*x_A_F_2_6_H_F_6_6 + 1*x_A_F_2_6_E_I_4_4 + 1*x_A_F_2_6_E_I_5_5 + 1*x_A_F_2_6_E_I_6_6 + 1*x_A_F_2_6_H_E_4_4 + 1*x_A_F_2_6_H_E_5_5 + 1*x_A_F_2_6_H_E_6_6 + 1*x_A_F_2_6_E_H_4_4 + 1*x_A_F_2_6_E_H_5_5 + 1*x_A_F_2_6_E_H_6_6 + 1*x_A_F_2_6_G_F_6_6 + 1*x_A_F_2_6_I_G_4_4 + 1*x_A_F_2_6_I_G_5_5 + 1*x_A_F_2_6_I_G_6_6 + 1*x_A_F_2_6_G_I_4_4 + 1*x_A_F_2_6_G_I_5_5 + 1*x_A_F_2_6_G_I_6_6 + 1*x_A_F_2_6_I_F_6_6 + 1*x_A_F_2_6_I_H_4_4 + 1*x_A_F_2_6_I_H_5_5 + 1*x_A_F_2_6_I_H_6_6 + 1*x_A_F_2_6_H_I_4_4 + 1*x_A_F_2_6_H_I_5_5 + 1*x_A_F_2_6_H_I_6_6 + 1*x_A_F_3_4_A_B_3_3 + 1*x_A_F_3_4_A_C_3_3 + 1*x_A_F_3_4_D_B_1_1 + 1*x_A_F_3_4_D_B_2_2 + 1*x_A_F_3_4_D_B_3_3 + 1*x_A_F_3_4_B_D_1_1 + 1*x_A_F_3_4_B_D_2_2 + 1*x_A_F_3_4_B_D_3_3 + 1*x_A_F_3_4_A_D_3_3 + 1*x_A_F_3_4_C_D_1_1 + 1*x_A_F_3_4_C_D_2_2 + 1*x_A_F_3_4_C_D_3_3 + 1*x_A_F_3_4_D_C_1_1 + 1*x_A_F_3_4_D_C_2_2 + 1*x_A_F_3_4_D_C_3_3 + 1*x_A_F_3_4_D_E_4_4 + 1*x_A_F_3_4_D_E_5_5 + 1*x_A_F_3_4_D_E_6_6 + 1*x_A_F_3_4_E_D_4_4 + 1*x_A_F_3_4_E_D_5_5 + 1*x_A_F_3_4_E_D_6_6 + 1*x_A_F_3_4_G_E_4_4 + 1*x_A_F_3_4_G_E_5_5 + 1*x_A_F_3_4_G_E_6_6 + 1*x_A_F_3_4_E_G_4_4 + 1*x_A_F_3_4_E_G_5_5 + 1*x_A_F_3_4_E_G_6_6 + 1*x_A_F_3_4_D_G_4_4 + 1*x_A_F_3_4_D_G_5_5 + 1*x_A_F_3_4_D_G_6_6 + 1*x_A_F_3_4_G_D_4_4 + 1*x_A_F_3_4_G_D_5_5 + 1*x_A_F_3_4_G_D_6_6 + 1*x_A_F_3_4_I_E_4_4 + 1*x_A_F_3_4_I_E_5_5 + 1*x_A_F_3_4_I_E_6_6 + 1*x_A_F_3_4_H_F_4_4 + 1*x_A_F_3_4_E_I_4_4 + 1*x_A_F_3_4_E_I_5_5 + 1*x_A_F_3_4_E_I_6_6 + 1*x_A_F_3_4_H_E_4_4 + 1*x_A_F_3_4_H_E_5_5 + 1*x_A_F_3_4_H_E_6_6 + 1*x_A_F_3_4_E_H_4_4 + 1*x_A_F_3_4_E_H_5_5 + 1*x_A_F_3_4_E_H_6_6 + 1*x_A_F_3_4_G_F_4_4 + 1*x_A_F_3_4_I_G_4_4 + 1*x_A_F_3_4_I_G_5_5 + 1*x_A_F_3_4_I_G_6_6 + 1*x_A_F_3_4_G_I_4_4 + 1*x_A_F_3_4_G_I_5_5 + 1*x_A_F_3_4_G_I_6_6 + 1*x_A_F_3_4_I_F_4_4 + 1*x_A_F_3_4_I_H_4_4 + 1*x_A_F_3_4_I_H_5_5 + 1*x_A_F_3_4_I_H_6_6 + 1*x_A_F_3_4_H_I_4_4 + 1*x_A_F_3_4_H_I_5_5 + 1*x_A_F_3_4_H_I_6_6 + 1*x_A_F_3_5_A_B_3_3 + 1*x_A_F_3_5_A_C_3_3 + 1*x_A_F_3_5_D_B_1_1 + 1*x_A_F_3_5_D_B_2_2 + 1*x_A_F_3_5_D_B_3_3 + 1*x_A_F_3_5_B_D_1_1 + 1*x_A_F_3_5_B_D_2_2 + 1*x_A_F_3_5_B_D_3_3 + 1*x_A_F_3_5_A_D_3_3 + 1*x_A_F_3_5_C_D_1_1 + 1*x_A_F_3_5_C_D_2_2 + 1*x_A_F_3_5_C_D_3_3 + 1*x_A_F_3_5_D_C_1_1 + 1*x_A_F_3_5_D_C_2_2 + 1*x_A_F_3_5_D_C_3_3 + 1*x_A_F_3_5_D_E_4_4 + 1*x_A_F_3_5_D_E_5_5 + 1*x_A_F_3_5_D_E_6_6 + 1*x_A_F_3_5_E_D_4_4 + 1*x_A_F_3_5_E_D_5_5 + 1*x_A_F_3_5_E_D_6_6 + 1*x_A_F_3_5_G_E_4_4 + 1*x_A_F_3_5_G_E_5_5 + 1*x_A_F_3_5_G_E_6_6 + 1*x_A_F_3_5_E_G_4_4 + 1*x_A_F_3_5_E_G_5_5 + 1*x_A_F_3_5_E_G_6_6 + 1*x_A_F_3_5_D_G_4_4 + 1*x_A_F_3_5_D_G_5_5 + 1*x_A_F_3_5_D_G_6_6 + 1*x_A_F_3_5_G_D_4_4 + 1*x_A_F_3_5_G_D_5_5 + 1*x_A_F_3_5_G_D_6_6 + 1*x_A_F_3_5_I_E_4_4 + 1*x_A_F_3_5_I_E_5_5 + 1*x_A_F_3_5_I_E_6_6 + 1*x_A_F_3_5_H_F_5_5 + 1*x_A_F_3_5_E_I_4_4 + 1*x_A_F_3_5_E_I_5_5 + 1*x_A_F_3_5_E_I_6_6 + 1*x_A_F_3_5_H_E_4_4 + 1*x_A_F_3_5_H_E_5_5 + 1*x_A_F_3_5_H_E_6_6 + 1*x_A_F_3_5_E_H_4_4 + 1*x_A_F_3_5_E_H_5_5 + 1*x_A_F_3_5_E_H_6_6 + 1*x_A_F_3_5_G_F_5_5 + 1*x_A_F_3_5_I_G_4_4 + 1*x_A_F_3_5_I_G_5_5 + 1*x_A_F_3_5_I_G_6_6 + 1*x_A_F_3_5_G_I_4_4 + 1*x_A_F_3_5_G_I_5_5 + 1*x_A_F_3_5_G_I_6_6 + 1*x_A_F_3_5_I_F_5_5 + 1*x_A_F_3_5_I_H_4_4 + 1*x_A_F_3_5_I_H_5_5 + 1*x_A_F_3_5_I_H_6_6 + 1*x_A_F_3_5_H_I_4_4 + 1*x_A_F_3_5_H_I_5_5 + 1*x_A_F_3_5_H_I_6_6 + 1*x_A_F_3_6_A_B_3_3 + 1*x_A_F_3_6_A_C_3_3 + 1*x_A_F_3_6_D_B_1_1 + 1*x_A_F_3_6_D_B_2_2 + 1*x_A_F_3_6_D_B_3_3 + 1*x_A_F_3_6_B_D_1_1 + 1*x_A_F_3_6_B_D_2_2 + 1*x_A_F_3_6_B_D_3_3 + 1*x_A_F_3_6_A_D_3_3 + 1*x_A_F_3_6_C_D_1_1 + 1*x_A_F_3_6_C_D_2_2 + 1*x_A_F_3_6_C_D_3_3 + 1*x_A_F_3_6_D_C_1_1 + 1*x_A_F_3_6_D_C_2_2 + 1*x_A_F_3_6_D_C_3_3 + 1*x_A_F_3_6_D_E_4_4 + 1*x_A_F_3_6_D_E_5_5 + 1*x_A_F_3_6_D_E_6_6 + 1*x_A_F_3_6_E_D_4_4 + 1*x_A_F_3_6_E_D_5_5 + 1*x_A_F_3_6_E_D_6_6 + 1*x_A_F_3_6_G_E_4_4 + 1*x_A_F_3_6_G_E_5_5 + 1*x_A_F_3_6_G_E_6_6 + 1*x_A_F_3_6_E_G_4_4 + 1*x_A_F_3_6_E_G_5_5 + 1*x_A_F_3_6_E_G_6_6 + 1*x_A_F_3_6_D_G_4_4 + 1*x_A_F_3_6_D_G_5_5 + 1*x_A_F_3_6_D_G_6_6 + 1*x_A_F_3_6_G_D_4_4 + 1*x_A_F_3_6_G_D_5_5 + 1*x_A_F_3_6_G_D_6_6 + 1*x_A_F_3_6_I_E_4_4 + 1*x_A_F_3_6_I_E_5_5 + 1*x_A_F_3_6_I_E_6_6 + 1*x_A_F_3_6_H_F_6_6 + 1*x_A_F_3_6_E_I_4_4 + 1*x_A_F_3_6_E_I_5_5 + 1*x_A_F_3_6_E_I_6_6 + 1*x_A_F_3_6_H_E_4_4 + 1*x_A_F_3_6_H_E_5_5 + 1*x_A_F_3_6_H_E_6_6 + 1*x_A_F_3_6_E_H_4_4 + 1*x_A_F_3_6_E_H_5_5 + 1*x_A_F_3_6_E_H_6_6 + 1*x_A_F_3_6_G_F_6_6 + 1*x_A_F_3_6_I_G_4_4 + 1*x_A_F_3_6_I_G_5_5 + 1*x_A_F_3_6_I_G_6_6 + 1*x_A_F_3_6_G_I_4_4 + 1*x_A_F_3_6_G_I_5_5 + 1*x_A_F_3_6_G_I_6_6 + 1*x_A_F_3_6_I_F_6_6 + 1*x_A_F_3_6_I_H_4_4 + 1*x_A_F_3_6_I_H_5_5 + 1*x_A_F_3_6_I_H_6_6 + 1*x_A_F_3_6_H_I_4_4 + 1*x_A_F_3_6_H_I_5_5 + 1*x_A_F_3_6_H_I_6_6 + 1*x_F_A_4_1_C_A_1_1 + 1*x_F_A_4_1_B_A_1_1 + 1*x_F_A_4_1_D_B_1_1 + 1*x_F_A_4_1_D_B_2_2 + 1*x_F_A_4_1_D_B_3_3 + 1*x_F_A_4_1_B_D_1_1 + 1*x_F_A_4_1_B_D_2_2 + 1*x_F_A_4_1_B_D_3_3 + 1*x_F_A_4_1_D_A_1_1 + 1*x_F_A_4_1_C_D_1_1 + 1*x_F_A_4_1_C_D_2_2 + 1*x_F_A_4_1_C_D_3_3 + 1*x_F_A_4_1_D_C_1_1 + 1*x_F_A_4_1_D_C_2_2 + 1*x_F_A_4_1_D_C_3_3 + 1*x_F_A_4_1_D_E_4_4 + 1*x_F_A_4_1_D_E_5_5 + 1*x_F_A_4_1_D_E_6_6 + 1*x_F_A_4_1_E_D_4_4 + 1*x_F_A_4_1_E_D_5_5 + 1*x_F_A_4_1_E_D_6_6 + 1*x_F_A_4_1_G_E_4_4 + 1*x_F_A_4_1_G_E_5_5 + 1*x_F_A_4_1_G_E_6_6 + 1*x_F_A_4_1_E_G_4_4 + 1*x_F_A_4_1_E_G_5_5 + 1*x_F_A_4_1_E_G_6_6 + 1*x_F_A_4_1_D_G_4_4 + 1*x_F_A_4_1_D_G_5_5 + 1*x_F_A_4_1_D_G_6_6 + 1*x_F_A_4_1_G_D_4_4 + 1*x_F_A_4_1_G_D_5_5 + 1*x_F_A_4_1_G_D_6_6 + 1*x_F_A_4_1_I_E_4_4 + 1*x_F_A_4_1_I_E_5_5 + 1*x_F_A_4_1_I_E_6_6 + 1*x_F_A_4_1_F_H_4_4 + 1*x_F_A_4_1_E_I_4_4 + 1*x_F_A_4_1_E_I_5_5 + 1*x_F_A_4_1_E_I_6_6 + 1*x_F_A_4_1_H_E_4_4 + 1*x_F_A_4_1_H_E_5_5 + 1*x_F_A_4_1_H_E_6_6 + 1*x_F_A_4_1_F_G_4_4 + 1*x_F_A_4_1_E_H_4_4 + 1*x_F_A_4_1_E_H_5_5 + 1*x_F_A_4_1_E_H_6_6 + 1*x_F_A_4_1_I_G_4_4 + 1*x_F_A_4_1_I_G_5_5 + 1*x_F_A_4_1_I_G_6_6 + 1*x_F_A_4_1_G_I_4_4 + 1*x_F_A_4_1_G_I_5_5 + 1*x_F_A_4_1_G_I_6_6 + 1*x_F_A_4_1_F_I_4_4 + 1*x_F_A_4_1_I_H_4_4 + 1*x_F_A_4_1_I_H_5_5 + 1*x_F_A_4_1_I_H_6_6 + 1*x_F_A_4_1_H_I_4_4 + 1*x_F_A_4_1_H_I_5_5 + 1*x_F_A_4_1_H_I_6_6 + 1*x_F_A_4_2_C_A_2_2 + 1*x_F_A_4_2_B_A_2_2 + 1*x_F_A_4_2_D_B_1_1 + 1*x_F_A_4_2_D_B_2_2 + 1*x_F_A_4_2_D_B_3_3 + 1*x_F_A_4_2_B_D_1_1 + 1*x_F_A_4_2_B_D_2_2 + 1*x_F_A_4_2_B_D_3_3 + 1*x_F_A_4_2_D_A_2_2 + 1*x_F_A_4_2_C_D_1_1 + 1*x_F_A_4_2_C_D_2_2 + 1*x_F_A_4_2_C_D_3_3 + 1*x_F_A_4_2_D_C_1_1 + 1*x_F_A_4_2_D_C_2_2 + 1*x_F_A_4_2_D_C_3_3 + 1*x_F_A_4_2_D_E_4_4 + 1*x_F_A_4_2_D_E_5_5 + 1*x_F_A_4_2_D_E_6_6 + 1*x_F_A_4_2_E_D_4_4 + 1*x_F_A_4_2_E_D_5_5 + 1*x_F_A_4_2_E_D_6_6 + 1*x_F_A_4_2_G_E_4_4 + 1*x_F_A_4_2_G_E_5_5 + 1*x_F_A_4_2_G_E_6_6 + 1*x_F_A_4_2_E_G_4_4 + 1*x_F_A_4_2_E_G_5_5 + 1*x_F_A_4_2_E_G_6_6 + 1*x_F_A_4_2_D_G_4_4 + 1*x_F_A_4_2_D_G_5_5 + 1*x_F_A_4_2_D_G_6_6 + 1*x_F_A_4_2_G_D_4_4 + 1*x_F_A_4_2_G_D_5_5 + 1*x_F_A_4_2_G_D_6_6 + 1*x_F_A_4_2_I_E_4_4 + 1*x_F_A_4_2_I_E_5_5 + 1*x_F_A_4_2_I_E_6_6 + 1*x_F_A_4_2_F_H_4_4 + 1*x_F_A_4_2_E_I_4_4 + 1*x_F_A_4_2_E_I_5_5 + 1*x_F_A_4_2_E_I_6_6 + 1*x_F_A_4_2_H_E_4_4 + 1*x_F_A_4_2_H_E_5_5 + 1*x_F_A_4_2_H_E_6_6 + 1*x_F_A_4_2_F_G_4_4 + 1*x_F_A_4_2_E_H_4_4 + 1*x_F_A_4_2_E_H_5_5 + 1*x_F_A_4_2_E_H_6_6 + 1*x_F_A_4_2_I_G_4_4 + 1*x_F_A_4_2_I_G_5_5 + 1*x_F_A_4_2_I_G_6_6 + 1*x_F_A_4_2_G_I_4_4 + 1*x_F_A_4_2_G_I_5_5 + 1*x_F_A_4_2_G_I_6_6 + 1*x_F_A_4_2_F_I_4_4 + 1*x_F_A_4_2_I_H_4_4 + 1*x_F_A_4_2_I_H_5_5 + 1*x_F_A_4_2_I_H_6_6 + 1*x_F_A_4_2_H_I_4_4 + 1*x_F_A_4_2_H_I_5_5 + 1*x_F_A_4_2_H_I_6_6 + 1*x_F_A_4_3_C_A_3_3 + 1*x_F_A_4_3_B_A_3_3 + 1*x_F_A_4_3_D_B_1_1 + 1*x_F_A_4_3_D_B_2_2 + 1*x_F_A_4_3_D_B_3_3 + 1*x_F_A_4_3_B_D_1_1 + 1*x_F_A_4_3_B_D_2_2 + 1*x_F_A_4_3_B_D_3_3 + 1*x_F_A_4_3_D_A_3_3 + 1*x_F_A_4_3_C_D_1_1 + 1*x_F_A_4_3_C_D_2_2 + 1*x_F_A_4_3_C_D_3_3 + 1*x_F_A_4_3_D_C_1_1 + 1*x_F_A_4_3_D_C_2_2 + 1*x_F_A_4_3_D_C_3_3 + 1*x_F_A_4_3_D_E_4_4 + 1*x_F_A_4_3_D_E_5_5 + 1*x_F_A_4_3_D_E_6_6 + 1*x_F_A_4_3_E_D_4_4 + 1*x_F_A_4_3_E_D_5_5 + 1*x_F_A_4_3_E_D_6_6 + 1*x_F_A_4_3_G_E_4_4 + 1*x_F_A_4_3_G_E_5_5 + 1*x_F_A_4_3_G_E_6_6 + 1*x_F_A_4_3_E_G_4_4 + 1*x_F_A_4_3_E_G_5_5 + 1*x_F_A_4_3_E_G_6_6 + 1*x_F_A_4_3_D_G_4_4 + 1*x_F_A_4_3_D_G_5_5 + 1*x_F_A_4_3_D_G_6_6 + 1*x_F_A_4_3_G_D_4_4 + 1*x_F_A_4_3_G_D_5_5 + 1*x_F_A_4_3_G_D_6_6 + 1*x_F_A_4_3_I_E_4_4 + 1*x_F_A_4_3_I_E_5_5 + 1*x_F_A_4_3_I_E_6_6 + 1*x_F_A_4_3_F_H_4_4 + 1*x_F_A_4_3_E_I_4_4 + 1*x_F_A_4_3_E_I_5_5 + 1*x_F_A_4_3_E_I_6_6 + 1*x_F_A_4_3_H_E_4_4 + 1*x_F_A_4_3_H_E_5_5 + 1*x_F_A_4_3_H_E_6_6 + 1*x_F_A_4_3_F_G_4_4 + 1*x_F_A_4_3_E_H_4_4 + 1*x_F_A_4_3_E_H_5_5 + 1*x_F_A_4_3_E_H_6_6 + 1*x_F_A_4_3_I_G_4_4 + 1*x_F_A_4_3_I_G_5_5 + 1*x_F_A_4_3_I_G_6_6 + 1*x_F_A_4_3_G_I_4_4 + 1*x_F_A_4_3_G_I_5_5 + 1*x_F_A_4_3_G_I_6_6 + 1*x_F_A_4_3_F_I_4_4 + 1*x_F_A_4_3_I_H_4_4 + 1*x_F_A_4_3_I_H_5_5 + 1*x_F_A_4_3_I_H_6_6 + 1*x_F_A_4_3_H_I_4_4 + 1*x_F_A_4_3_H_I_5_5 + 1*x_F_A_4_3_H_I_6_6 + 1*x_F_A_5_1_C_A_1_1 + 1*x_F_A_5_1_B_A_1_1 + 1*x_F_A_5_1_D_B_1_1 + 1*x_F_A_5_1_D_B_2_2 + 1*x_F_A_5_1_D_B_3_3 + 1*x_F_A_5_1_B_D_1_1 + 1*x_F_A_5_1_B_D_2_2 + 1*x_F_A_5_1_B_D_3_3 + 1*x_F_A_5_1_D_A_1_1 + 1*x_F_A_5_1_C_D_1_1 + 1*x_F_A_5_1_C_D_2_2 + 1*x_F_A_5_1_C_D_3_3 + 1*x_F_A_5_1_D_C_1_1 + 1*x_F_A_5_1_D_C_2_2 + 1*x_F_A_5_1_D_C_3_3 + 1*x_F_A_5_1_D_E_4_4 + 1*x_F_A_5_1_D_E_5_5 + 1*x_F_A_5_1_D_E_6_6 + 1*x_F_A_5_1_E_D_4_4 + 1*x_F_A_5_1_E_D_5_5 + 1*x_F_A_5_1_E_D_6_6 + 1*x_F_A_5_1_G_E_4_4 + 1*x_F_A_5_1_G_E_5_5 + 1*x_F_A_5_1_G_E_6_6 + 1*x_F_A_5_1_E_G_4_4 + 1*x_F_A_5_1_E_G_5_5 + 1*x_F_A_5_1_E_G_6_6 + 1*x_F_A_5_1_D_G_4_4 + 1*x_F_A_5_1_D_G_5_5 + 1*x_F_A_5_1_D_G_6_6 + 1*x_F_A_5_1_G_D_4_4 + 1*x_F_A_5_1_G_D_5_5 + 1*x_F_A_5_1_G_D_6_6 + 1*x_F_A_5_1_I_E_4_4 + 1*x_F_A_5_1_I_E_5_5 + 1*x_F_A_5_1_I_E_6_6 + 1*x_F_A_5_1_F_H_5_5 + 1*x_F_A_5_1_E_I_4_4 + 1*x_F_A_5_1_E_I_5_5 + 1*x_F_A_5_1_E_I_6_6 + 1*x_F_A_5_1_H_E_4_4 + 1*x_F_A_5_1_H_E_5_5 + 1*x_F_A_5_1_H_E_6_6 + 1*x_F_A_5_1_F_G_5_5 + 1*x_F_A_5_1_E_H_4_4 + 1*x_F_A_5_1_E_H_5_5 + 1*x_F_A_5_1_E_H_6_6 + 1*x_F_A_5_1_I_G_4_4 + 1*x_F_A_5_1_I_G_5_5 + 1*x_F_A_5_1_I_G_6_6 + 1*x_F_A_5_1_G_I_4_4 + 1*x_F_A_5_1_G_I_5_5 + 1*x_F_A_5_1_G_I_6_6 + 1*x_F_A_5_1_F_I_5_5 + 1*x_F_A_5_1_I_H_4_4 + 1*x_F_A_5_1_I_H_5_5 + 1*x_F_A_5_1_I_H_6_6 + 1*x_F_A_5_1_H_I_4_4 + 1*x_F_A_5_1_H_I_5_5 + 1*x_F_A_5_1_H_I_6_6 + 1*x_F_A_5_2_C_A_2_2 + 1*x_F_A_5_2_B_A_2_2 + 1*x_F_A_5_2_D_B_1_1 + 1*x_F_A_5_2_D_B_2_2 + 1*x_F_A_5_2_D_B_3_3 + 1*x_F_A_5_2_B_D_1_1 + 1*x_F_A_5_2_B_D_2_2 + 1*x_F_A_5_2_B_D_3_3 + 1*x_F_A_5_2_D_A_2_2 + 1*x_F_A_5_2_C_D_1_1 + 1*x_F_A_5_2_C_D_2_2 + 1*x_F_A_5_2_C_D_3_3 + 1*x_F_A_5_2_D_C_1_1 + 1*x_F_A_5_2_D_C_2_2 + 1*x_F_A_5_2_D_C_3_3 + 1*x_F_A_5_2_D_E_4_4 + 1*x_F_A_5_2_D_E_5_5 + 1*x_F_A_5_2_D_E_6_6 + 1*x_F_A_5_2_E_D_4_4 + 1*x_F_A_5_2_E_D_5_5 + 1*x_F_A_5_2_E_D_6_6 + 1*x_F_A_5_2_G_E_4_4 + 1*x_F_A_5_2_G_E_5_5 + 1*x_F_A_5_2_G_E_6_6 + 1*x_F_A_5_2_E_G_4_4 + 1*x_F_A_5_2_E_G_5_5 + 1*x_F_A_5_2_E_G_6_6 + 1*x_F_A_5_2_D_G_4_4 + 1*x_F_A_5_2_D_G_5_5 + 1*x_F_A_5_2_D_G_6_6 + 1*x_F_A_5_2_G_D_4_4 + 1*x_F_A_5_2_G_D_5_5 + 1*x_F_A_5_2_G_D_6_6 + 1*x_F_A_5_2_I_E_4_4 + 1*x_F_A_5_2_I_E_5_5 + 1*x_F_A_5_2_I_E_6_6 + 1*x_F_A_5_2_F_H_5_5 + 1*x_F_A_5_2_E_I_4_4 + 1*x_F_A_5_2_E_I_5_5 + 1*x_F_A_5_2_E_I_6_6 + 1*x_F_A_5_2_H_E_4_4 + 1*x_F_A_5_2_H_E_5_5 + 1*x_F_A_5_2_H_E_6_6 + 1*x_F_A_5_2_F_G_5_5 + 1*x_F_A_5_2_E_H_4_4 + 1*x_F_A_5_2_E_H_5_5 + 1*x_F_A_5_2_E_H_6_6 + 1*x_F_A_5_2_I_G_4_4 + 1*x_F_A_5_2_I_G_5_5 + 1*x_F_A_5_2_I_G_6_6 + 1*x_F_A_5_2_G_I_4_4 + 1*x_F_A_5_2_G_I_5_5 + 1*x_F_A_5_2_G_I_6_6 + 1*x_F_A_5_2_F_I_5_5 + 1*x_F_A_5_2_I_H_4_4 + 1*x_F_A_5_2_I_H_5_5 + 1*x_F_A_5_2_I_H_6_6 + 1*x_F_A_5_2_H_I_4_4 + 1*x_F_A_5_2_H_I_5_5 + 1*x_F_A_5_2_H_I_6_6 + 1*x_F_A_5_3_C_A_3_3 + 1*x_F_A_5_3_B_A_3_3 + 1*x_F_A_5_3_D_B_1_1 + 1*x_F_A_5_3_D_B_2_2 + 1*x_F_A_5_3_D_B_3_3 + 1*x_F_A_5_3_B_D_1_1 + 1*x_F_A_5_3_B_D_2_2 + 1*x_F_A_5_3_B_D_3_3 + 1*x_F_A_5_3_D_A_3_3 + 1*x_F_A_5_3_C_D_1_1 + 1*x_F_A_5_3_C_D_2_2 + 1*x_F_A_5_3_C_D_3_3 + 1*x_F_A_5_3_D_C_1_1 + 1*x_F_A_5_3_D_C_2_2 + 1*x_F_A_5_3_D_C_3_3 + 1*x_F_A_5_3_D_E_4_4 + 1*x_F_A_5_3_D_E_5_5 + 1*x_F_A_5_3_D_E_6_6 + 1*x_F_A_5_3_E_D_4_4 + 1*x_F_A_5_3_E_D_5_5 + 1*x_F_A_5_3_E_D_6_6 + 1*x_F_A_5_3_G_E_4_4 + 1*x_F_A_5_3_G_E_5_5 + 1*x_F_A_5_3_G_E_6_6 + 1*x_F_A_5_3_E_G_4_4 + 1*x_F_A_5_3_E_G_5_5 + 1*x_F_A_5_3_E_G_6_6 + 1*x_F_A_5_3_D_G_4_4 + 1*x_F_A_5_3_D_G_5_5 + 1*x_F_A_5_3_D_G_6_6 + 1*x_F_A_5_3_G_D_4_4 + 1*x_F_A_5_3_G_D_5_5 + 1*x_F_A_5_3_G_D_6_6 + 1*x_F_A_5_3_I_E_4_4 + 1*x_F_A_5_3_I_E_5_5 + 1*x_F_A_5_3_I_E_6_6 + 1*x_F_A_5_3_F_H_5_5 + 1*x_F_A_5_3_E_I_4_4 + 1*x_F_A_5_3_E_I_5_5 + 1*x_F_A_5_3_E_I_6_6 + 1*x_F_A_5_3_H_E_4_4 + 1*x_F_A_5_3_H_E_5_5 + 1*x_F_A_5_3_H_E_6_6 + 1*x_F_A_5_3_F_G_5_5 + 1*x_F_A_5_3_E_H_4_4 + 1*x_F_A_5_3_E_H_5_5 + 1*x_F_A_5_3_E_H_6_6 + 1*x_F_A_5_3_I_G_4_4 + 1*x_F_A_5_3_I_G_5_5 + 1*x_F_A_5_3_I_G_6_6 + 1*x_F_A_5_3_G_I_4_4 + 1*x_F_A_5_3_G_I_5_5 + 1*x_F_A_5_3_G_I_6_6 + 1*x_F_A_5_3_F_I_5_5 + 1*x_F_A_5_3_I_H_4_4 + 1*x_F_A_5_3_I_H_5_5 + 1*x_F_A_5_3_I_H_6_6 + 1*x_F_A_5_3_H_I_4_4 + 1*x_F_A_5_3_H_I_5_5 + 1*x_F_A_5_3_H_I_6_6 + 1*x_F_A_6_1_C_A_1_1 + 1*x_F_A_6_1_B_A_1_1 + 1*x_F_A_6_1_D_B_1_1 + 1*x_F_A_6_1_D_B_2_2 + 1*x_F_A_6_1_D_B_3_3 + 1*x_F_A_6_1_B_D_1_1 + 1*x_F_A_6_1_B_D_2_2 + 1*x_F_A_6_1_B_D_3_3 + 1*x_F_A_6_1_D_A_1_1 + 1*x_F_A_6_1_C_D_1_1 + 1*x_F_A_6_1_C_D_2_2 + 1*x_F_A_6_1_C_D_3_3 + 1*x_F_A_6_1_D_C_1_1 + 1*x_F_A_6_1_D_C_2_2 + 1*x_F_A_6_1_D_C_3_3 + 1*x_F_A_6_1_D_E_4_4 + 1*x_F_A_6_1_D_E_5_5 + 1*x_F_A_6_1_D_E_6_6 + 1*x_F_A_6_1_E_D_4_4 + 1*x_F_A_6_1_E_D_5_5 + 1*x_F_A_6_1_E_D_6_6 + 1*x_F_A_6_1_G_E_4_4 + 1*x_F_A_6_1_G_E_5_5 + 1*x_F_A_6_1_G_E_6_6 + 1*x_F_A_6_1_E_G_4_4 + 1*x_F_A_6_1_E_G_5_5 + 1*x_F_A_6_1_E_G_6_6 + 1*x_F_A_6_1_D_G_4_4 + 1*x_F_A_6_1_D_G_5_5 + 1*x_F_A_6_1_D_G_6_6 + 1*x_F_A_6_1_G_D_4_4 + 1*x_F_A_6_1_G_D_5_5 + 1*x_F_A_6_1_G_D_6_6 + 1*x_F_A_6_1_I_E_4_4 + 1*x_F_A_6_1_I_E_5_5 + 1*x_F_A_6_1_I_E_6_6 + 1*x_F_A_6_1_F_H_6_6 + 1*x_F_A_6_1_E_I_4_4 + 1*x_F_A_6_1_E_I_5_5 + 1*x_F_A_6_1_E_I_6_6 + 1*x_F_A_6_1_H_E_4_4 + 1*x_F_A_6_1_H_E_5_5 + 1*x_F_A_6_1_H_E_6_6 + 1*x_F_A_6_1_F_G_6_6 + 1*x_F_A_6_1_E_H_4_4 + 1*x_F_A_6_1_E_H_5_5 + 1*x_F_A_6_1_E_H_6_6 + 1*x_F_A_6_1_I_G_4_4 + 1*x_F_A_6_1_I_G_5_5 + 1*x_F_A_6_1_I_G_6_6 + 1*x_F_A_6_1_G_I_4_4 + 1*x_F_A_6_1_G_I_5_5 + 1*x_F_A_6_1_G_I_6_6 + 1*x_F_A_6_1_F_I_6_6 + 1*x_F_A_6_1_I_H_4_4 + 1*x_F_A_6_1_I_H_5_5 + 1*x_F_A_6_1_I_H_6_6 + 1*x_F_A_6_1_H_I_4_4 + 1*x_F_A_6_1_H_I_5_5 + 1*x_F_A_6_1_H_I_6_6 + 1*x_F_A_6_2_C_A_2_2 + 1*x_F_A_6_2_B_A_2_2 + 1*x_F_A_6_2_D_B_1_1 + 1*x_F_A_6_2_D_B_2_2 + 1*x_F_A_6_2_D_B_3_3 + 1*x_F_A_6_2_B_D_1_1 + 1*x_F_A_6_2_B_D_2_2 + 1*x_F_A_6_2_B_D_3_3 + 1*x_F_A_6_2_D_A_2_2 + 1*x_F_A_6_2_C_D_1_1 + 1*x_F_A_6_2_C_D_2_2 + 1*x_F_A_6_2_C_D_3_3 + 1*x_F_A_6_2_D_C_1_1 + 1*x_F_A_6_2_D_C_2_2 + 1*x_F_A_6_2_D_C_3_3 + 1*x_F_A_6_2_D_E_4_4 + 1*x_F_A_6_2_D_E_5_5 + 1*x_F_A_6_2_D_E_6_6 + 1*x_F_A_6_2_E_D_4_4 + 1*x_F_A_6_2_E_D_5_5 + 1*x_F_A_6_2_E_D_6_6 + 1*x_F_A_6_2_G_E_4_4 + 1*x_F_A_6_2_G_E_5_5 + 1*x_F_A_6_2_G_E_6_6 + 1*x_F_A_6_2_E_G_4_4 + 1*x_F_A_6_2_E_G_5_5 + 1*x_F_A_6_2_E_G_6_6 + 1*x_F_A_6_2_D_G_4_4 + 1*x_F_A_6_2_D_G_5_5 + 1*x_F_A_6_2_D_G_6_6 + 1*x_F_A_6_2_G_D_4_4 + 1*x_F_A_6_2_G_D_5_5 + 1*x_F_A_6_2_G_D_6_6 + 1*x_F_A_6_2_I_E_4_4 + 1*x_F_A_6_2_I_E_5_5 + 1*x_F_A_6_2_I_E_6_6 + 1*x_F_A_6_2_F_H_6_6 + 1*x_F_A_6_2_E_I_4_4 + 1*x_F_A_6_2_E_I_5_5 + 1*x_F_A_6_2_E_I_6_6 + 1*x_F_A_6_2_H_E_4_4 + 1*x_F_A_6_2_H_E_5_5 + 1*x_F_A_6_2_H_E_6_6 + 1*x_F_A_6_2_F_G_6_6 + 1*x_F_A_6_2_E_H_4_4 + 1*x_F_A_6_2_E_H_5_5 + 1*x_F_A_6_2_E_H_6_6 + 1*x_F_A_6_2_I_G_4_4 + 1*x_F_A_6_2_I_G_5_5 + 1*x_F_A_6_2_I_G_6_6 + 1*x_F_A_6_2_G_I_4_4 + 1*x_F_A_6_2_G_I_5_5 + 1*x_F_A_6_2_G_I_6_6 + 1*x_F_A_6_2_F_I_6_6 + 1*x_F_A_6_2_I_H_4_4 + 1*x_F_A_6_2_I_H_5_5 + 1*x_F_A_6_2_I_H_6_6 + 1*x_F_A_6_2_H_I_4_4 + 1*x_F_A_6_2_H_I_5_5 + 1*x_F_A_6_2_H_I_6_6 + 1*x_F_A_6_3_C_A_3_3 + 1*x_F_A_6_3_B_A_3_3 + 1*x_F_A_6_3_D_B_1_1 + 1*x_F_A_6_3_D_B_2_2 + 1*x_F_A_6_3_D_B_3_3 + 1*x_F_A_6_3_B_D_1_1 + 1*x_F_A_6_3_B_D_2_2 + 1*x_F_A_6_3_B_D_3_3 + 1*x_F_A_6_3_D_A_3_3 + 1*x_F_A_6_3_C_D_1_1 + 1*x_F_A_6_3_C_D_2_2 + 1*x_F_A_6_3_C_D_3_3 + 1*x_F_A_6_3_D_C_1_1 + 1*x_F_A_6_3_D_C_2_2 + 1*x_F_A_6_3_D_C_3_3 + 1*x_F_A_6_3_D_E_4_4 + 1*x_F_A_6_3_D_E_5_5 + 1*x_F_A_6_3_D_E_6_6 + 1*x_F_A_6_3_E_D_4_4 + 1*x_F_A_6_3_E_D_5_5 + 1*x_F_A_6_3_E_D_6_6 + 1*x_F_A_6_3_G_E_4_4 + 1*x_F_A_6_3_G_E_5_5 + 1*x_F_A_6_3_G_E_6_6 + 1*x_F_A_6_3_E_G_4_4 + 1*x_F_A_6_3_E_G_5_5 + 1*x_F_A_6_3_E_G_6_6 + 1*x_F_A_6_3_D_G_4_4 + 1*x_F_A_6_3_D_G_5_5 + 1*x_F_A_6_3_D_G_6_6 + 1*x_F_A_6_3_G_D_4_4 + 1*x_F_A_6_3_G_D_5_5 + 1*x_F_A_6_3_G_D_6_6 + 1*x_F_A_6_3_I_E_4_4 + 1*x_F_A_6_3_I_E_5_5 + 1*x_F_A_6_3_I_E_6_6 + 1*x_F_A_6_3_F_H_6_6 + 1*x_F_A_6_3_E_I_4_4 + 1*x_F_A_6_3_E_I_5_5 + 1*x_F_A_6_3_E_I_6_6 + 1*x_F_A_6_3_H_E_4_4 + 1*x_F_A_6_3_H_E_5_5 + 1*x_F_A_6_3_H_E_6_6 + 1*x_F_A_6_3_F_G_6_6 + 1*x_F_A_6_3_E_H_4_4 + 1*x_F_A_6_3_E_H_5_5 + 1*x_F_A_6_3_E_H_6_6 + 1*x_F_A_6_3_I_G_4_4 + 1*x_F_A_6_3_I_G_5_5 + 1*x_F_A_6_3_I_G_6_6 + 1*x_F_A_6_3_G_I_4_4 + 1*x_F_A_6_3_G_I_5_5 + 1*x_F_A_6_3_G_I_6_6 + 1*x_F_A_6_3_F_I_6_6 + 1*x_F_A_6_3_I_H_4_4 + 1*x_F_A_6_3_I_H_5_5 + 1*x_F_A_6_3_I_H_6_6 + 1*x_F_A_6_3_H_I_4_4 + 1*x_F_A_6_3_H_I_5_5 + 1*x_F_A_6_3_H_I_6_6
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.LpSolver main
+INFO: Solving...
+Sep 22, 2014 6:49:19 PM org.renci.pharos.lp.LpSolver main
+INFO: [x_A_F_3_5_D_E_4_4=1, x_A_F_3_5_E_D_4_4=1, x_A_F_3_5_I_H_4_4=1, x_A_F_3_5_H_I_4_4=1]
+Objective:4

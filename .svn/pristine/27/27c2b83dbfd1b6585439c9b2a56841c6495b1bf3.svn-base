@@ -1,0 +1,40 @@
+package org.renci.pharos.lp;
+
+import java.util.List;
+
+import org.renci.pharos.gui.Objectives;
+
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+
+public class LabelUsageHeuristic implements Heuristic {
+	private int objective=0;
+	public Objectives obj=Objectives.LabelUsage;
+	LabelUsageHeuristic(Objectives o){
+		obj=o;
+	}
+	@Override
+	public void setEdgeCost(Edge e, int cost, boolean fictitious) {
+		GraphHelper.setCost(e, fictitious, 1);
+
+	}
+
+	@Override
+	public void updateEdgeCost(Graph g, List<Vertex> p) {
+		//do nothing
+
+	}
+
+	@Override
+	public void updateObjective(Edge e) {
+		objective+=(int)e.getProperty("Cost")/2;
+
+	}
+
+	@Override
+	public String getObjective() {
+		return String.valueOf(objective);
+	}
+
+}

@@ -1,0 +1,16 @@
+package org.renci.pharos.gui;
+
+class EdgeMenuFactory{
+	public static EdgeMenu createEdgeMenu(TopologyGraph tg, Mode mode, State state){
+		if (mode==Mode.PortMode){
+			return new PortEdgeMenu(tg);
+		}
+		else if (mode==Mode.NodeMode && state==State.Provider){
+			return new NodeEdgeMenu(tg);
+		}
+		else if (mode==Mode.NodeMode && state==State.Request){
+			return new RequestNodeEdgeMenu(tg);
+		}
+		else return null;
+	}
+}

@@ -1,0 +1,10 @@
+package choiceNet;
+
+public abstract class BandwidthMetricDecorator implements Metric{
+	
+	Metric metric;
+	BandwidthMetricDecorator(Metric m){
+		metric=m;
+	}
+	
+}

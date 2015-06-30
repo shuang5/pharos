@@ -1,0 +1,83 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
+import net.sf.javailp.Linear;
+
+
+
+abstract class Variables {
+	private int dimension=0;
+	private String name="x";
+	protected VariableInfo<String, String> varInfo=new VariableInfo<String,String>(this);
+	public Variables(){}
+	public Variables(Variable v){
+		setDimension(v.getDimension());
+		name=Variable.getName();
+	}
+	int getDimension(){
+		return dimension;
+	}
+	void setDimension(int d){
+		dimension=d;
+	}
+	String getName() {
+		return name;
+	}
+	void setName(String name) {
+		this.name = name;
+	}
+	String getNthDim(String s,int i){
+		if(i>dimension-1)throw new IndexOutOfBoundsException("out of range");
+		else{
+			String delim="[_]";
+			String[] tokens=s.split(delim);
+			return tokens[i];
+		}
+	}
+	Iterator<String> filteredIterator(Iterator<String> it, Filter f){
+		return new FilterIterator(it,f);
+	}
+	int size(){
+		return getAllVariables().size();
+	}
+	ArrayList<String> getVariables(ArrayList<String> s){
+		ArrayList<String> ar=new ArrayList<String>();
+		for(String ss:s){
+			if(varInfo.hasValue(ss)){
+				ar.add(varInfo.getKey(ss));
+			}
+			else{
+				String str;
+				do{
+					str=String.valueOf((new Random()).nextInt(1000000));
+				}
+				while(varInfo.hasKey(getName()+"_"+str));
+				varInfo.add(getName()+"_"+str,ss);
+				ar.add(getName()+"_"+str);
+			}
+		}
+		return ar;
+	}
+	void add2linear(Linear linear,int term, String var){
+		if(varInfo.hasValue(var)){
+			linear.add(term,varInfo.getKey(var));
+		}
+		else {
+			String s;
+			do{
+				s=String.valueOf((new Random()).nextInt(1000000));
+			}
+			while(varInfo.hasKey(getName()+"_"+s));
+			varInfo.add(getName()+"_"+s, var);
+			linear.add(term,Variable.makeVariable(getName(),s));
+		}
+			
+	}
+	public abstract String getVariable(String... s);
+	public abstract ArrayList<String> getAllVariables();
+	public abstract Iterator<String> iterator();
+}
+

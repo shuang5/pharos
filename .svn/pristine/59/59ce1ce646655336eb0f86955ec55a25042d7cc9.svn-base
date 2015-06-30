@@ -1,0 +1,122 @@
+package org.renci.pharos.gui;
+public final class CHOICES {
+	private int currentChoice;
+	private Mode mode;
+	private State state;
+	public State getState(){
+		return state;
+	}
+	public void setState(State s){
+		state=s;
+	}
+	public CHOICES() {
+		currentChoice=Select;
+		mode=Mode.NodeMode;
+		state=State.Provider;
+	}
+	//icon menu options
+	final static int Null = -1;
+	final static int New = 0;
+	final static int Open = 1;
+	final static int Save = 2;
+	final static int Select = 3;
+	final static int Line = 4;
+	final static int Node = 5;
+	final static int Resize = 6;
+	final static int Refresh = 7;
+	final static int Request = 8;
+	
+	private static final String names[] = {
+	        "New",
+	        "Open",
+	        "Save", 
+	        "Select",
+	        "Line", 
+	        "Node", 
+	        "Resize",
+	        "Refresh",
+	        "Request"
+	    };
+	 private static final String tipText[] = {
+		        "Draw a new topology",
+		        "Open a saved topology",
+		        "Save current drawing",
+		        "Select an object",
+		        "Draw a straight line",
+		        "Draw a node",
+		        "Resize",
+		        "Refresh",
+		        "Generating Requests"
+		    };
+	 private static boolean on[]={false,false,false,true,
+		 false,false,false,false,};
+	 static String getName(int i){
+	 	 return names[i];
+	 }
+	 static String getTip(int i){
+		 return tipText[i];
+	 }
+	 static int getNumberOfChoices(){
+		 return names.length;
+	 }
+	 int getCurrentChoice(){
+		 return currentChoice;
+	 }
+	 void setCurrentChoice(int c){
+		 turnon(c);
+		 currentChoice=c;
+	 }
+	 void unsetCurrentChoice(int c){
+		 on[c]=false;
+		 currentChoice=Null;
+	 }
+	 Mode getMode(){
+		 return mode;
+	 }
+	 void setMode(Mode m){
+		 mode=m;
+	 }
+	 boolean isSelect(){
+		 return currentChoice==CHOICES.Select;
+	 }
+	 boolean isNode(){
+		 return currentChoice==CHOICES.Node;
+	 }
+	 boolean isLine(){
+		 return currentChoice==CHOICES.Line;
+	 }
+	 boolean isResize(){
+		 return currentChoice==CHOICES.Resize;
+	 }
+	 private void turnon (int c){
+		switch (c){
+			case CHOICES.Select:
+				on[CHOICES.Select]=true;
+				on[CHOICES.Line]=false;
+				on[CHOICES.Node]=false;
+				on[CHOICES.Resize]=false;
+				break;
+			case CHOICES.Line:
+				on[CHOICES.Line]=true;
+				on[CHOICES.Select]=false;
+				on[CHOICES.Node]=false;
+				on[CHOICES.Resize]=false;
+				break;
+			case CHOICES.Node:
+				on[CHOICES.Node]=true;
+				on[CHOICES.Select]=false;
+				on[CHOICES.Line]=false;
+				on[CHOICES.Resize]=false;
+				break;
+			case CHOICES.Resize:
+				on[CHOICES.Resize]=true;
+				on[CHOICES.Select]=false;
+				on[CHOICES.Node]=false;
+				on[CHOICES.Line]=false;
+				break;
+			default:
+				break;
+				
+		}
+	}
+}

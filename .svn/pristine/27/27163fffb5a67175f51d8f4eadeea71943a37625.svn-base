@@ -1,0 +1,15 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+class StringArray1D implements Array1D{
+	private ArrayList<String> arr;
+	public VarType getVarType() {
+		return VarType.String;
+	}
+
+	public Iterator<String> iterator() {
+		return arr.iterator();
+	}
+}

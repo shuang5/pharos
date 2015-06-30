@@ -1,0 +1,20 @@
+package org.renci.pharos.gui;
+
+class GUISaveRequestMenuItem extends GUIMenuItem{
+
+	/**
+	 * 
+	 */
+	private final GUIMain mainGUI;
+
+	public GUISaveRequestMenuItem(GUIMain mainGUI) {
+		super("Save Request");
+		this.mainGUI = mainGUI;
+	}
+
+	@Override
+	public void perform() {
+		this.mainGUI.saveRequest();		
+	}
+	
+}

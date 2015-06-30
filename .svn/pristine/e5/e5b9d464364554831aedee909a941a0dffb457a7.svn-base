@@ -1,0 +1,29 @@
+package org.renci.pharos.lp;
+
+class Subscript {
+	//sum_{i,j}b_{i,j,l,m} is represented by 
+	// subscripts={"+","+",l,m} 
+	//i.e. sum(subscripts) generates the linear for sum_{i,j}b_{i,j,l,m}
+	String[] subscript;
+	public Subscript (String[] sub){
+		subscript=new String[sub.length];
+		subscript=sub.clone();
+	}
+	public int getDimension(){
+		return subscript.length;
+	}
+	public String[] getSubscript(){
+		return subscript;
+	}
+	public String toString(){
+		String s=new String("[");
+		for(String ss: subscript){
+			s+=ss+",";
+		}
+		s+="]";
+		return s;
+	}
+	public Subscript clone(){
+		return new Subscript(this.getSubscript());
+	}
+}

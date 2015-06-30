@@ -1,0 +1,18 @@
+package org.renci.pharos.gui;
+
+public class PharosExceptions extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}
+class OutofBoundException extends PharosExceptions {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+}

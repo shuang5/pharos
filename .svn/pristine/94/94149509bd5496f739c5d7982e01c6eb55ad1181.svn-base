@@ -1,0 +1,36 @@
+package org.renci.pharos.lp;
+
+import java.util.Iterator;
+
+class FilterIterator implements Iterator<String>{
+	Iterator<String > itr;
+	Filter filter;
+	String next=null;
+	FilterIterator(Iterator<String> it, Filter f){
+		itr=it;
+		filter=f;
+	}
+
+	@Override
+	public boolean hasNext() {
+		while(itr.hasNext()){
+			String t=itr.next();
+			if(filter.test(t)){
+				next=t;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String next() {
+		return next;
+	}
+
+	@Override
+	public void remove() {
+		throw new IllegalStateException("dont remove!");
+		
+	}
+}

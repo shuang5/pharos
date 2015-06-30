@@ -1,0 +1,221 @@
+package org.renci.pharos.gui;
+
+import java.awt.Color;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+
+import org.renci.pharos.lp.OptimizationResult;
+ 
+public class ResultText extends JFrame{
+     
+	private static final long serialVersionUID = 1L;
+	private JTextField entry;
+    private JLabel jLabel1;
+    private JScrollPane jScrollPane1;
+    private JTextArea textArea;
+    private JRadioButton level1;
+    private JRadioButton level2;
+    private JRadioButton problem;
+    private JButton save;
+    private ButtonGroup bg;
+    private OptimizationResult result;
+     
+    final Color entryBg;
+     
+     
+    public ResultText() {
+        initComponents();
+         
+        entryBg = entry.getBackground();
+         
+    }
+    public void setTextField(String s){
+    	entry.setText(s);
+    }
+    public void setTextArea(String s){
+    	textArea.setText(s);
+    }
+    /** This method is called from within the constructor to
+     * initialize the form.
+     */
+ 
+    private void initComponents() {
+        entry = new JTextField();
+        textArea = new JTextArea();
+        jLabel1 = new JLabel();
+        save=new JButton("Save");
+        level1=new JRadioButton("Level 1");
+        level2=new JRadioButton("Level 2");
+        problem=new JRadioButton("Problem");
+        bg=new ButtonGroup();
+        bg.add(level1);
+        bg.add(level2);
+        bg.add(problem);
+        save.addActionListener(
+        	new ActionListener() {
+        	  public void actionPerformed(ActionEvent e)
+        	  {
+        		  Frame f = new Frame();
+    			  FileDialog fd1 = new FileDialog(f, "Specify a file to save", FileDialog.SAVE);
+    			  fd1.setVisible(true);
+
+    			  String fFile = fd1.getFile();
+    			  if(fFile==null)return;
+    			  String fDirectory = fd1.getDirectory();
+
+    			  f.dispose();
+    			  File fileName = new File (fDirectory+
+    				  System.getProperty("file.separator") + fFile);
+    			
+    			  if (fileName == null || fileName.getName().equals("")) {
+    				JOptionPane.showMessageDialog(null, "Invalid File Name",
+    						"Invalid File Name", JOptionPane.ERROR_MESSAGE);
+    			  } else {
+    				  try {
+    					  
+    					  if(result!=null){
+    						  if(level1.isSelected())
+    							  result.save2file1(fileName);
+
+    						  if(level2.isSelected())
+    							  result.save2file1(fileName);
+
+    						  if(problem.isSelected())
+    							  result.saveProblem(fileName);
+    					  }
+    				  } catch (Exception ex) {
+    					  JOptionPane.showMessageDialog(null, ex.getMessage(),
+    							"Save File Exception", JOptionPane.ERROR_MESSAGE);
+    				  }
+    			  }
+        	  }
+        	}
+        );
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Optimization Result");
+ 
+        textArea.setColumns(20);
+        textArea.setLineWrap(true);
+        textArea.setRows(5);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        jScrollPane1 = new JScrollPane(textArea);
+        jLabel1.setText("Objective:");
+ 
+        GroupLayout layout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+         
+	    //Create a parallel group for the horizontal axis
+	    ParallelGroup hGroup = layout.createParallelGroup(GroupLayout.Alignment.LEADING);
+	     
+	    //Create a sequential and a parallel groups
+	    SequentialGroup h1 = layout.createSequentialGroup();
+	    ParallelGroup h2 = layout.createParallelGroup(GroupLayout.Alignment.TRAILING);
+	     
+	    //Add a container gap to the sequential group h1
+	    h1.addContainerGap();
+	     
+	    //Add a scroll pane and a label to the parallel group h2
+	    h2.addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE);
+	    
+	    SequentialGroup h11 = layout.createSequentialGroup();
+	    h11.addComponent(level1);
+	    //h11.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+	    h11.addComponent(level2);
+	    //h11.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+	    h11.addComponent(problem);
+	    //h11.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+	    h11.addComponent(save);
+	     
+	    //Create a sequential group h3
+	    SequentialGroup h3 = layout.createSequentialGroup();
+	    h3.addComponent(jLabel1);
+	    h3.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+	    h3.addComponent(entry, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE);
+	    //h3.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+	    //Add the group h3 to the group h2
+	    h2.addGroup(h3);
+	    h2.addGroup(h11);
+	    //Add the group h2 to the group h1
+	    h1.addGroup(h2);
+	 
+	    h1.addContainerGap();
+	     
+	    //Add the group h1 to the hGroup
+	    hGroup.addGroup(GroupLayout.Alignment.TRAILING, h1);
+	    //Create the horizontal group
+	    layout.setHorizontalGroup(hGroup);
+	     
+	         
+	    //Create a parallel group for the vertical axis
+	    ParallelGroup vGroup = layout.createParallelGroup(GroupLayout.Alignment.LEADING);
+	    //Create a sequential group v1
+	    SequentialGroup v1 = layout.createSequentialGroup();
+	    //Add a container gap to the sequential group v1
+	    v1.addContainerGap();
+	    //Create a parallel group v2
+	    ParallelGroup v2 = layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
+	    v2.addComponent(jLabel1);
+	    v2.addComponent(entry, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
+	    //Add the group v2 to the group v1
+	    v1.addGroup(v2);
+	    v1.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED);
+	    v1.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE);
+	    v1.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED);
+	    v1.addContainerGap();
+	    ParallelGroup v11 = layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
+	    v11.addComponent(level1);
+	    v11.addComponent(level2);
+	    v11.addComponent(problem);
+	    v11.addComponent(save);
+	    v1.addGroup(v11);
+	    v1.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED);
+	    v1.addContainerGap();
+	    //Add the group v1 to the group vGroup
+	    vGroup.addGroup(v1);
+	    //Create the vertical group
+	    layout.setVerticalGroup(vGroup);
+	    
+	    pack();
+	}
+	 
+    public static void main(String args[]) {
+        //Schedule a job for the event dispatch thread:
+        //creating and showing this application's GUI.
+    SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                //Turn off metal's use of bold fonts
+                UIManager.put("swing.boldMetal", Boolean.FALSE);
+        new ResultText().setVisible(true);
+            }
+        });
+    }
+	public OptimizationResult getResult() {
+		return result;
+	}
+	public void setResult(OptimizationResult or) {
+		this.result = or;
+	}
+     
+    
+}

@@ -1,0 +1,318 @@
+package org.renci.pharos.lp;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import net.sf.javailp.Linear;
+
+import org.apache.commons.lang.ArrayUtils;
+
+import com.sun.tools.javac.util.Pair;
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
+
+public interface Array8D {
+	Iterator<String> iterator(String from1, String to1, String from2,String to2, 
+			String from3,String to3,String from4,String to4);
+	Iterator<String> iterator();
+	int getDimension();
+}
+class FlowAssignmentVariables8D extends Variables {
+	private FlowVariables4D provider;
+	private FlowVariables4D request; 
+	private HashMap<Pair<String,String>,Integer> constants;
+	
+	public FlowAssignmentVariables8D(Graph p,Graph r){
+		this.provider=new FlowVariables4D(p,Mode.Provider);
+		this.request=new FlowVariables4D(r,Mode.Request);
+		this.readConstants(r);
+		setDimension(8);
+	}
+	
+	public FlowVariables4D getProvider() {
+		return provider;
+	}
+
+	public void setProvider(FlowVariables4D provider) {
+		this.provider = provider;
+	}
+
+	public FlowVariables4D getRequest() {
+		return request;
+	}
+
+	public void setRequest(FlowVariables4D request) {
+		this.request = request;
+	}
+
+	public HashMap<Pair<String, String>, Integer> getConstants() {
+		return constants;
+	}
+
+	public void setConstants(HashMap<Pair<String, String>, Integer> constants) {
+		this.constants = constants;
+	}
+	public int demand(String sid,String did) {
+		if(constants.containsKey(Pair.of(sid, did))){
+			return constants.get(Pair.of(sid, did));
+		}
+		else return 0;
+	}
+	private void readConstants(Graph graph){
+		constants=new HashMap<Pair<String,String>,Integer> ();
+		Iterable<Vertex> it=graph.getVertices();		
+		for (Vertex v: it){
+		    Iterable<Edge> ite=v.getEdges(Direction.OUT);
+		    for (Edge e: ite){
+		  	    String request1=(String)e.getProperty("Request1");
+		  	    String request2=(String)e.getProperty("Request2");		  	    
+		  	    String delims = "[:]";
+		  	    String[] tokens1 = request1.split(delims);
+		  	    String[] tokens2 = request2.split(delims);
+		  	    //demands are bidirectional
+		  	    constants.put(Pair.of(tokens1[0], tokens2[0]),Integer.valueOf(tokens1[1]));  
+		  	    constants.put(Pair.of(tokens2[0], tokens1[0]),Integer.valueOf(tokens1[1]));
+		    }
+		  }
+	}
+	interface Constraint{
+		boolean test(String s1,String s2);
+		boolean test(String[] t1, String[] t2);
+	}
+	class sourceOrdestination implements Constraint{
+		//request (i,j,l,m) maps to provider (a,b,x,y)
+		//if (i==a) then (l==x)
+		//if (j==b) then (m==y)
+		//in addition:
+		//i!=b and j!=a, otherwise it forms a loop
+		//note this is delegation not virtualization
+		@Override
+		public boolean test(String r1, String r2) {
+			String delim="[_]";
+			String[] t1=r1.split(delim);
+			String[] t2=r2.split(delim);
+			if(t1[0].equals(t2[1]) || t1[1].equals(t2[0]))
+				return false;
+			if(t1[0].equals(t2[0]) && t1[2].equals(t2[2]))
+				return true;
+			if(t1[1].equals(t2[1]) && t1[3].equals(t2[3]))
+				return true;
+			if(!t1[0].equals(t2[0]) && !t1[1].equals(t2[1]))
+				return true;
+			return false;
+		}
+		@Override
+		public boolean test(String[] t1, String[] t2) {
+			if(t1[0].equals(t2[0]) && t1[2].equals(t2[2]))
+				return true;
+			if(t1[1].equals(t2[1]) && t1[3].equals(t2[3]))
+				return true;
+			if(!t1[0].equals(t2[0]) && !t1[1].equals(t2[1]))
+				return true;
+			return false;
+		}
+		
+	}
+	private Constraint getSourceOrDestination(){
+		return new sourceOrdestination();
+	}
+	@Override
+	public ArrayList<String> getAllVariables() {
+		ArrayList<String> ar=new ArrayList<String>();
+		Iterator<String> it1=request.iterator();
+		while(it1.hasNext()){
+			Iterator<String> it2=provider.iterator();
+			String r1=it1.next();
+			while(it2.hasNext()){				
+				String r2=it2.next();
+				if (this.getSourceOrDestination().test(r1, r2)) 
+					ar.add(getName()+"_"+r1+"_"+r2);				
+			}
+		}
+		return ar;
+	}
+	
+	// generate linears for sum_{y,b}b^{i,j,l,m}_{x,y,a,b} \forall i,j,l,m
+	// sums(Subscript) where Subscript is {"*","*","*","*",x,"+",a,"+"}
+	// we use iterator to iterate through "*"s and apply sum(String[]) to take care of the "+"
+	public ArrayList<Linear> generateLinears(String[] sub, LinearOperation lo) {
+		ArrayList<Linear> linears=new ArrayList<Linear>();
+		String[] s=sub.clone();
+		ArrayList<Integer> plus=new ArrayList<Integer>();
+		//replace "+" with "*" and save the positions
+		int i=0;
+		for(String ss:s){
+			if(ss.equals("+")){
+				plus.add(i);
+				s[i]="*";
+			}
+			i++;
+		}
+		Linear linear=new Linear();
+		Iterator<String> it1=request.iterator(s[0],s[1],s[2],s[3]);
+		HashMap<String, Boolean> map=new HashMap<String,Boolean>();
+		while(it1.hasNext()){
+			String r=it1.next();
+			Iterator<String> it2=provider.iterator(s[4],s[5],s[6],s[7]);
+			while(it2.hasNext()){
+				String p=it2.next();
+				String delim="[_]";
+				String[] t1=r.split(delim);
+				String[] t2=p.split(delim);
+				if (this.getSourceOrDestination().test(t1, t2)) {
+					String[] both = (String[]) ArrayUtils.addAll(t1, t2);
+					for(int j:plus){
+						both[j]="+";
+					}
+					//because we have wild cards,
+					//`both' can be repetitive, use a HashMap<String, Boolean> to remove 
+					//repetitive ones,
+					//first, convert `both' to a String
+					String mapstring = new String("");
+					for(String t:both){
+						mapstring+=t;
+					}
+					if(!map.containsKey(mapstring)){
+						map.put(mapstring, true);
+						linear=lo.operate(both);
+						if(linear.size()>0)linears.add(linear);
+					}		
+				}
+			}
+		}
+		return linears;
+	}
+	
+	
+	// sum_{y,b}b^{i,j,l,m}_{x,y,a,b}
+	// sum(Subscript) where Subscript is {i,j,l,m,x,"+",a,"+"}
+	class Sum implements LinearOperation{
+		@Override
+		public Linear operate(String[] sub) {
+			Linear linear=new Linear();
+			String[] s=sub.clone();
+			for(int i=0;i<s.length;++i){
+				if(s[i].equals("+"))s[i]="*";
+			}
+			Iterator<String> it1=request.iterator(s[0],s[1],s[2],s[3]);
+			while(it1.hasNext()){
+				String r=it1.next();
+				Iterator<String> it2=provider.iterator(s[4],s[5],s[6],s[7]);
+				while(it2.hasNext()){
+					String p=it2.next();
+					if (getSourceOrDestination().test(r, p)) {
+						linear.add(1,getName()+"_"+r+"_"+p);
+					}
+				}
+			}
+			return linear;
+		}
+		
+	}
+	
+	// sum({i,j,l,m,x,"+",a,"+"}) means:
+	// sum_{y,b}b^{i,j,l,m}_{x,y,a,b}-m_{i,j,l,m}
+	// sum({i,"+",l,m,x,y,a,b}) means::
+	// sum_{j} (b^{i,j,l,m}_{x,y,a,b}-m_{i,j,l,m})
+	class Sub implements LinearOperation{
+
+		@Override
+		public Linear operate(String[] sub) {
+			Linear linear=new Linear();
+			String[] s=sub.clone();
+			for(int i=0;i<s.length;++i){
+				if(s[i].equals("+"))s[i]="*";
+			}
+			Iterator<String> it1=request.iterator(s[0],s[1],s[2],s[3]);
+			while(it1.hasNext()){
+				String r=it1.next();
+				Iterator<String> it2=provider.iterator(s[4],s[5],s[6],s[7]);
+				while(it2.hasNext()){
+					String p=it2.next();
+					if (getSourceOrDestination().test(r, p)) {
+						linear.add(1,getName()+"_"+r+"_"+p);
+					}
+				}
+				linear.add(-1,getName()+"_"+r);
+			}
+			return linear;
+		}
+		
+	}
+	
+	@Override
+	public String getVariable(String... s) {
+		String r=getName();
+		for(String ss:s){
+			r+=("_"+ss);
+		}
+		return r;
+	}
+	public LinearOperation getSum(){
+		return new Sum();
+	}
+	public LinearOperation getSub(){
+		return new Sub();
+	}
+
+	@Override
+	public Iterator<String> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void main(String[] args){
+		FlowAssignmentVariables8D v;
+		Graph pgraph=new TinkerGraph();
+		Graph rgraph=new TinkerGraph();
+		try{
+		GraphMLReader.inputGraph(pgraph, new FileInputStream("/Users/shuang/Desktop/Pharos DOE/5nodes"));
+		GraphMLReader.inputGraph(rgraph, new FileInputStream("/Users/shuang/Desktop/Pharos DOE/5nodes-req"));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		v=new FlowAssignmentVariables8D(pgraph,rgraph);
+		System.out.println("tesing getVariable(A, E, new Label(1), new Label(4))");
+		System.out.println(v.getVariable("A", "E", (new Label(1)).toString(), (new Label(4)).toString()));
+		System.out.println("tesing getVariable(A, E, new Label(1), new Label(4)) finished");
+		ArrayList<String> arr=v.getAllVariables();
+		System.out.println("testing getAllVariables()");
+		for(String s: arr){
+			System.out.println(s);
+		}
+		System.out.println("testing getAllVariables() finished");
+		
+		System.out.println("testing sum(A,E,1,4,D,+,+,+)");
+		String[] s={"A","E","1","4","D","+","+","+"};
+		Linear l=v.getSum().operate(s);
+		System.out.println(l);
+		System.out.println("testing sum(A,E,1,4,D,+,+,+) finished");
+		
+		System.out.println("testing sum(A,E,1,4,+,D,+,+)");
+		String[] s1={"A","E","1","4","+","D","+","+"};
+		Linear l1=v.getSum().operate(s1);
+		System.out.println(l1);
+		System.out.println("testing sum(A,E,1,4,+,D,+,+) finished");
+		
+		System.out.println("testing sums(A,E,1,4,B,*,+,+)");
+		String[] s2={"A","E","1","4","B","*","+","+"};
+		ArrayList<Linear> arr1=v.generateLinears(s2,v.getSum());
+		for(Linear li:arr1){
+			System.out.println(li);
+		}
+		System.out.println("testing subs(A,E,1,4,B,*,+,+) finished");
+		String[] s3={"A","E","1","4","B","*","+","+"};
+		ArrayList<Linear> arr2=v.generateLinears(s3,v.getSub());
+		for(Linear li:arr2){
+			System.out.println(li);
+		}
+		System.out.println("testing subs(A,E,1,4,B,*,+,+) finished");
+	}
+
+}

@@ -1,0 +1,81 @@
+package org.renci.pharos.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import org.renci.doe.pharos.flow.FlowUnit;
+
+class PortFsPanel extends FsPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	PortFsPanel(Node n){
+		super(n);
+	    add(new JLabel("Flow Space:"));
+	    add(fsField);
+	    //add(new JLabel("Mask:"));
+	    //add(maskField);
+	    JButton addflowunit = new JButton("Add");
+	    addflowunit.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {    
+                    	try{
+                    		FlowUnit fu=new FlowUnit(fsField.getText());
+                    		((PortNode)node).portproperties().flowspace.add(fu);
+                    		fsField.setText(null);
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    }
+                });
+	    add(addflowunit);
+	    
+	    JButton andflowspace = new JButton("remove");
+	    andflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	try{
+                    		FlowUnit fu=new FlowUnit(fsField.getText());
+                    		((PortNode)node).portproperties().flowspace.remove(fu);
+                    		fsField.setText(null);
+                    	}
+                    	catch (Exception ex){
+                    		JOptionPane.showMessageDialog(null, ex.getMessage());
+                    	}
+                    	 
+                    }
+                });
+	    add(andflowspace);
+	    JButton orflowspace = new JButton("Or");
+	    orflowspace.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { 
+                    	
+                    	JOptionPane.showMessageDialog(null, "Not implemented!");
+                    }
+                });
+	    add(orflowspace);
+	    
+	    JButton show = new JButton("Show");
+	    show.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {      
+                    	if (((PortNode)node).portproperties().flowspace!=null){
+                    		fsArea.setText(((PortNode)node).portproperties().flowspace.toString());
+                    	}
+                    	int result = JOptionPane.showConfirmDialog(null, scroll, 
+        	                    "FlowSpace:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            }   
+                    }
+                });
+	    add(show);
+	}
+}

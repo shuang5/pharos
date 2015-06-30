@@ -1,0 +1,173 @@
+package org.renci.pharos.lp;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import net.sf.javailp.Linear;
+import net.sf.javailp.Solver;
+import net.sf.javailp.SolverFactory;
+import net.sf.javailp.SolverFactoryLpSolve;
+
+import org.renci.pharos.gui.Objectives;
+
+import com.sun.tools.javac.util.Pair;
+import com.tinkerpop.blueprints.Graph;
+
+public class MCFlowProblem extends ProblemDecorator{
+	private final static Logger logger = Logger.getLogger(MCFlowProblem.class.getName());
+	private HashSet<Pair<String,String>> sdpairs;
+	
+	public MCFlowProblem(SSSDFlowProblem p) {
+		checkNotNull(p);
+		pproblem=p;
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		sdpairs=new HashSet<Pair<String, String>>(fav.getConstants().keySet());
+	}
+	public void addIntegerConstraints(){
+		logger.log(Level.INFO,"adding Integer constraints:");
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Boolean.class);
+		}
+	}
+	public void addNonIntegerConstraints(){
+		logger.log(Level.INFO,"adding Integer constraints:");
+		for(String s: variables().getAllVariables()){
+			pproblem.problem().setVarType(s,Double.class);
+		}
+	}
+	public void addRequestConstraints(){
+		logger.log(Level.INFO,"adding request constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addRequestConstraints();
+		}
+	}
+	public void addLabelConstraints(){
+		logger.log(Level.INFO,"adding label assignment constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addLabelConstraints();
+		}
+	}
+	public void addFlowConservationConstraints(){
+		logger.log(Level.INFO,"adding flow constraints:");
+		for(Pair<String,String> sd: sdpairs){
+			((SSSDFlowProblem)pproblem).setSource(sd.fst);
+			((SSSDFlowProblem)pproblem).setDestination(sd.snd);
+			((SSSDFlowProblem)pproblem).addFlowConservationConstraints();
+		}
+	}
+	public void addCapacityConstraints(){
+		logger.log(Level.INFO,"adding capacity constraints:");
+		FlowAssignmentVariables8D fav=(FlowAssignmentVariables8D)variables();
+		String[] s=new String[]{"+","+","+","+","*","*","*","*"};
+		ArrayList<Linear> arr=fav.generateLinears(s, fav.getSum());
+		for(Linear l:arr){
+			if(l.size()>0)problem().add(l, "<=", 1);
+			logger.log(Level.FINE,l+" <= "+ 1);
+		}
+	}
+	public Variables variables() {
+		return pproblem.variables();
+	}
+	public ArrayList<String> getProviderVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getProviderVariables();
+	}
+	public ArrayList<String> getRequestVariables(){
+		return ((FlowAssignmentVariables8D)variables()).getRequestVariables();
+	}
+	private SolverFactory factory = new SolverFactoryLpSolve(); // use lp_solve
+	//SolverFactory factory = new SolverFactoryGurobi(); // use gurobi
+	{
+		factory.setParameter(Solver.VERBOSE, 0); 
+		factory.setParameter(Solver.TIMEOUT, 10000); // set timeout to 10000 seconds
+		
+	}
+	public OptimizationResult compute(ComputeMode mode, Objectives objective, Graph p){
+		switch(mode){
+		case ILP:
+			return ilp(objective);
+		case LPRelaxation:
+			return lprelax(objective);
+		case LongestFirst:
+			return heuristic(p,ComputeMode.LongestFirst,objective);
+		case ShortestFirst:
+			return heuristic(p,ComputeMode.ShortestFirst,objective);
+		case Random:
+			return heuristic(p,ComputeMode.Random,objective);
+		default:
+			return null;
+		}
+	}
+	private OptimizationResult ilp(Objectives objective){
+		switch (objective){
+		case LabelUsage:
+			return (new LabelUsageMILP(this,getProviderVariables())).solve();
+		case PortUsage:
+			return (new PortUsageMILP(this,getProviderVariables(),
+					((FlowAssignmentVariables8D)variables()).getPorts())).solve();
+		case LoadBalancing:
+			return (new LoadBalancingMILP(this,getProviderVariables(),
+					((FlowAssignmentVariables8D)variables()).getPorts())).solve();
+		default:
+			return null;
+		}
+		
+	}
+
+	private OptimizationResult heuristic(Graph p,ComputeMode mode, Objectives obj){
+		switch(obj){
+		case LabelUsage:
+			Heuristic hl=new LabelUsageHeuristic(new ArrayList<Pair<String,String>>(sdpairs),
+					((FlowAssignmentVariables8D)variables()).getConstants());
+			return hl.compute(p, mode);
+		case PortUsage:
+			Heuristic hp=new PortUsageHeuristic(new ArrayList<Pair<String,String>>(sdpairs),
+					((FlowAssignmentVariables8D)variables()).getConstants());
+			return hp.compute(p, mode);
+		case LoadBalancing:
+			Heuristic hlb=new LoadBalancingHeuristic(new ArrayList<Pair<String,String>>(sdpairs),
+					((FlowAssignmentVariables8D)variables()).getConstants());
+			return hlb.compute(p, mode);
+		default:
+			return null;
+		}
+		
+	}
+	
+	private OptimizationResult lprelax(Objectives objective){
+		switch (objective){
+		case LabelUsage:
+			return (new LabelUsageLPRelaxation(this,getProviderVariables())).solve();
+		case PortUsage:
+			return (new PortUsageLPRelaxation(this,getProviderVariables(),
+					((FlowAssignmentVariables8D)variables()).getPorts())).solve();
+		case LoadBalancing:
+			return (new LoadBalancingLPRelaxation(this,getProviderVariables(),
+					((FlowAssignmentVariables8D)variables()).getPorts())).solve();
+		default:
+			return null;
+		}
+	}
+
+	@Override
+	public void init() {
+		this.addIntegerConstraints();
+		this.addLabelConstraints();
+		this.addCapacityConstraints();
+		this.addRequestConstraints();
+		this.addFlowConservationConstraints();		
+	}
+	public void lprelaxinit() {
+		this.addLabelConstraints();
+		this.addCapacityConstraints();
+		this.addRequestConstraints();
+		this.addFlowConservationConstraints();		
+	}
+}

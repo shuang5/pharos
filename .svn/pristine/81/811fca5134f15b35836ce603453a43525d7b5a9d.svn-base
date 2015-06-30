@@ -1,0 +1,256 @@
+package org.renci.pharos.gui;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import org.apache.commons.lang.StringUtils;
+import org.renci.pharos.flow.FlowPharosException;
+import org.renci.pharos.flow.FlowSpace;
+import org.renci.pharos.flow.Labels;
+
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+
+public class NodeEdgePanel extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+	private TopologyGraph topo;
+	private JTextField idField = new JTextField(5);
+	private String[] labels={
+    		EdgePropertyConstants.Types.L1,EdgePropertyConstants.Types.L2, 
+    		EdgePropertyConstants.Types.L3,EdgePropertyConstants.Types.Unkonwn
+        };
+    private JComboBox<?> lJCB = new JComboBox<Object>(labels);
+    
+    private JButton jb=new JButton("Rules");
+    private JCheckBox virtual = new JCheckBox("Virtual");
+    private RulesPanel rp;
+    private JList<?> lst1; 
+    private JList<?> lst2;
+    private NodeLine edge;
+	public NodeEdgePanel(TopologyGraph t) {
+		topo=t;
+		rp=new RulesPanel(t);
+		edge=Preconditions.checkNotNull((NodeLine)topo.getSelectedItem());
+        //setLayout(new GridBagLayout());	
+        //GridBagConstraints c = new GridBagConstraints();
+        //Edge ID 
+        //c.gridx=0;
+        //c.gridy=0;
+        add(new JLabel("ID:"));
+        //c.gridx=1;
+        //c.gridy=0;
+        if(edge.getId()!=null) setId(edge.getId());
+        add(idField);
+        
+        //Edge Label        
+        lJCB.setSelectedIndex(-1);
+        //c.gridx=2;
+        //c.gridy=0;
+        add(new JLabel("Type:"));        
+        
+        //c.gridx=3;
+        //c.gridy=0;
+        if(edge.getLinkType()!=null)setLinkType(edge.getLinkType());
+        add(lJCB);
+        
+        String node1id=((NodeCircle)(edge.getNode1())).getId();
+        if (StringUtils.isEmpty(node1id) || StringUtils.isBlank(node1id))
+        	node1id="N/A";
+        add(new JLabel(node1id));
+        Vector<Integer> node1ports=new Vector<Integer>();
+        
+        NodeCircle n=(NodeCircle)edge.getNode1();
+        if (n!=null){
+			for(int i=0;i<n.getNumberOfLinks();i++){
+				node1ports.add(i);
+			}
+        }
+        lst1=new JList<Object>(node1ports);
+        int p=edge.getPort1();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lst1.setSelectedValue(p, false);
+        add(lst1);
+        
+        String node2id=((NodeCircle)(edge.getNode2())).getId();
+        if (StringUtils.isEmpty(node2id) || StringUtils.isBlank(node2id))
+        	node2id="N/A";
+        add(new JLabel(node2id));
+        
+        Vector<Integer> node2ports=new Vector<Integer>();
+        n=(NodeCircle)edge.getNode2();
+        if(n!=null){
+	        for(int i=0;i<n.getNumberOfLinks();i++){
+	        	node2ports.add(i);
+			}
+        }
+        lst2=new JList<Object>(node2ports);
+        p=edge.getPort2();
+        if(p!=-1 && n.portAssociated2Line(p,edge))
+        	lst2.setSelectedValue(p, false);
+        add(lst2);
+
+		lst1.setCellRenderer( new MyListRenderer1() ); 
+		lst2.setCellRenderer( new MyListRenderer2() );
+		
+		add(virtual);
+        virtual.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                    	
+                    	setVirtual(isVirtual());
+                    }
+                });
+        jb.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {                    	
+                    	int result = JOptionPane.showConfirmDialog(null, rp, 
+        	                    "Edge properties:", JOptionPane.OK_CANCEL_OPTION);
+        	            if (result == JOptionPane.OK_OPTION) {
+        	            	
+        	            }   
+                    }
+                });
+        //c.gridx=0;
+        //c.gridy=3;
+        add(jb);
+        jb.setEnabled(false);
+        //add(rulesArea);
+        //unsetVirtual();
+        
+	}
+	public boolean isVirtual(){
+		return virtual.isSelected();
+	}
+	public void setVirtual(boolean b){
+		virtual.setSelected(b);
+		edge.setVirtual(b);
+		jb.setEnabled(b);
+	}
+	public String getId(){
+		return idField.getText();
+	}
+	public String getLinkType(){
+		if (lJCB.getSelectedItem()!=null)
+			return lJCB.getSelectedItem().toString();
+		else return null;
+	}
+	
+	public void setId(String d){
+		if(!Strings.isNullOrEmpty(d))idField.setText(Preconditions.checkNotNull(d));
+	}
+	public void setLinkType(String d){
+		if(!Strings.isNullOrEmpty(d))lJCB.setSelectedItem(Preconditions.checkNotNull(d));
+	}
+	
+	public void setEdge(){
+		NodeLine n=Preconditions.checkNotNull((NodeLine) topo.getSelectedItem());
+    	n.setLinkType(this.getLinkType());
+    	String id=this.getId();
+    	String nid=n.getId();
+    	if(!id.equals(nid) ){
+    		if(topo.isEdgeIdUsed(id)){
+    			JOptionPane.showMessageDialog(this, "Edge ID used");
+    			return;
+    		}
+    		else if(!Strings.isNullOrEmpty(nid))topo.removeEdgeId(nid);
+    	}
+    	n.setId(this.getId());
+    	NodeCircle n1=(NodeCircle)edge.getNode1();
+        NodeCircle n2=(NodeCircle)edge.getNode2();
+        if (n1!=null && n2!=null){
+        	if(lst1.getSelectedValue()==null)return;
+        	int i=(Integer)lst1.getSelectedValue();
+			NodePortProperties p1= n1.getPort(i);
+			if(p1==null)p1=new NodePortProperties();
+			if(lst2.getSelectedValue()==null)return;
+			int j=(Integer)lst2.getSelectedValue();
+			NodePortProperties p2= n2.getPort(j);
+			if(p2==null)p2=new NodePortProperties();
+			try {
+				Labels l1=new Labels(new FlowSpace(p1.getFlowSpace()));
+				Labels l2=new Labels(new FlowSpace(p2.getFlowSpace()));
+				if(l1!=null&& l2!=null && !l1.equals(l2) && !edge.isVirtual()){
+					JOptionPane.showMessageDialog(this, "Labels at end ports do not match!");
+					return;
+				}
+			} catch (FlowPharosException e) {
+				//e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "Port not configured yet!");
+				return;
+			}
+			p1.setId(String.valueOf(i));
+			p2.setId(String.valueOf(j));
+			p1.setPeer(p2);
+			p2.setPeer(p1);
+			n1.setPort(p1);
+			n2.setPort(p2);
+			edge.setPort1(i);
+			edge.setPort2(j);
+			topo.addEdgeId(this.getId());
+			topo.addNodeId(n1.getId(), i);
+			topo.addNodeId(n2.getId(), j);
+        }
+        
+		if(n.configComplete())n.setColor(Drawings.lineConfigedColor);
+		else 
+			n.setColor(Drawings.defaultLineColor);
+		topo.repaint();
+	}
+	public void getEdge(){
+		setId(edge.getId());
+		setVirtual(edge.isVirtual());
+		setLinkType(edge.getLinkType());
+	}
+	private class MyListRenderer1 extends DefaultListCellRenderer  {  
+    
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public Component getListCellRendererComponent( JList<?> list,  
+	            Object value, int index, boolean isSelected,  
+	            boolean cellHasFocus )  {
+	    	
+	        super.getListCellRendererComponent( list, value, index,  
+	                isSelected, cellHasFocus );  
+	        int item = (Integer)(list.getModel().getElementAt(index));
+            if(topo.isPortNumUsed(edge.getNode1(), item))
+            	setForeground(Color.gray);
+            else setForeground(Color.black);
+	        return( this );  
+	    }  
+		
+    }
+	private class MyListRenderer2 extends DefaultListCellRenderer  {  
+	    
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public Component getListCellRendererComponent( JList<?> list,  
+	            Object value, int index, boolean isSelected,  
+	            boolean cellHasFocus )  {
+	    	
+	        super.getListCellRendererComponent( list, value, index,  
+	                isSelected, cellHasFocus );  
+            int item = (Integer)(list.getModel().getElementAt(index));
+            if(topo.isPortNumUsed(edge.getNode2(), item))
+            	setForeground(Color.gray);
+	            else setForeground(Color.black);
+	        
+	        return( this );  
+	    }  
+		
+    }
+}

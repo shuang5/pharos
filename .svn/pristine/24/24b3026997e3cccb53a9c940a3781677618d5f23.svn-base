@@ -1,0 +1,7 @@
+package org.renci.pharos.lp;
+
+import com.tinkerpop.blueprints.Graph;
+
+public interface PharosGraphReader {
+	public FlowVariables4D add(Graph graph);
+}

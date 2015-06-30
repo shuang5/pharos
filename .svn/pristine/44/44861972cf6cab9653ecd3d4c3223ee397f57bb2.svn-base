@@ -1,0 +1,138 @@
+package org.renci.pharos.toyTopology;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.dex.DexGraph;
+import com.tinkerpop.blueprints.util.io.graphml.GraphMLWriter;
+//domain C has three nodes a, b and c, each node has two ports 1 and 2, each port is initially split into two flowspaces 
+//in and out direction respectively.
+//each node a, b and c also has function nodes describing what functionality is available, e.g., L1 switching, L2 switching, VLAN modification...
+//
+public class domain_D {
+	public static void main(String[] args) {
+		String dbfilename = "./data/doe_pharos_domain_D.dex";
+		File dbfile = new File(dbfilename);
+		if (dbfile.exists())dbfile.delete();
+		Graph graph = new DexGraph(dbfilename);
+		((DexGraph)graph).label.set("flowspace");
+		Vertex v_D_a_1_in = graph.addVertex(null);
+		Vertex v_D_a_1_out = graph.addVertex(null);
+		Vertex v_D_a_2_in = graph.addVertex(null);
+		Vertex v_D_a_2_out = graph.addVertex(null);
+		Vertex v_D_b_1_in = graph.addVertex(null);
+		Vertex v_D_b_1_out = graph.addVertex(null);
+		Vertex v_D_b_2_in = graph.addVertex(null);
+		Vertex v_D_b_2_out = graph.addVertex(null);
+		Vertex v_D_c_1_in = graph.addVertex(null);
+		Vertex v_D_c_1_out = graph.addVertex(null);
+		Vertex v_D_c_2_in = graph.addVertex(null);
+		Vertex v_D_c_2_out = graph.addVertex(null);
+		//assert v_D_fsi_a.getProperty(StringFactory.LABEL).equals("flowspace");
+		//assert v_D_fsi_b.getProperty(StringFactory.LABEL).equals("flowspace");
+		((DexGraph)graph).createKeyIndex("domain", Vertex.class);
+		((DexGraph)graph).createKeyIndex("type", Vertex.class);
+		v_D_a_1_in.setProperty("domain", "D");
+		v_D_a_1_out.setProperty("domain", "D");
+		v_D_a_2_in.setProperty("domain", "D");
+		v_D_a_2_out.setProperty("domain", "D");
+		v_D_b_1_in.setProperty("domain", "D");
+		v_D_b_1_out.setProperty("domain", "D");
+		v_D_b_2_in.setProperty("domain", "D");
+		v_D_b_2_out.setProperty("domain", "D");
+		v_D_c_1_in.setProperty("domain", "D");
+		v_D_c_1_out.setProperty("domain", "D");
+		v_D_c_2_in.setProperty("domain", "D");
+		v_D_c_2_out.setProperty("domain", "D");
+		v_D_a_1_in.setProperty("type", "flowspace");
+		v_D_a_1_out.setProperty("type", "flowspace");
+		v_D_a_2_in.setProperty("type", "flowspace");
+		v_D_a_2_out.setProperty("type", "flowspace");
+		v_D_b_1_in.setProperty("type", "flowspace");
+		v_D_b_1_out.setProperty("type", "flowspace");
+		v_D_b_2_in.setProperty("type", "flowspace");
+		v_D_b_2_out.setProperty("type", "flowspace");
+		v_D_c_1_in.setProperty("type", "flowspace");
+		v_D_c_1_out.setProperty("type", "flowspace");
+		v_D_c_2_in.setProperty("type", "flowspace");
+		v_D_c_2_out.setProperty("type", "flowspace");
+		v_D_a_1_in.setProperty("DPID", "D1");
+		v_D_a_1_out.setProperty("DPID", "D1");
+		v_D_a_2_in.setProperty("DPID", "D1");
+		v_D_a_2_out.setProperty("DPID", "D1");
+		v_D_b_1_in.setProperty("DPID", "D2");
+		v_D_b_1_out.setProperty("DPID", "D2");
+		v_D_b_2_in.setProperty("DPID", "D2");
+		v_D_b_2_out.setProperty("DPID", "D2");
+		v_D_c_1_in.setProperty("DPID", "D3");
+		v_D_c_1_out.setProperty("DPID", "D3");
+		v_D_c_2_in.setProperty("DPID", "D3");
+		v_D_c_2_out.setProperty("DPID", "D3");
+
+		v_D_a_1_in.setProperty("Port", "1");
+		v_D_a_1_out.setProperty("Port", "1");
+		v_D_a_2_in.setProperty("Port", "2");
+		v_D_a_2_out.setProperty("Port", "2");
+		v_D_b_1_in.setProperty("Port", "1");
+		v_D_b_1_out.setProperty("Port", "1");
+		v_D_b_2_in.setProperty("Port", "2");
+		v_D_b_2_out.setProperty("Port", "2");
+		v_D_c_1_in.setProperty("Port", "1");
+		v_D_c_1_out.setProperty("Port", "1");
+		v_D_c_2_in.setProperty("Port", "2");
+		v_D_c_2_out.setProperty("Port", "2");
+		
+		
+		
+		Vertex v_B_d_4_in = graph.addVertex(null);
+		v_B_d_4_in.setProperty("domain", "B");
+		v_B_d_4_in.setProperty("type", "flowspace");
+		v_B_d_4_in.setProperty("Port", "4");
+		v_B_d_4_in.setProperty("DPID", "B4");
+		Vertex v_B_d_4_out = graph.addVertex(null);
+		v_B_d_4_out.setProperty("domain", "B");
+		v_B_d_4_out.setProperty("type", "flowspace");
+		v_B_d_4_out.setProperty("Port", "4");
+		v_B_d_4_out.setProperty("DPID", "B4");
+		
+		//v_D_a_1_in  ----> v_D_a_2_out ----> v_D_b_1_in  ----> v_D_b_2_out ----> v_D_c_1_in  ----> v_D_c_2_out 
+		//v_D_a_1_out <---- v_D_a_2_in  <---- v_D_b_1_out <---- v_D_b_2_in  <---- v_D_c_1_out <---- v_D_c_2_in       
+		
+		Edge e1=graph.addEdge(null, v_D_a_1_in, v_D_a_2_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2);
+		e1=graph.addEdge(null, v_D_a_2_in, v_D_a_1_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2);
+		
+		graph.addEdge(null, v_D_a_2_out, v_D_b_1_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		graph.addEdge(null, v_D_b_1_out, v_D_a_2_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		
+		e1=graph.addEdge(null, v_D_b_1_in, v_D_b_2_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2);
+		e1=graph.addEdge(null, v_D_b_2_in, v_D_b_1_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2);
+		
+		graph.addEdge(null, v_D_b_2_out, v_D_c_1_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		graph.addEdge(null, v_D_c_1_out, v_D_b_2_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		
+		e1=graph.addEdge(null, v_D_c_1_in, v_D_c_2_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2+":"+org.renci.doe.pharos.graph.def.Edge.Capabilities.Vlan);
+		e1=graph.addEdge(null, v_D_c_2_in, v_D_c_1_out, org.renci.doe.pharos.graph.def.Edge.Label.can);
+		e1.setProperty("Capabilities",org.renci.doe.pharos.graph.def.Edge.Capabilities.L2+":"+org.renci.doe.pharos.graph.def.Edge.Capabilities.Vlan);
+
+		graph.addEdge(null, v_B_d_4_out, v_D_a_1_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		graph.addEdge(null, v_D_a_1_out, v_B_d_4_in, org.renci.doe.pharos.graph.def.Edge.Label.is);
+		
+		//System.out.println(e.getVertex(Direction.OUT).getProperty("name") + "--" + e.getLabel() + "-->" + e.getVertex(Direction.IN).getProperty("name"));
+		GraphMLWriter writer=new GraphMLWriter(graph);
+		try {
+			writer.outputGraph("./data/doe_pharos_domain_D.xml");
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file not found!");
+		}
+		graph.shutdown();
+	}
+}

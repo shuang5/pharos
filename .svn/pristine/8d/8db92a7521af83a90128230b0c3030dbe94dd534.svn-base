@@ -1,0 +1,28 @@
+package org.renci.pharos.lp;
+
+import java.util.ArrayList;
+
+import net.sf.javailp.Linear;
+
+public class LabelUsageMILP extends MILPSolver {
+
+	LabelUsageMILP(PProblem pp, ArrayList<String> ar) {
+		super(pp, ar);
+	}
+
+	@Override
+	public void setObjective() {
+		Linear linear = new Linear();
+		for(String s: arr){
+		  linear.add(1,s);
+		}
+		problem.setObjective(linear, OBJ.MIN);
+	}
+
+	@Override
+	public void init() {
+		problem.init();
+		
+	}
+
+}
